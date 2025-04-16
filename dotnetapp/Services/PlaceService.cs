@@ -50,7 +50,6 @@ namespace dotnetapp.Services
                 return false;
             }
 
-
             if( _context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
             {
                 return false;
