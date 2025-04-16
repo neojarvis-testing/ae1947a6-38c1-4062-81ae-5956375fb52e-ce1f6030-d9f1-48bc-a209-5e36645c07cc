@@ -8,6 +8,7 @@ namespace dotnetapp.Models
     public class UserRoles
     {
         public string Guide{get; set;}
+        
         public string Traveller{get; set;}
         
     }
