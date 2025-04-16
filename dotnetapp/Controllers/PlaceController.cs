@@ -78,8 +78,5 @@ namespace dotnetapp.Controllers
                 return StatusCode(500,e.Message);
             }
         }
-
-        
-        
     }
 }
