@@ -50,18 +50,16 @@ namespace dotnetapp.Services
                 return false;
             }
           
-            if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
-            {
-                return false;
-            }
+            // if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+            // {
+            //     return false;
+            // }
 
             existingPlace.Name=place.Name;
             existingPlace.Category=place.Category;
             existingPlace.BestTimeToVisit=place.BestTimeToVisit;
             existingPlace.PlaceImage=place.PlaceImage;
             existingPlace.Location=place.Location;
-
-            _context.Places.Update(existingPlace);
             await _context.SaveChangesAsync();
             return true;
             
