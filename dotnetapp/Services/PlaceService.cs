@@ -50,9 +50,8 @@ namespace dotnetapp.Services
                 return false;
             }
 
-            var overlappingPlace=await _context.Places.Where(p => p.UserId==place.UserId && p.Category==place.Category && p.PlaceId !=placeId).FirstOrDefaultAsync();
 
-            if(overlappingPlace != null)
+            if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
             {
                 return false;
             }
@@ -62,6 +61,8 @@ namespace dotnetapp.Services
             existingPlace.BestTimeToVisit=place.BestTimeToVisit;
             existingPlace.PlaceImage=place.PlaceImage;
             existingPlace.Location=place.Location;
+            
+            _context.Places.Update(existingPlace);
             await _context.SaveChangesAsync();
             return true;
             
