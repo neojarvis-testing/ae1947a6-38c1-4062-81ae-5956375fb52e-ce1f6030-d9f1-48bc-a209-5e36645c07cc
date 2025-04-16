@@ -17,7 +17,7 @@ namespace dotnetapp.Controllers
             _authService = authService;
         }
 
-        // Endpoint for user login
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
@@ -26,9 +26,9 @@ namespace dotnetapp.Controllers
                 var (status, result) = await _authService.Login(model);
 
                 if (status == 0)
-                    return BadRequest(result); // Invalid credentials
+                    return BadRequest(result); 
 
-                return Created("", result); // Success with token
+                return Created("", result); 
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace dotnetapp.Controllers
             }
         }
 
-        // Endpoint for user registration
+        
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User model)
         {
@@ -45,9 +45,9 @@ namespace dotnetapp.Controllers
                 var (status, message) = await _authService.Registration(model, model.UserRole);
 
                 if (status == 0)
-                    return BadRequest(message); // User already exists or validation failure
+                    return BadRequest(message); 
 
-                return Created("", message); // Success
+                return Created("", message); 
             }
             catch (Exception ex)
             {
