@@ -45,9 +45,9 @@ namespace dotnetapp.Controllers
                 var (status, message) = await _authService.Registration(model, model.UserRole);
 
                 if (status == 0)
-                    return BadRequest(message); // User already exists or validation failure
+                    return BadRequest(message); 
 
-                return Created("", message); // Success
+                return Created("", message); 
             }
             catch (Exception ex)
             {
