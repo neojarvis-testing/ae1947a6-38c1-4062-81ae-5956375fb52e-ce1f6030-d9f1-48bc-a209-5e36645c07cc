@@ -50,7 +50,15 @@ namespace dotnetapp.Services
                 return false;
             }
 
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+            if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+=======
+>>>>>>> d287eddda7ce0fdd238cbea97959bfd5a719e035
             if( _context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+>>>>>>> 31f8197351606fe649bdc28bd8f18be3a0054725
             {
                 return false;
             }
@@ -60,7 +68,11 @@ namespace dotnetapp.Services
             existingPlace.BestTimeToVisit=place.BestTimeToVisit;
             existingPlace.PlaceImage=place.PlaceImage;
             existingPlace.Location=place.Location;
+<<<<<<< HEAD
+            
+=======
 
+>>>>>>> 31f8197351606fe649bdc28bd8f18be3a0054725
             _context.Places.Update(existingPlace);
             await _context.SaveChangesAsync();
             return true;

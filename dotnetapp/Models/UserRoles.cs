@@ -7,6 +7,7 @@ namespace dotnetapp.Models
 {
     public class UserRoles
     {
+
         public const string Guide="Guide";
         
         public const string Traveller="Traveller";
