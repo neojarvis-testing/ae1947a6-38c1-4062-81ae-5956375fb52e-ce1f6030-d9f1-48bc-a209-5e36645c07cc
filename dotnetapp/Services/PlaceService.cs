@@ -49,9 +49,14 @@ namespace dotnetapp.Services
             {
                 return false;
             }
+<<<<<<< HEAD
 
 
             if( _context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+=======
+          
+            if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+>>>>>>> 445b26c08c45d964bf66ecff1703c4c694e2c997
             {
                 return false;
             }
