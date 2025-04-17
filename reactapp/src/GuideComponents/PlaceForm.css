@@ -1,25 +1,76 @@
+/* PlaceForm.css */
 .place-form-container {
     margin-top: 50px;
-    padding: 20px;
+    padding: 30px;
     background-color: #f8f9fa;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
 }
 
 .place-form-container h2 {
     margin-bottom: 20px;
+    color: #343a40;
+    font-weight: bold;
 }
 
-.place-form-container .form-group {
-    margin-bottom: 15px;
+.form-group {
+    margin-bottom: 20px;
 }
 
-.place-form-container .btn {
-    width: 100%;
+.form-control {
+    border-radius: 5px;
     padding: 10px;
-    font-size: 1rem;
+    font-size: 16px;
+}
+
+.form-control-file {
+    padding: 5px;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 .text-danger {
-    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+select.form-control {
+    height: auto;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.nav-item .btn {
+    font-size: 16px;
+    padding: 8px 16px;
 }

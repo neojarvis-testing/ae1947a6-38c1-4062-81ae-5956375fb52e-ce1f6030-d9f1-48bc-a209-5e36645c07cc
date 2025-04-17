@@ -5,6 +5,9 @@ import Login from './Components/Login'
 import Signup from './Components/Signup'
 import TravellerViewPlace from './TravellerComponents/TravellerViewPlace'
 import TravellerNavbar from './TravellerComponents/TravellerNavbar'
+import PlaceForm from './GuideComponents/PlaceForm'
+import ErrorPage from './Components/ErrorPage'
+import ViewPlace from './GuideComponents/ViewPlace'
 const App = () => {
   return (
     <div>
@@ -12,8 +15,11 @@ const App = () => {
         <HomePage/>
         <Login/>
         <Signup/>
-        <TravellerNavbar/>
+        <ViewPlace/>
         <TravellerViewPlace/>
+        <TravellerNavbar/>
+        <PlaceForm/>
+        <ErrorPage/>
     </div>
   )
 }

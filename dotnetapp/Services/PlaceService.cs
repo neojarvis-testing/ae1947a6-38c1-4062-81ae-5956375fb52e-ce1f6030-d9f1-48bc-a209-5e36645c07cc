@@ -62,7 +62,6 @@ namespace dotnetapp.Services
             existingPlace.Location=place.Location;
             await _context.SaveChangesAsync();
             return true;
-            
         }
 
         public async Task<bool> DeletePlace(int placeId)
@@ -74,8 +73,6 @@ namespace dotnetapp.Services
                 return true;
             }
             return false;
-
         }
-        
     }
 }

@@ -4,6 +4,7 @@ import './TravellerNavbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from '../GuideComponents/LogoutModel';
 
+
 const TravellerNavbar = ({ username, role }) => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
 
@@ -25,18 +26,14 @@ const TravellerNavbar = ({ username, role }) => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
-                            {/* Display username and role */}
                             <li className="nav-item me-3">
-                                <span className="navbar-text text-light">Welcome, {username} ({role})</span>
+                            <Link className="nav-link" to="/profile">DemoTraveller/Traveller</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Home</Link>
+                                <Link className="nav-link" to="/HomePage">Home</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/places">Places</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/profile">Traveller Profile</Link>
                             </li>
                             <li className="nav-item">
                                 <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
@@ -45,6 +42,7 @@ const TravellerNavbar = ({ username, role }) => {
                     </div>
                 </div>
             </nav>
+            
             {showLogoutModel && <LogoutModel onClose={handleCloseModel} />}
         </div>
     );
