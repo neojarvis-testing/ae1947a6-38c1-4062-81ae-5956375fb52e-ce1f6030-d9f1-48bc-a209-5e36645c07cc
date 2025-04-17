@@ -1,12 +1,16 @@
-import React from 'react'
+import React from 'react';
+import './ErrorPage.css';
 
 const ErrorPage = () => {
-  return (
-    <div>
-        <h1>Oops! Something Went Wrong</h1>
-        <p>Please try again later.</p>
-    </div>
-  )
-}
+    return (
+        <div className="error-container">
+            <div className="error-content">
+                <div className="error-icon">⚠️</div>
+                <h1>Oops! Something Went Wrong</h1>
+                <p>Please try again later.</p>
+            </div>
+        </div>
+    );
+};
 
-export default ErrorPage
+export default ErrorPage;

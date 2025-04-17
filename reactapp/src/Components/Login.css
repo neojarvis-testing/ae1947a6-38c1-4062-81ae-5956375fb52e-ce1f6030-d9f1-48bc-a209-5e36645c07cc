@@ -1,0 +1,41 @@
+.outer-container {
+    background-color: rgb(223, 223, 185); 
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px;
+}
+
+.login-container {
+    background: #3a0d0d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.797);
+    overflow: hidden;
+
+}
+
+.login-background {
+    background: rgb(203, 60, 60);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.login-box {
+    background: #fff;
+    padding: 40px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+.login-box .form-group {
+    margin-bottom: 15px;
+}
+
+.login-box .btn {
+    width: 100%;
+    background-color: blue;
+    color: white;
+}
