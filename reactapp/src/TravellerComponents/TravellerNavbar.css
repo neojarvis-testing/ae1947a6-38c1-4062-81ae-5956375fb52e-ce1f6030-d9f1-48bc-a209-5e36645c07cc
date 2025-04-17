@@ -1,0 +1,28 @@
+.home-page {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+    margin-right: 15px;
+}
+
+.nav-link:hover {
+    color: #ff7e5f !important;
+}
+
+.btn-outline-light {
+    border-color: #ff7e5f;
+    color: #ff7e5f;
+}
+
+.btn-outline-light:hover {
+    background-color: #ff7e5f;
+    color: white;
+}

@@ -49,24 +49,11 @@ namespace dotnetapp.Services
             {
                 return false;
             }
-<<<<<<< HEAD
 
-
-
-=======
-          
-<<<<<<< HEAD
->>>>>>> 445b26c08c45d964bf66ecff1703c4c694e2c997
             if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
             {
                 return false;
             }
-=======
-            // if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
-            // {
-            //     return false;
-            // }
->>>>>>> 351a91e82b8aa2f44a650125d57202166d2be9d9
 
             existingPlace.Name=place.Name;
             existingPlace.Category=place.Category;
@@ -78,7 +65,8 @@ namespace dotnetapp.Services
             
         }
 
-        public async Task<bool> DeletePlace(int placeId){
+        public async Task<bool> DeletePlace(int placeId)
+        {
             var existingPlace=await _context.Places.FindAsync(placeId);
             if(existingPlace != null){
                 _context.Places.Remove(existingPlace);
