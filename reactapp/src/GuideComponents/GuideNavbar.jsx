@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './GuideNavbar.css';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
+        navigate('/LogoutModel')
     };
 
     const handleCloseModel = () => {
@@ -28,21 +31,18 @@ const GuideNavbar = () => {
                         <ul className="navbar-nav ms-auto">
 
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+  
 
+                            <select>
                             
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Place
-                                </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/add-page">Add Page</a>
-                                <a class="dropdown-item" href="/view-page">View Page</a>
-                                </div>
-                            </li>
+                                <option value="">Place</option>
+                                <option value="addplace"> <a href='/PlaceForm'>Add Place</a></option>
+                                <option value=""><a href='/ViewPlace'>View Place</a></option>
+                            </select>
 
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
+                                    <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                                 </li>
                         </ul>
                     </div>
