@@ -64,7 +64,7 @@ const Signup = () => {
         <div className="container-fluid signup-container">
             <div className="row justify-content-center">
                 <div className="col-md-6 signup-box">
-                    <h2>Signup</h2>
+                    <h3>Signup</h3>
                     <form>
                         <div className="form-group">
                             <label htmlFor="userName">User Name <span className="text-danger">*</span></label>
