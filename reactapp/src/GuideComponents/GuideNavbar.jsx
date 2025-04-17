@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './GuideNavbar.css';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
+        navigate('/LogoutModel')
     };
 
     const handleCloseModel = () => {
@@ -38,7 +41,7 @@ const GuideNavbar = () => {
                             </li>
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
+                                    <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                                 </li>
                         </ul>
                     </div>

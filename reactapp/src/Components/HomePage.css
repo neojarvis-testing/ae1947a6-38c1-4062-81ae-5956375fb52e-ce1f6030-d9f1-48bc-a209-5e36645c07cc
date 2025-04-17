@@ -10,7 +10,7 @@
 
 .image-container {
     position: relative;
-    height: 200px;
+    height: 300px;
     background: url('/home/coder/project/workspace/reactapp/public/traveltalescoverimage.jpg') no-repeat center center;
     background-size: cover;
 }
@@ -32,12 +32,15 @@
     text-align: center;
 }
 footer {
-    background: #333;
-    color: white;
+    background: palegoldenrod;
+    color: rgb(255, 255, 255);
+    
 }
 .wel
 {
     padding: 10px 300px 10px 300px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, Helvetica, sans-serif;
+    
 }
 
