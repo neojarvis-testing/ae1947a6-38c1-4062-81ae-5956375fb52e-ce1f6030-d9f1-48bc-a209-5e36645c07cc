@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+// import baseUrl from '../apiConfig';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +16,6 @@ const Login = () => {
         setEmailError('');
         setPasswordError('');
 
-        // Validate inputs
         if (!email) {
             setEmailError('Email is required');
         }
@@ -26,12 +26,11 @@ const Login = () => {
             return;
         }
 
-        // Simulate login logic
+        
         try {
-            // Replace with actual login logic
+        
             const response = await fakeLogin(email, password);
             if (response.success) {
-                // Redirect to dashboard or home page
                 window.location.href = '/dashboard';
             } else {
                 setError('Invalid email or password');
@@ -41,7 +40,6 @@ const Login = () => {
         }
     };
 
-    // Simulate a login function (replace with actual API call)
     const fakeLogin = (email, password) => {
         return new Promise((resolve) => {
             setTimeout(() => {

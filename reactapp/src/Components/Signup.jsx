@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Signup.css';
+// import baseUrl from '../apiConfig';
+
 
 const Signup = () => {
     const [username, setUsername] = useState('');

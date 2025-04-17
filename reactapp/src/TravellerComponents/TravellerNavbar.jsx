@@ -25,7 +25,6 @@ const TravellerNavbar = ({ username, role }) => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
-                            {/* Display username and role */}
                             <li className="nav-item me-3">
                                 <span className="navbar-text text-light">Welcome, {username} ({role})</span>
                             </li>
