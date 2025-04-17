@@ -52,12 +52,12 @@ namespace dotnetapp.Controllers
         [HttpPut("{placeId}")]
         public async Task<ActionResult> UpdatePlace(int placeId,[FromBody] Place place){
             try{
-                var success = await placeService.UpdatePlace(placeId,place);
+                var success = await placeService.GetPlaceById(placeId);
 
-                if(success != null){
+                if(success == null){
                     return NotFound("Cannot find any place");
                 }
-
+                await placeService.UpdatePlace(placeId,place);
                 return Ok("Place updated successfully");
             }
             catch(Exception e){
@@ -70,7 +70,7 @@ namespace dotnetapp.Controllers
             try{
                 var success = await placeService.DeletePlace(placeId);
 
-                if(success != null){
+                if(success == null){
                     return NotFound("Cannot find any place");
                 }
                 return Ok("Place deleted successfully");

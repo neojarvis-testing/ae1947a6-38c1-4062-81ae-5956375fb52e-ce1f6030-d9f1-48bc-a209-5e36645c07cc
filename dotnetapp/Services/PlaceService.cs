@@ -49,19 +49,35 @@ namespace dotnetapp.Services
             {
                 return false;
             }
+<<<<<<< HEAD
 
             if( _context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+=======
+<<<<<<< HEAD
+
+
+
+=======
+          
+<<<<<<< HEAD
+>>>>>>> 445b26c08c45d964bf66ecff1703c4c694e2c997
+            if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+>>>>>>> 7c8dfbf1ea9b2806a0c29405117b668228da1ef7
             {
                 return false;
             }
+=======
+            // if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+            // {
+            //     return false;
+            // }
+>>>>>>> 351a91e82b8aa2f44a650125d57202166d2be9d9
 
             existingPlace.Name=place.Name;
             existingPlace.Category=place.Category;
             existingPlace.BestTimeToVisit=place.BestTimeToVisit;
             existingPlace.PlaceImage=place.PlaceImage;
             existingPlace.Location=place.Location;
-
-            _context.Places.Update(existingPlace);
             await _context.SaveChangesAsync();
             return true;
             
