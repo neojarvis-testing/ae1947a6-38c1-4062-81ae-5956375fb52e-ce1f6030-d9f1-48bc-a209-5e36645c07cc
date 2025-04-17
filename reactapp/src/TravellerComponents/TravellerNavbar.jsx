@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from '../GuideComponents/LogoutModel';
 
 
-const TravellerNavbar = ({ username, role }) => {
+const TravellerNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
 
     const handleLogoutClick = () => {

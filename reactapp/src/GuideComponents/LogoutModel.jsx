@@ -6,7 +6,7 @@ const LogoutModel = ({ onClose }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-      navigate('/login');
+      navigate('/Login');
       onClose();
     };
 
