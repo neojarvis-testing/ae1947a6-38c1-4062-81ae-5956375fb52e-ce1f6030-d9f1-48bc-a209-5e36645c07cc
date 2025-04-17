@@ -17,6 +17,7 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
         if (!name) validationErrors.name = 'Name is required';
         if (!category) validationErrors.category = 'Category is required';
         if (!location) validationErrors.location = 'Location is required';
+        if (!bestTimeToVisit) validationErrors.bestTimeToVisit = 'Best Time to visit is required';
         if (!placeImage) validationErrors.placeImage = 'Place image is required';
 
         setErrors(validationErrors);
@@ -29,7 +30,7 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
 
     return (
         <div className="container place-form-container">
-            <h2>{initialData.name ? 'Edit Place' : 'Create New Place'}</h2>
+            <h2 className="text-center">{initialData.name ? 'Edit Place' : 'Create New Place'}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name <span className="text-danger">*</span></label>
@@ -37,9 +38,9 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
                         type="text"
                         className="form-control"
                         id="name"
+                        value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Enter place name"
-                        required
                     />
                     {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
@@ -47,9 +48,9 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
                     <label htmlFor="category">Category <span className="text-danger">*</span></label>
                     <select
                         id="category"
+                        className="form-control"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        required
                     >
                         <option value="">Select Category</option>
                         <option value="Beach">Beach</option>
@@ -60,7 +61,7 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
                     {errors.category && <div className="text-danger">{errors.category}</div>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="bestTimeToVisit">Best Time to Visit</label>
+                    <label htmlFor="bestTimeToVisit">Best Time to Visit <span className="text-danger">*</span></label>
                     <input
                         type="text"
                         className="form-control"
@@ -69,6 +70,7 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
                         onChange={(e) => setBestTimeToVisit(e.target.value)}
                         placeholder="Enter best time to visit"
                     />
+                    {errors.bestTimeToVisit && <div className="text-danger">{errors.bestTimeToVisit}</div>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="location">Location <span className="text-danger">*</span></label>
@@ -79,7 +81,6 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="Enter location"
-                        required
                     />
                     {errors.location && <div className="text-danger">{errors.location}</div>}
                 </div>
@@ -87,10 +88,9 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
                     <label htmlFor="placeImage">Place Image <span className="text-danger">*</span></label>
                     <input
                         type="file"
-                        className="form-control"
+                        className="form-control-file"
                         id="placeImage"
                         onChange={(e) => setPlaceImage(e.target.files[0])}
-                        required
                     />
                     {errors.placeImage && <div className="text-danger">{errors.placeImage}</div>}
                 </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import TravellerNavbar from "./TravellerNavbar";
 import "./TravellerViewPlace.css";
 
 const TravellerViewPlace = () => {
@@ -61,7 +62,8 @@ const TravellerViewPlace = () => {
 
   return (
     <div>
-      <h1>Places</h1>
+      <TravellerNavbar/>
+      <h1>Available Places</h1>
       <input
         type="text"
         placeholder="Search places..."
@@ -75,8 +77,7 @@ const TravellerViewPlace = () => {
             <th>Name</th>
             <th>Category</th>
             <th>Location</th>
-            <th>Best time to Visit</th>
-            <th>Action</th>
+            <th>Price</th>
           </tr>
         </thead>
         <tbody>
@@ -86,7 +87,7 @@ const TravellerViewPlace = () => {
             </tr>
           ) : errorOccurred || filteredPlaces.length === 0 ? (
             <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>Oops! No places found.</td>
+              <td colSpan="6" style={{ textAlign: "center" }}>Oops! No places found....</td>
             </tr>
           ) : (
             filteredPlaces.map((place) => (
@@ -98,10 +99,10 @@ const TravellerViewPlace = () => {
                     style={{ width: "50px", height: "40px" }}
                   />
                 </td>
-                <td>{place.name}</td>
-                <td>{place.category}</td>
-                <td>{place.location}</td>
-                <td>{place.bestTimeToVisit}</td>
+                <td>{place.Name}</td>
+                <td>{place.Category}</td>
+                <td>{place.Location}</td>
+                <td>{place.Price}</td>
                 <td>
                   <button onClick={() => handleEdit(place.id)}>Edit</button>
                   <button onClick={() => handleDelete(place.id)}>Delete</button>

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import './GuideNavbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
 
+
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
+     
 
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
@@ -14,6 +17,8 @@ const GuideNavbar = () => {
     const handleCloseModel = () => {
         setShowLogoutModel(false);
     };
+
+   
 
     return (
         <div className="home-page">
@@ -25,15 +30,9 @@ const GuideNavbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/">Place</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/profile">Demoguide/Guide</Link>
-                            </li>
+                            <li><Link className="nav-link" to="/">Home</Link></li>
+                            <li><Link className="nav-link" to="/">Place</Link></li>
+                            <li><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
                             </li>
@@ -42,6 +41,7 @@ const GuideNavbar = () => {
                 </div>
             </nav>
             {showLogoutModel && <LogoutModel onClose={handleCloseModel} />}
+          
         </div>
     );
 };

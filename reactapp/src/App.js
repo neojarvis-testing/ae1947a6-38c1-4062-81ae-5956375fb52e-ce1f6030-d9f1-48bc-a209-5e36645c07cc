@@ -5,7 +5,8 @@ import Login from './Components/Login'
 import Signup from './Components/Signup'
 import TravellerViewPlace from './TravellerComponents/TravellerViewPlace'
 import TravellerNavbar from './TravellerComponents/TravellerNavbar'
-import ViewPlace from './GuideComponents/ViewPlace'
+import PlaceForm from './GuideComponents/PlaceForm'
+import ErrorPage from './Components/ErrorPage'
 const App = () => {
   return (
     <div>
@@ -16,6 +17,8 @@ const App = () => {
         <ViewPlace/>
         <TravellerViewPlace/>
         <TravellerNavbar/>
+        <PlaceForm/>
+        <ErrorPage/>
     </div>
   )
 }

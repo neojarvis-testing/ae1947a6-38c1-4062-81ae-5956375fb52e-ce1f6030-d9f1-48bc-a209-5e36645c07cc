@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using dotnetapp.Services;
 using dotnetapp.Models;
@@ -20,12 +21,14 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Place>>> GetAllPlaces(){
             var place=await placeService.GetAllPlaces();
             return Ok(place);    
         }
 
         [HttpGet("{placeId}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Place>>> GetPlaceById(int placeId){
             var place=await placeService.GetPlaceById(placeId);
             if(place == null){
@@ -35,6 +38,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles= UserRoles.Guide)]
         public async Task<ActionResult> AddPlace([FromBody] Place place){
             try{
                 var success = await placeService.AddPlace(place);
@@ -50,6 +54,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPut("{placeId}")]
+        [Authorize(Roles= UserRoles.Guide)]
         public async Task<ActionResult> UpdatePlace(int placeId,[FromBody] Place place){
             try{
                 var success = await placeService.GetPlaceById(placeId);
@@ -66,6 +71,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpDelete("{placeId}")]
+        [Authorize(Roles= UserRoles.Guide)]
         public async Task<ActionResult> DeletePlace(int placeId){
             try{
                 var success = await placeService.DeletePlace(placeId);
@@ -79,8 +85,5 @@ namespace dotnetapp.Controllers
                 return StatusCode(500,e.Message);
             }
         }
-
-        
-        
     }
 }
