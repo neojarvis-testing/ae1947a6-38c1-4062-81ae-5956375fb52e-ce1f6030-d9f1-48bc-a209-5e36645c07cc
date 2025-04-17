@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+// import baseUrl from '../apiConfig';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ const Login = () => {
         setError('');
         setEmailError('');
         setPasswordError('');
+
         if (!email) {
             setEmailError('Email is required');
         }
@@ -22,11 +24,12 @@ const Login = () => {
         if (!email || !password) {
             return;
         }
+
+        
         try {
-           
+        
             const response = await fakeLogin(email, password);
             if (response.success) {
-               
                 window.location.href = '/dashboard';
             } else {
                 setError('Invalid email or password');
@@ -36,7 +39,6 @@ const Login = () => {
         }
     };
 
-  
     const fakeLogin = (email, password) => {
         return new Promise((resolve) => {
             setTimeout(() => {
