@@ -1,39 +1,52 @@
 using dotnetapp.Models;
 using dotnetapp.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
+ 
 namespace dotnetapp.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api")]
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthService _authService;
-
-        public AuthenticationController(IAuthService authService){
-                _authService=authService;
-        }
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+ 
+        public AuthenticationController(IAuthService authService)
         {
-            var result = await _authService.Login(model);
-            if (result.Item1 == 1)
-            {
-                return Created("", result.Item2);
-            }
-            return BadRequest(result.Item2);
+            _authService = authService;
         }
-
+ 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User model)
         {
-            var result = await _authService.Registration(model, model.UserRole);
-            if (result.Item1 == 1)
+            if (!ModelState.IsValid)
             {
-                return Created("", result.Item2);
+                return BadRequest(ModelState);
             }
-            return BadRequest(result.Item2);
+ 
+            var (statusCode, message) = await _authService.Registration(model, model.UserRole);
+            if (statusCode == 400)
+            {
+                return BadRequest(new { Message = message });
+            }
+ 
+            return StatusCode(statusCode, new { Message = message });
+        }
+ 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+ 
+            var (statusCode, result) = await _authService.Login(model);
+            if (statusCode == 400)
+            {
+                return BadRequest(new { Message = result });
+            }
+ 
+            return Ok(result);
         }
     }
 }

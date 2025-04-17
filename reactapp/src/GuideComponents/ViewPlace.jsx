@@ -31,7 +31,7 @@ const ViewPlace=() => {
     },[]);
 
     const handleDelete=(placeId)=>{
-      axios
+      axios                                 
           .delete(`${baseUrl}/${placeId}`)
           .then(()=>{
             setSuccessMessage("Place successfully deleted.");
@@ -95,6 +95,7 @@ const ViewPlace=() => {
                           </tr>
                         ))
                         )}
+
                       </tbody>
                     </table>
                   </div>  
