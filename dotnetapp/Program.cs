@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
  
 // Add services to the container.
@@ -48,23 +49,16 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<PlaceService>();
-<<<<<<< HEAD
-builder.Services.AddScoped<IAuthService,AuthService>();
-
-builder.Services.AddIdentity<ApplicationUser ,IdentityRole>()
-                                .AddEntityFrameworkStores<ApplicationDbContext>()
-                                .AddDefaultTokenProviders();
-
-=======
  
 builder.Services.AddControllers();
  
  
  
->>>>>>> 77dfd911f1a02e5e795f5525eae66031341788c5
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(
+    
+);
  
  
  
@@ -81,12 +75,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
  
 app.UseAuthorization();
-<<<<<<< HEAD
-app.UseAuthentication();
-
-=======
  
->>>>>>> 77dfd911f1a02e5e795f5525eae66031341788c5
 app.MapControllers();
  
 app.Run();
