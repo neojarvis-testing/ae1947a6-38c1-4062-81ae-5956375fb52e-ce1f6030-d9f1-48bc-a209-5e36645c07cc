@@ -35,8 +35,8 @@ const GuideNavbar = () => {
                                     Place
                                 </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/add-page">Add Page</a>
-                                <a class="dropdown-item" href="/view-page">View Page</a>
+                                <a class="dropdown-item" href="/add-page">Add Place</a>
+                                <a class="dropdown-item" href="/view-page">View Place</a>
                                 </div>
                             </li>
 
