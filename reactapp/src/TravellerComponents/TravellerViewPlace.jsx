@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./TravellerViewPlace.css";
 
 const TravellerViewPlace = () => {
   const [places, setPlaces] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [errorOccurred, setErrorOccurred] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("")
-      .then((response) => response.json())
+    // Replace this URL with your actual API endpoint
+    fetch("https://example.com/api/places")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
       .then((data) => {
         setPlaces(data);
         setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching places:", error);
+        setErrorOccurred(true);
         setIsLoading(false);
       });
   }, []);
 
   const filteredPlaces = places.filter((place) =>
-    place.name.toLowerCase().includes(searchQuery.toLowerCase())
+    place.name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this place?")) {
-      fetch(``, {
+      fetch(`https://example.com/api/places/${id}`, {
         method: "DELETE",
       })
         .then((response) => {
@@ -59,26 +68,32 @@ const TravellerViewPlace = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : filteredPlaces.length > 0 ? (
-        <table>
-          <thead>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Location</th>
+            <th>Best time to Visit</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {isLoading ? (
             <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Location</th>
-              <th>Best time to Visit</th>
-              <th>Action</th>
+              <td colSpan="6" style={{ textAlign: "center" }}>Loading...</td>
             </tr>
-          </thead>
-          <tbody>
-            {filteredPlaces.map((place) => (
+          ) : errorOccurred || filteredPlaces.length === 0 ? (
+            <tr>
+              <td colSpan="6" style={{ textAlign: "center" }}>Oops! No places found.</td>
+            </tr>
+          ) : (
+            filteredPlaces.map((place) => (
               <tr key={place.id}>
                 <td>
                   <img
-                    src={place.imageUrl}
+                    src={place.imageUrl || "https://via.placeholder.com/50"}
                     alt={place.name}
                     style={{ width: "50px", height: "40px" }}
                   />
@@ -92,12 +107,10 @@ const TravellerViewPlace = () => {
                   <button onClick={() => handleDelete(place.id)}>Delete</button>
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>Oops! No places found.</p>
-      )}
+            ))
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
