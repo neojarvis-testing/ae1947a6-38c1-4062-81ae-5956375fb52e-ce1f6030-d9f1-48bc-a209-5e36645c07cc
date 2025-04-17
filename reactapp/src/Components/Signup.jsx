@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Signup.css';
-// import baseUrl from '../apiConfig';
-
+import { Modal, Button } from 'react-bootstrap';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -12,6 +11,7 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [userRole, setUserRole] = useState('');
     const [errors, setErrors] = useState({});
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,8 +40,7 @@ const Signup = () => {
                 // Replace with actual signup logic
                 const response = await fakeSignup({ username, email, mobileNumber, password, userRole });
                 if (response.success) {
-                    // Redirect to login page
-                    window.location.href = '/login';
+                    setShowSuccessModal(true);
                 } else {
                     setErrors({ form: 'An error occurred. Please try again later.' });
                 }
@@ -58,6 +57,11 @@ const Signup = () => {
                 resolve({ success: true });
             }, 1000);
         });
+    };
+
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
+        window.location.href = '/login';
     };
 
     return (
@@ -94,7 +98,6 @@ const Signup = () => {
                             <label htmlFor="mobileNumber">Mobile Number <span className="text-danger">*</span></label>
                             <input
                                 type="text"
-                                className="form-control"
                                 id="mobileNumber"
                                 value={mobileNumber}
                                 onChange={(e) => setMobileNumber(e.target.value)}
@@ -110,8 +113,7 @@ const Signup = () => {
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Enter password"
-                            />
+                                placeholder="Enter pasword" />
                             {errors.password && <div className="text-danger">{errors.password}</div>}
                         </div>
                         <div className="form-group">
@@ -146,6 +148,18 @@ const Signup = () => {
                     <p className="mt-3">Already have an account? <a href="/login">Login</a></p>
                 </div>
             </div>
+
+            <Modal show={showSuccessModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Success</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>User Registration is Successful!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleCloseModal}>
+                        Ok
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };

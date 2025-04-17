@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PlaceForm.css';
+import { Modal, Button } from 'react-bootstrap';
 
-const PlaceForm = ({ onSubmit, initialData = {} }) => {
+const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
     const [name, setName] = useState(initialData.name || '');
     const [category, setCategory] = useState(initialData.category || '');
     const [bestTimeToVisit, setBestTimeToVisit] = useState(initialData.bestTimeToVisit || '');
     const [placeImage, setPlaceImage] = useState(initialData.placeImage || '');
     const [location, setLocation] = useState(initialData.location || '');
     const [errors, setErrors] = useState({});
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,13 +25,20 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            const placeData = { name, category, bestTimeToVisit, placeImage, location };
+            const placeData = { name, category, bestTimeToVisit, placeImage: URL.createObjectURL(placeImage), location };
             onSubmit(placeData);
+            setShowSuccessModal(true);
         }
+    };
+
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
+        onBack();
     };
 
     return (
         <div className="container place-form-container">
+            <button className="btn btn-secondary mb-3" onClick={onBack}>Back</button>
             <h2 className="text-center">{initialData.name ? 'Edit Place' : 'Create New Place'}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -98,6 +107,18 @@ const PlaceForm = ({ onSubmit, initialData = {} }) => {
                     {initialData.name ? 'Update Place' : 'Add Place'}
                 </button>
             </form>
+
+            <Modal show={showSuccessModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Success</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Place updated successfully!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleCloseModal}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };

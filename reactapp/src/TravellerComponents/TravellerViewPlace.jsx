@@ -27,7 +27,7 @@ const TravellerViewPlace = () => {
       .catch((error) => {
         console.error("Error fetching places:", error);
         setErrorOccurred(true);
-        setIsLoading(false);
+        setIsLoading(false);  
       });
   }, []);
 
