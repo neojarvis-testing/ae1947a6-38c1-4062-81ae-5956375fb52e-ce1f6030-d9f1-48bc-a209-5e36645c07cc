@@ -29,14 +29,32 @@ const GuideNavbar = () => {
 
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
 
-                            <li class="nav-item dropdown">
-                                <Link class="nav-link dropdown-toggle" to="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Place
+                            {/* <li className="nav-item dropdown">
+                                <Link   className="nav-link dropdown-toggle" 
+                                        to="/" 
+                                        id="navbarDropdown" 
+                                        role="button" 
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true" 
+                                        aria-expanded="false"
+                                >
+                                    Place
                                 </Link>
                                 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link class="dropdown-item" to="/">Add Place</Link>
-                                <Link class="dropdown-item" to="/">View Place</Link>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <Link className="dropdown-item" to="/add-place">Add Place</Link>
+                                    <Link className="dropdown-item" to="/view-place">View Place</Link>
+                                </div>
+
+                            </li> */}
+
+                            <li className="nav-item dropdown">
+                                <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Place
+                                <Link>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <Link className="dropdown-item" to="/add-place">Add Place</Link>
+                                <Link className="dropdown-item" to="/view-place">View Place</Link>
                                 </div>
                             </li>
 
