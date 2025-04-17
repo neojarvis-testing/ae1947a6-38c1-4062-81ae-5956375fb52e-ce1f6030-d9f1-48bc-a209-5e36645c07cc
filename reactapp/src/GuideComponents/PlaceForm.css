@@ -19,3 +19,7 @@
     padding: 10px;
     font-size: 1rem;
 }
+
+.text-danger {
+    color: red;
+}

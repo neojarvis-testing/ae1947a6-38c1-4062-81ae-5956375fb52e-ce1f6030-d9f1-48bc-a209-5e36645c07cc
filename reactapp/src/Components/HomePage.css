@@ -1,88 +1,48 @@
+/* HomePage.css */
 
 .home-page {
     font-family: Arial, sans-serif;
-    height: 100vh;
-   
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+}
+
+.welcome-section {
+   padding: 50px 0;
     color: white;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .header h1 {
-    margin: 0;
-  }
-  
-  .header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .header nav ul li {
+    text-align: center;
+}
+
+.image-container {
     position: relative;
-  }
-  
-  .header nav ul li button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: white;
-  }
-  
-  .user-menu .dropdown-content {
-    display: none;
+    height: 300px;
+    background: url('/home/coder/project/workspace/reactapp/public/traveltalescoverimage.jpg') no-repeat center center;background-size: cover;
+}
+
+.strip-background {
     position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .user-menu:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown-content button {
-    background: none;
-    border: none;
-    padding: 10px 20px;
-    text-align: left;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .main-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 0;
+}
+
+.centered-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: black;
     text-align: center;
-  }
-  
-  .welcome-text {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  footer {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    text-align: center;
-    border-top: 1px solid #ddd;
-  }
-  
+}
+
+.welcome-text {
+    padding: 10px 0;
+    background: #d4d9d9;
+    margin-top: 10px;
+    
+}
+
+footer {
+    background: #333;
+    color: white;
+    padding: 10px 0;
+}
+
