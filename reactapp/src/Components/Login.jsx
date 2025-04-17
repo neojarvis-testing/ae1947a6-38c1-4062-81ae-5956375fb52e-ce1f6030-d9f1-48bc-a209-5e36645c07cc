@@ -10,12 +10,9 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState('');
 
     const handleLogin = async () => {
-        // Reset errors
         setError('');
         setEmailError('');
         setPasswordError('');
-
-        // Validate inputs
         if (!email) {
             setEmailError('Email is required');
         }
@@ -25,13 +22,11 @@ const Login = () => {
         if (!email || !password) {
             return;
         }
-
-        // Simulate login logic
         try {
-            // Replace with actual login logic
+           
             const response = await fakeLogin(email, password);
             if (response.success) {
-                // Redirect to dashboard or home page
+               
                 window.location.href = '/dashboard';
             } else {
                 setError('Invalid email or password');
@@ -41,7 +36,7 @@ const Login = () => {
         }
     };
 
-    // Simulate a login function (replace with actual API call)
+  
     const fakeLogin = (email, password) => {
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -59,8 +54,7 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 login-background">
                     <h1>Travel Tales</h1>
-                    <p>Welcome to Travel Tales, your travel companion.</p>
-                    <p>
+                    <p>Welcome to Travel Tales, your travel companion
                         Browse travel diaries around the world, create wonderful memories and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.
                     </p>
                 </div>

@@ -10,7 +10,7 @@
 
 .image-container {
     position: relative;
-    height: 300px;
+    height: 200px;
     background: url('/home/coder/project/workspace/reactapp/public/traveltalescoverimage.jpg') no-repeat center center;
     background-size: cover;
 }
