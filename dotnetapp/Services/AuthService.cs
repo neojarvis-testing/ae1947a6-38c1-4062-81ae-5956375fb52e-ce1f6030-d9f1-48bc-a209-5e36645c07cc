@@ -1,9 +1,13 @@
-using dotnetapp.Models;
 using dotnetapp.Data;
+using dotnetapp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace dotnetapp.Services
@@ -15,10 +19,7 @@ namespace dotnetapp.Services
         private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _context;
 
-        public AuthService(UserManager<ApplicationUser> userManager, 
-                           RoleManager<IdentityRole> roleManager, 
-                           IConfiguration configuration, 
-                           ApplicationDbContext context)
+        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, ApplicationDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -32,21 +33,24 @@ namespace dotnetapp.Services
             if (userExists != null)
                 return (0, "User already exists");
 
-            var applicationUser = new ApplicationUser
+            ApplicationUser user = new ApplicationUser()
             {
                 Email = model.Email,
-                UserName = model.Username,
+                UserName = model.Email,
                 Name = model.Username
             };
-
-            var result = await _userManager.CreateAsync(applicationUser, model.Password);
+            var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
                 return (0, "User creation failed! Please check user details and try again");
 
             if (!await _roleManager.RoleExistsAsync(role))
                 await _roleManager.CreateAsync(new IdentityRole(role));
 
-            await _userManager.AddToRoleAsync(applicationUser, role);
+            if (await _roleManager.RoleExistsAsync(role))
+            {
+                await _userManager.AddToRoleAsync(user, role);
+            }
+
             return (1, "User created successfully!");
         }
 
@@ -56,29 +60,40 @@ namespace dotnetapp.Services
             if (user == null)
                 return (0, "Invalid email");
 
-            var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
-            if (!passwordValid)
+            if (!await _userManager.CheckPasswordAsync(user, model.Password))
                 return (0, "Invalid password");
 
             var userRoles = await _userManager.GetRolesAsync(user);
+
             var authClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
-            foreach (var role in userRoles)
+            foreach (var userRole in userRoles)
             {
-                authClaims.Add(new Claim(ClaimTypes.Role, role));
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
             }
 
             var token = GenerateToken(authClaims);
-            return (1, new { Token = token });
+
+            return (1, new { token });
         }
 
         private string GenerateToken(IEnumerable<Claim> claims)
         {
-            return "GeneratedJWTToken"; 
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddHours(3),
+                claims: claims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

@@ -50,16 +50,10 @@ namespace dotnetapp.Services
                 return false;
             }
 
-
-          
-
-
             if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
             {
                 return false;
             }
-
-
 
             existingPlace.Name=place.Name;
             existingPlace.Category=place.Category;
@@ -71,7 +65,8 @@ namespace dotnetapp.Services
             
         }
 
-        public async Task<bool> DeletePlace(int placeId){
+        public async Task<bool> DeletePlace(int placeId)
+        {
             var existingPlace=await _context.Places.FindAsync(placeId);
             if(existingPlace != null){
                 _context.Places.Remove(existingPlace);
