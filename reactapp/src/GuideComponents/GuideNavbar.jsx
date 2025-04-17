@@ -31,17 +31,14 @@ const GuideNavbar = () => {
                         <ul className="navbar-nav ms-auto">
 
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+  
 
+                            <select>
                             
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Place
-                                </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/add-page">Add Page</a>
-                                <a class="dropdown-item" href="/view-page">View Page</a>
-                                </div>
-                            </li>
+                                <option value="">Place</option>
+                                <option value="addplace"> <a href='/PlaceForm'>Add Place</a></option>
+                                <option value=""><a href='/ViewPlace'>View Place</a></option>
+                            </select>
 
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                                 <li className="nav-item">
