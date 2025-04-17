@@ -49,14 +49,10 @@ const ViewPlace=() => {
       navigate(`/edit/${id}`);
     }
 
-
   return (
-    <div class="container mt-4">
-    <GuideNavbar/>
-      <br/>
-      <br/>
+    <div>
+      <GuideNavbar/>
         <h2 style={{textAlign:"center"}}>Places</h2>
-      <br/>
         {successMessage && <p class="text-success"><h2>{successMessage}</h2></p>}
         {errors && <p class="text-danger"><h2>{errors}</h2></p>}
         {loading && <p>Loading...</p>}
