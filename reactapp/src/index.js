@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 import React from 'react';
 import ReactDOM from "react-dom/client";
 import './index.css';
@@ -18,4 +17,3 @@ root.render(
 );
  
 reportWebVitals();
->>>>>>> 7e22ed8e325c5a307c13d032e3eae2de3dea7fff
