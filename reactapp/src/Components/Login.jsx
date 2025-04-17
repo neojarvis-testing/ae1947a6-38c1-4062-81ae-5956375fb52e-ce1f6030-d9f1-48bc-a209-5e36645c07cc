@@ -10,34 +10,6 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState('');
 
     const handleLogin = async () => {
-<<<<<<< HEAD
-       
-    };
-
-    return (
-        <div className="outer-container d-flex justify-content-center align-items-center">
-            <div className="container-fluid login-container">
-                <div className="row">
-                    <div className="col-md-6 login-background d-flex flex-column justify-content-center align-items-center text-white">
-                        <h1>Travel Tales</h1>
-                        <p>Welcome to Travel Tales, your gateway to exploring stunning travel destinations around the world. Discover curated itineraries and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget!</p>
-                    </div>
-                    <div className="col-md-6 login-box d-flex flex-column justify-content-center align-items-center">
-                        <h2>Login</h2>
-                        <form className="w-75">
-                            <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                            </div>
-                           <button className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
-                        </form>
-                        <p className="mt-3">Don't have an account? <a href="/signup">Signup</a></p>
-                    </div>
-=======
         // Reset errors
         setError('');
         setEmailError('');
@@ -123,7 +95,6 @@ const Login = () => {
                         {error && <div className="text-danger mt-3">{error}</div>}
                     </form>
                     <p className="mt-3">Don't have an account? <a href="/signup">Signup</a></p>
->>>>>>> 49ea6be69f80927982f3e61575b14d04e3af8e25
                 </div>
             </div>
         </div>
