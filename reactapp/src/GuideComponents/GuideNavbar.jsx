@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './GuideNavbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
-
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
     };
@@ -14,6 +13,8 @@ const GuideNavbar = () => {
     const handleCloseModel = () => {
         setShowLogoutModel(false);
     };
+
+    const navigate = useNavigate();
 
     return (
         <div className="home-page">
@@ -26,24 +27,23 @@ const GuideNavbar = () => {
 
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
-
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-
-                            
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Place
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="placeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  
                                 </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/add-page">Add Page</a>
-                                <a class="dropdown-item" href="/view-page">View Page</a>
-                                </div>
+                                <select>  Place
+                                   
+                                <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="placeDropdown">
+                                    <li><Link className="dropdown-item" to="/PlaceForm">Add Place</Link></li>
+                                    <li><Link className="dropdown-item" to="/ViewPlace">View Place</Link></li>
+                                </ul>
+                                </select>
                             </li>
-
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
-                                <li className="nav-item">
-                                    <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
-                                </li>
+                            <li className="nav-item">
+                                <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
+                            </li>
                         </ul>
                     </div>
                 </div>
