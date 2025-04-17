@@ -21,26 +21,48 @@ const Signup = () => {
     const handleSignup = async () => {
         let validationErrors = {};
 
-        if (!username) validationErrors.username = 'User Name is required';
-        if (!email) validationErrors.email = 'Email is required';
-        else if (!validateEmail(email)) validationErrors.email = 'Please enter a valid email';
-        if (!mobileNumber) validationErrors.mobileNumber = 'Mobile Number is required';
-        else if (mobileNumber.length !== 10) validationErrors.mobileNumber = 'Mobile number must be 10 digits';
-        if (!password) validationErrors.password = 'Password is required';
-        else if (password.length < 6) validationErrors.password = 'Password must be at least 6 characters';
-        if (!confirmPassword) validationErrors.confirmPassword = 'Confirm Password is required';
-        else if (password !== confirmPassword) validationErrors.confirmPassword = 'Passwords do not match';
-        if (!userRole) validationErrors.userRole = 'User Role is required';
+        if (!username){
+            validationErrors.username = 'User Name is required';
+        }
+
+        if (!email) {
+            validationErrors.email = 'Email is required';
+        }
+        else if (!validateEmail(email)){
+            validationErrors.email = 'Please enter a valid email';
+        }
+
+        if (!mobileNumber) {
+            validationErrors.mobileNumber = 'Mobile Number is required';
+        }
+        else if (mobileNumber.length !== 10) {
+            validationErrors.mobileNumber = 'Mobile number must be 10 digits';
+        }
+
+        if (!password) {
+            validationErrors.password = 'Password is required';
+        }
+        else if (password.length < 6) {
+            validationErrors.password = 'Password must be at least 6 characters';
+        }
+
+        if (!confirmPassword) {
+            validationErrors.confirmPassword = 'Confirm Password is required';
+        }
+        else if (password !== confirmPassword) {
+            validationErrors.confirmPassword = 'Passwords do not match';
+        }
+
+        if (!userRole) {
+            validationErrors.userRole = 'User Role is required';
+        }
 
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            // Simulate signup logic
             try {
-                // Replace with actual signup logic
                 const response = await fakeSignup({ username, email, mobileNumber, password, userRole });
                 if (response.success) {
-                    // Redirect to login page
                     window.location.href = '/login';
                 } else {
                     setErrors({ form: 'An error occurred. Please try again later.' });
@@ -51,7 +73,6 @@ const Signup = () => {
         }
     };
 
-    // Simulate a signup function (replace with actual API call)
     const fakeSignup = (data) => {
         return new Promise((resolve) => {
             setTimeout(() => {
