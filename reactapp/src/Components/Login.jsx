@@ -22,17 +22,21 @@ const Login = () => {
                 <div className="col-md-6 login-box">
                     <h2>Login</h2>
                     <form>
-                        <div className="
-            form-group">
+
+                        <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                         </div>
+
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                         </div>
+
                         <button type="button" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
+                    
                     </form>
+
                     <p className="mt-3">Dont' have and account? <a href="/signup">Signup</a></p>
                 </div>
             </div>
