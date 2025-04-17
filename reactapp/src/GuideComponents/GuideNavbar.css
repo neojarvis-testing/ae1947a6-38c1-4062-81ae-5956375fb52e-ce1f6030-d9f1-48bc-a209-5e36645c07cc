@@ -26,3 +26,10 @@
     background-color: #ff7e5f;
     color: white;
 }
+.dropdown-container {
+    width: 200px;
+    margin: 20px auto; /* Center the dropdown horizontally */
+  }
+  
+  
+  
