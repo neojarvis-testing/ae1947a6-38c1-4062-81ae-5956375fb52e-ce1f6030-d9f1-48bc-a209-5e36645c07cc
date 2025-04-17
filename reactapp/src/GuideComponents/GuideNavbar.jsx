@@ -8,8 +8,7 @@ import LogoutModel from './LogoutModel';
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
-     
-
+    
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
     };
@@ -17,9 +16,6 @@ const GuideNavbar = () => {
     const handleCloseModel = () => {
         setShowLogoutModel(false);
     };
-
-   
-
     return (
         <div className="home-page">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
