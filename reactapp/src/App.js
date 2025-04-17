@@ -1,26 +1,31 @@
-import React from 'react'
-import GuideNavbar from './GuideComponents/GuideNavbar'
-import HomePage from './Components/HomePage'
-import Login from './Components/Login'
-import Signup from './Components/Signup'
-import TravellerViewPlace from './TravellerComponents/TravellerViewPlace'
-import TravellerNavbar from './TravellerComponents/TravellerNavbar'
-import PlaceForm from './GuideComponents/PlaceForm'
-import ErrorPage from './Components/ErrorPage'
-import ViewPlace from './GuideComponents/ViewPlace'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import GuideNavbar from './GuideComponents/GuideNavbar';
+import PlaceForm from './GuideComponents/PlaceForm';
+import ViewPlace from './GuideComponents/ViewPlace';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import HomePage from './Components/HomePage';
+import LogoutModel from './GuideComponents/LogoutModel';
+
+
+
 const App = () => {
-  return (
-    <div>
-        <GuideNavbar/>
-        <HomePage/>
-        <Login/>
-        <Signup/>
-        <ViewPlace/>
-        <TravellerViewPlace/>
-        <TravellerNavbar/>
-        <PlaceForm/>
-        <ErrorPage/>
-    </div>
-  )
-}
-export default App
+    return (
+        <Router>
+            <div>
+                <GuideNavbar />
+                <Login/>
+                <Signup/>
+                <HomePage/>
+                <LogoutModel/>
+                <Routes>
+                    <Route path="/PlaceForm" element={<PlaceForm/>} ></Route>
+                    <Route path="/ViewPlace" element={<ViewPlace/>} ></Route>
+                </Routes>
+            </div>
+        </Router>
+    );
+};
+
+export default App;

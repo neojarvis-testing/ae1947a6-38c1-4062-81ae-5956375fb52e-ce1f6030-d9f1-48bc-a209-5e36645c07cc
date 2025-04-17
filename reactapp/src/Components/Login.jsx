@@ -11,7 +11,6 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState('');
 
     const handleLogin = async () => {
-        // Reset errors
         setError('');
         setEmailError('');
         setPasswordError('');
@@ -57,8 +56,7 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 login-background">
                     <h1>Travel Tales</h1>
-                    <p>Welcome to Travel Tales, your travel companion.</p>
-                    <p>
+                    <p>Welcome to Travel Tales, your travel companion
                         Browse travel diaries around the world, create wonderful memories and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.
                     </p>
                 </div>
