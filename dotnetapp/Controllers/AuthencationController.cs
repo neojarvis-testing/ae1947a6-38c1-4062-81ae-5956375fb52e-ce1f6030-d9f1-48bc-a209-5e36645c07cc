@@ -31,15 +31,9 @@ namespace dotnetapp.Controllers
  
             return StatusCode(statusCode, new { Message = message });
         }
-<<<<<<< HEAD
-
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] User model, [FromQuery] string role)
-=======
  
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
->>>>>>> 77dfd911f1a02e5e795f5525eae66031341788c5
         {
             if (!ModelState.IsValid)
             {

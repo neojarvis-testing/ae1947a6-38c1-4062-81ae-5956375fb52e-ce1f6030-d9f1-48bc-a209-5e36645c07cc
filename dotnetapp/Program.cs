@@ -6,10 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-<<<<<<< HEAD
-=======
 using Microsoft.OpenApi.Models;
->>>>>>> 79e14d0223453575042390a3871ece716b918a53
 
 var builder = WebApplication.CreateBuilder(args);
 
