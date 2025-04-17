@@ -12,8 +12,8 @@ const App = () => {
         <HomePage/>
         <Login/>
         <Signup/>
-        <TravellerViewPlace/>
         <TravellerNavbar/>
+        <TravellerViewPlace/>
     </div>
   )
 }
