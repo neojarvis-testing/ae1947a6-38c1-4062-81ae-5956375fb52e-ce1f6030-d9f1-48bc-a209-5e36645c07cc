@@ -16,14 +16,13 @@ const HomePage = () => {
                 </div>
             </div>
         </main>
-        <div className="welcome-text text-center">
-            <p>Welcome to Travel Tales, your gateway to exploring stunning travel destinations around the world.
-             Discover curated itineraries and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget!</p>
+        <div >
+            <p className ="wel">Welcome to Travel Tales, your gateway to exploring amazing travel destinations around the world. Discover curated itineraries and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
         </div>
         <footer className="text-center mt-4">
             <p>Contact Us</p>
-            <p>Email: example@example.com</p>
-            <p>Phone: 123-456-7890</p>
+            <p>Email: example@travelcorp.com</p>
+            <p>Phone: 012-345-6780</p>
         </footer>
     </div>
   );

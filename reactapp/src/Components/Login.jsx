@@ -79,6 +79,7 @@ const Login = () => {
                             />
                             {emailError && <div className="text-danger">{emailError}</div>}
                         </div>
+
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input
@@ -91,6 +92,7 @@ const Login = () => {
                             />
                             {passwordError && <div className="text-danger">{passwordError}</div>}
                         </div>
+
                         <button type="button" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
                         {error && <div className="text-danger mt-3">{error}</div>}
                     </form>
