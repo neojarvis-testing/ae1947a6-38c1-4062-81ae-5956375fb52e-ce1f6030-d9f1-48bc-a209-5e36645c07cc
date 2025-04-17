@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Link,useNavigate} from 'react-router-dom';
 import './GuideNavbar.css';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
+
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
+        navigate('/LogoutModel')
     };
 
     const handleCloseModel = () => {
@@ -30,76 +33,19 @@ const GuideNavbar = () => {
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
 
                             
-                            {/* <li class="nav-item dropdown" 
-                                    value={selectedOption}
-                                    onChange={handleSelection}>
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Place
                                 </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/PlaceForm">Add Place</a>
-                                <a class="dropdown-item" href="/ViewPlace">View Place</a>
+                                <a class="dropdown-item" href="/add-page">Add Page</a>
+                                <a class="dropdown-item" href="/view-page">View Page</a>
                                 </div>
-                            </li> */}
-
-                            {/* <div class="collapse navbar-collapse" id="navbarNavDarkDropdown"
-                                    value={selectedOption}
-                                    onChange={handleSelection}>      
-                                <ul class="navbar-nav">        
-                                    <li class="nav-item dropdown">          
-                                        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">            
-                                            Place          
-                                        </button>          
-                                        <ul class="dropdown-menu dropdown-menu-dark">            
-                                            <li><a class="dropdown-item" href="/PlaceForm">Add Place</a></li>            
-                                            <li><a class="dropdown-item" href="/ViewPlace">View Place</a></li>            
-                                        </ul>        
-                                    </li>      
-                                </ul>    
-                            </div> */}
-
-                            {/* <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                                <div class="container-fluid" 
-                                    value={selectedOption}
-                                    onChange={handleSelection}>
-                                    <a class="navbar-brand" href="/">Navbar</a>
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item dropdown">
-                                        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Dropdown
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-dark">
-                                            <li><a class="dropdown-item" href="/PlaceForm">Add Place</a></li>            
-                                            <li><a class="dropdown-item" href="/ViewPlace">View Place</a></li> 
-                                        </ul>
-                                        </li>
-                                    </ul>
-                                    </div> */}
-                            {/* </div>
-                            </nav> */}
-
-                            <div className="dropdown-container">
-                                <select
-                                    className="form-select"
-                                >
-                                    <option value="" disabled>
-                                    Place
-                                    </option>
-                                    <option value="/PlaceForm">Add Place</option>
-                                    <option value="/ViewPlace">View Place</option>
-                                </select>
-                                </div>
-                            
-
-
+                            </li>
 
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
+                                    <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                                 </li>
                         </ul>
                     </div>
