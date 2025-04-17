@@ -66,7 +66,7 @@ const ViewPlace=() => {
             <p>No places available</p>
           ) : (
             <ul>
-              {place.map((myPlace)=>(
+              {Array.isArray(place )&& place.map((myPlace)=>(
                 <li key={myPlace.PlaceId || myPlace.Name}>
                   <div>
                     <table class="table table-light table-striped" >
