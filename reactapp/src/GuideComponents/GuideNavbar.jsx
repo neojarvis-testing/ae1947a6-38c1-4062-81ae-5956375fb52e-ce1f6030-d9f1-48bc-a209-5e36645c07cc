@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './GuideNavbar.css';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
+        navigate('/LogoutModel')
     };
 
     const handleCloseModel = () => {
@@ -29,39 +32,15 @@ const GuideNavbar = () => {
                         <ul className="navbar-nav ms-auto">
 
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+  
 
-                            {/* <li className="nav-item dropdown">
-                                <Link   className="nav-link dropdown-toggle" 
-                                        to="/" 
-                                        id="navbarDropdown" 
-                                        role="button" 
-                                        data-toggle="dropdown" 
-                                        aria-haspopup="true" 
-                                        aria-expanded="false"
-                                >
-                                    Place
-                                </Link>
-                                
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <Link className="dropdown-item" to="/add-place">Add Place</Link>
-                                    <Link className="dropdown-item" to="/view-place">View Place</Link>
-                                </div>
+                            <select>
+                            
 
-                            </li> */}
-
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Place
-                                <Link>
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <Link className="dropdown-item" to="/add-place">Add Place</Link>
-                                <Link className="dropdown-item" to="/view-place">View Place</Link>
-                                </div>
-                            </li>
 
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
+                                    <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                                 </li>
                         </ul>
                     </div>
