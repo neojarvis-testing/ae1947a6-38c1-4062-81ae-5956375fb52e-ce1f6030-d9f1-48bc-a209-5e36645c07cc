@@ -1,10 +1,6 @@
-<<<<<<< HEAD
+
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-=======
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
->>>>>>> 7c8dfbf1ea9b2806a0c29405117b668228da1ef7
 import './GuideNavbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
