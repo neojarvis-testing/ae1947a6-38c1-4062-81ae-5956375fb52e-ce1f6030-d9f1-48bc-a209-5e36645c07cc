@@ -38,11 +38,11 @@ namespace dotnetapp.Controllers
 
         
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] User model)
+        public async Task<IActionResult> Register([FromBody] User model, [FromQuery] string role)
         {
             try
             {
-                var (status, message) = await _authService.Registration(model, model.UserRole);
+                var (status, message) = await _authService.Registration(model, role);
 
                 if (status == 0)
                     return BadRequest(message); 

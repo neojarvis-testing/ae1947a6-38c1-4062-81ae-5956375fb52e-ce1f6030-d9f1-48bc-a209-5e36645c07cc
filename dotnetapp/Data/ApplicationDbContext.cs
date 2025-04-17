@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using dotnetapp.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
 namespace dotnetapp.Data
 {
-    public class ApplicationDbContext : DbContext{
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>{
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options){}
 
