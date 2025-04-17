@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import './GuideNavbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
