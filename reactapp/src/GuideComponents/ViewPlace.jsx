@@ -32,7 +32,7 @@ const ViewPlace=() => {
     },[]);
 
     const handleDelete=(placeId)=>{
-      axios
+      axios                                 
           .delete(`${baseUrl}/${placeId}`)
           .then(()=>{
             setSuccessMessage("Place successfully deleted.");
@@ -66,7 +66,7 @@ const ViewPlace=() => {
             <p>No places available</p>
           ) : (
             <ul>
-              {Array.isArray(place )&& place.map((myPlace)=>(
+              {Array.isArray(place) && place.map((myPlace)=>(
                 <li key={myPlace.PlaceId || myPlace.Name}>
                   <div>
                     <table class="table table-light table-striped" >
