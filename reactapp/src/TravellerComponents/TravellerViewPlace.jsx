@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TravellerNavbar from "./TravellerNavbar";
-import "./TravellerViewPlace.css";
+import "./TravellerViewPlace.css"; // Import the CSS file
 
 const TravellerViewPlace = () => {
   const [places, setPlaces] = useState([]);
@@ -12,8 +12,7 @@ const TravellerViewPlace = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Replace this URL with your actual API endpoint
-    fetch("https://example.com/api/places")
+    fetch("")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -37,7 +36,7 @@ const TravellerViewPlace = () => {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this place?")) {
-      fetch(`https://example.com/api/places/${id}`, {
+      fetch(`${id}`, {
         method: "DELETE",
       })
         .then((response) => {
@@ -63,55 +62,58 @@ const TravellerViewPlace = () => {
   return (
     <div>
       <TravellerNavbar/>
-      <h1>Available Places</h1>
-      <input
-        type="text"
-        placeholder="Search places..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Location</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isLoading ? (
+      <div className="container mt-4">
+        <h1>Available Places</h1>
+        <input
+          type="text"
+          placeholder="Search places..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <table>
+          <thead>
             <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>Loading...</td>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Price</th>
+              <th>Action</th>
             </tr>
-          ) : errorOccurred || filteredPlaces.length === 0 ? (
-            <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>Oops! No places found....</td>
-            </tr>
-          ) : (
-            filteredPlaces.map((place) => (
-              <tr key={place.id}>
-                <td>
-                  <img
-                    src={place.imageUrl || "https://via.placeholder.com/50"}
-                    alt={place.name}
-                    style={{ width: "50px", height: "40px" }}
-                  />
-                </td>
-                <td>{place.Name}</td>
-                <td>{place.Category}</td>
-                <td>{place.Location}</td>
-                <td>{place.Price}</td>
-                <td>
-                  <button onClick={() => handleEdit(place.id)}>Edit</button>
-                  <button onClick={() => handleDelete(place.id)}>Delete</button>
-                </td>
+          </thead>
+          <tbody>
+            {isLoading ? (
+              <tr>
+                <td colSpan="6" style={{ textAlign: "center" }}>Loading...</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : errorOccurred || filteredPlaces.length === 0 ? (
+              <tr>
+                <td colSpan="6" style={{ textAlign: "center" }}>Oops! No places found....</td>
+              </tr>
+            ) : (
+              filteredPlaces.map((place) => (
+                <tr key={place.id}>
+                  <td>
+                    <img
+                      src={place.imageUrl || "https://via.placeholder.com/50"}
+                      alt={place.name}
+                      style={{ width: "50px", height: "40px" }}
+                    />
+                  </td>
+                  <td>{place.Name}</td>
+                  <td>{place.Category}</td>
+                  <td>{place.Location}</td>
+                  <td>{place.Price}</td>
+                  <td>
+                    <button onClick={() => handleEdit(place.id)} className="edit">Edit</button>
+                    <button onClick={() => handleDelete(place.id)} className="delete">Delete</button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
