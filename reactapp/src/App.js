@@ -12,30 +12,25 @@ import ErrorPage from './Components/ErrorPage';
 import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
 import PrivateRoute from './Components/PrivateRoute';
 
-
 const App = () => {
     return (
-       
-            <Router>
+        <Router>
             <div>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
                     
-                    <Route element={<PrivateRoute/>}>
-                        <Route path="/homepage" element={<HomePage />} />
-                        <Route path="/error" element={<ErrorPage />} />
+                    <Route element={<PrivateRoute allowedRoles={['Guide']} />}>
                         <Route path="/guide" element={<GuideNavbar />} />
-                        <Route path="/traveller" element={<TravellerNavbar/>} />
-
+                    </Route>
                     
+                    <Route element={<PrivateRoute allowedRoles={['Traveller']} />}>
+                        <Route path="/traveller" element={<TravellerNavbar />} />
                     </Route>
                 </Routes>
             </div>
         </Router>
-        
- 
     );
 };
 
