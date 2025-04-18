@@ -49,7 +49,8 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 login-background d-flex flex-column align-items-center justify-content-center">
                     <h1>Travel Tales</h1>
-                    <p>Welcome to Travel Tales, your travel companion. Browse travel diaries around the world, create wonderful memories, find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
+                    <p>Welcome to Travel Tales, your travel companion.
+                     Browse travel diaries around the world, create wonderful memories, find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
                 </div>
                 <div className="col-md-6 login-box">
                     <h2>Login</h2>
@@ -80,7 +81,7 @@ const Login = () => {
                            {passwordError && <div className="text-danger">{passwordError}</div>}
                         </div>
 
-                        <button type="button" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
+                        <button type="button" className="btn btn-outline-primary" onClick={handleLogin}>Login</button>
                         {error && <div className="text-danger mt-3">{error}</div>}
                     </form>
                     <p className="mt-3">Don't have an account? <a href="/signup">Signup</a></p>

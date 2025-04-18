@@ -3,29 +3,54 @@ import GuideNavbar from '../GuideComponents/GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 
+
 const HomePage = () => {
-  return (
-    <div className="home-page">
-        <GuideNavbar />
-        <main className="container">
-            <div className="welcome-section row align-items-center">
-                <div className="col-md-12 image-container">
-                    <div className="strip-background">
-                        <div className="centered-title">Travel Tales</div>
+    const [homePage, setHomePage] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [errorOccurred, setErrorOccurred] = useState(false);
+
+    const fetchHomePage = async () => {
+        setIsLoading(true);
+        try {
+            await axios
+                .get(`${baseUrl}`)
+                .then((response) => {
+                    setHomePage(response.data);
+                    setIsLoading(false);
+                })
+        } catch (error) {
+            setErrorOccurred('Failed to load HomePage');
+
+        }
+        finally {
+            setIsLoading(false);
+        }
+    };
+    useEffect(() => {
+        fetchTravel();
+    }, []);
+    return (
+        <div className="home-page">
+            <GuideNavbar/>
+            <main className="container">
+                <div className="welcome-section row align-items-center">
+                    <div className="col-md-12 image-container">
+                        <div className="strip-background">
+                            <div className="centered-title">Travel Tales</div>
+                        </div>
                     </div>
                 </div>
+            </main>
+            <div >
+                <p className="wel">Welcome to Travel Tales, your gateway to exploring amazing travel destinations around the world. Discover curated itineraries and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
             </div>
-        </main>
-        <div >
-            <p className ="wel">Welcome to Travel Tales, your gateway to exploring amazing travel destinations around the world. Discover curated itineraries and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
+            <footer className="text-center mt-4">
+                <p>Contact Us</p>
+                <p>Email: example@travelcorp.com</p>
+                <p>Phone: 012-345-6780</p>
+            </footer>
         </div>
-        <footer className="text-center mt-4">
-            <p>Contact Us</p>
-            <p>Email: example@travelcorp.com</p>
-            <p>Phone: 012-345-6780</p>
-        </footer>
-    </div>
-  );
+    );
 };
 
 export default HomePage;
