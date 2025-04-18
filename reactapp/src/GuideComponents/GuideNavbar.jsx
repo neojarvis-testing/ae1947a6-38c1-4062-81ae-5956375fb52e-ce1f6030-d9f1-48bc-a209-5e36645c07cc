@@ -48,7 +48,7 @@ const GuideNavbar = () => {
                             }}>
 
                                 <option value="">Place</option>
-                                <option value="placefrom"><a href="/placeform">Add Place</a></option>
+                                <option value="placeform"><a href="/placeform">Add Place</a></option>
                                 <option value="viewplace"><a href="/viewplace">View Place</a></option>
                             </select>
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
