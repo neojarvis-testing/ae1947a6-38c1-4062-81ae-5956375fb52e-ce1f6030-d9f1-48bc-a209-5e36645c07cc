@@ -1,4 +1,3 @@
-
 .signup-container {
     background-color: #f8f9fa;
     padding: 50px 0;
@@ -15,16 +14,34 @@
 .signup-box h3 {
     margin-bottom: 30px;
     padding-bottom: 10px;
+    text-align: center; /* Center the heading */
 }
 
 .form-group label {
     font-weight: bold;
+    text-align: center; /* Center the labels */
+    display: block;
+    width: 100%;
 }
 
-.form-group input,
-.form-group select {
-    border: 1px solid rgb(225, 225, 155);
+.signup-box .form-group input[type="text"],
+.signup-box .form-group input[type="email"],
+.signup-box .form-group input[type="password"],
+.signup-box .form-group input[type="tel"],
+.signup-box .form-group select {
+    border: 1px solid #ede099;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.signup-box .form-group input[type="text"]:focus,
+.signup-box .form-group input[type="email"]:focus,
+.signup-box .form-group input[type="password"]:focus,
+.signup-box .form-group input[type="tel"]:focus,
+.signup-box .form-group select:focus {
+    box-shadow: 0 0 30px rgba(119, 204, 230, 0.5);
+    outline: none; 
 }
 
 .form-group .text-danger {
@@ -43,4 +60,20 @@
 
 .btn-block:hover {
     background-color: #0056b3;
+}
+
+.signup-box .form-group label {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.signup-box .form-group input,
+.signup-box .form-group select,
+.signup-box .form-group .form-control-file {
+    width: 100%;
+}
+
+.h3 {
+    text-align: center;
 }
