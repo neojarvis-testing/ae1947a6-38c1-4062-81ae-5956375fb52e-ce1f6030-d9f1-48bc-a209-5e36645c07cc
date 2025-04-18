@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PlaceForm.css';
-import { Modal, Button } from 'react-bootstrap';
 import GuideNavbar from './GuideNavbar';
 
 const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
@@ -11,7 +10,26 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
     const [placeImage, setPlaceImage] = useState(initialData.placeImage || '');
     const [location, setLocation] = useState(initialData.location || '');
     const [errors, setErrors] = useState({});
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [isEditing, setIsEditing] = useState(!!initialData.name);
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+
+        if (files && files.length > 0) {
+            const file = files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPlaceImage(reader.result); // Store the base64-encoded image
+            };
+            reader.readAsDataURL(file);
+        } else {
+            if (name === 'name') setName(value);
+            if (name === 'category') setCategory(value);
+            if (name === 'bestTimeToVisit') setBestTimeToVisit(value);
+            if (name === 'location') setLocation(value);
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,20 +44,20 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            const placeData = { name, category, bestTimeToVisit, placeImage: URL.createObjectURL(placeImage), location };
+            const placeData = { name, category, bestTimeToVisit, placeImage, location };
             onSubmit(placeData);
-            setShowSuccessModal(true);
+            setShowPopup(true);
         }
     };
 
-    const handleCloseModal = () => {
-        setShowSuccessModal(false);
+    const handlePopupClose = () => {
+        setShowPopup(false);
         onBack();
     };
 
     return (
         <div className="container place-form-container">
-            <GuideNavbar/>
+            <GuideNavbar />
             <button className="btn btn-secondary mb-3" onClick={onBack}>Back</button>
             <h2 className="text-center">{initialData.name ? 'Edit Place' : 'Create New Place'}</h2>
             <form onSubmit={handleSubmit}>
@@ -49,9 +67,9 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                         type="text"
                         className="form-control"
                         id="name"
+                        name="name"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Enter place name"
+                        onChange={handleChange}
                     />
                     {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
@@ -59,9 +77,10 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                     <label htmlFor="category">Category <span className="text-danger">*</span></label>
                     <select
                         id="category"
+                        name="category"
                         className="form-control"
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={handleChange}
                     >
                         <option value="">Select Category</option>
                         <option value="Beach">Beach</option>
@@ -77,8 +96,9 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                         type="text"
                         className="form-control"
                         id="bestTimeToVisit"
+                        name="bestTimeToVisit"
                         value={bestTimeToVisit}
-                        onChange={(e) => setBestTimeToVisit(e.target.value)}
+                        onChange={handleChange}
                         placeholder="Enter best time to visit"
                     />
                     {errors.bestTimeToVisit && <div className="text-danger">{errors.bestTimeToVisit}</div>}
@@ -89,8 +109,9 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                         type="text"
                         className="form-control"
                         id="location"
+                        name="location"
                         value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        onChange={handleChange}
                         placeholder="Enter location"
                     />
                     {errors.location && <div className="text-danger">{errors.location}</div>}
@@ -101,7 +122,8 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                         type="file"
                         className="form-control-file"
                         id="placeImage"
-                        onChange={(e) => setPlaceImage(e.target.files[0])}
+                        name="placeImage"
+                        onChange={handleChange}
                     />
                     {errors.placeImage && <div className="text-danger">{errors.placeImage}</div>}
                 </div>
@@ -110,17 +132,28 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                 </button>
             </form>
 
-            <Modal show={showSuccessModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Success</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Place updated successfully!</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleCloseModal}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            {/* Success Modal */}
+            {showPopup && (
+                <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content shadow-sm border-0">
+                            <div className="modal-header bg-success text-white">
+                                <h5 className="modal-title mx-auto">🎉 Success!</h5>
+                            </div>
+                            <div className="modal-body text-center">
+                                <p className="mb-0">
+                                    {isEditing ? 'Place updated successfully!' : 'Place added successfully!'}
+                                </p>
+                            </div>
+                            <div className="modal-footer justify-content-center">
+                                <button type="button" className="btn btn-success px-4" onClick={handlePopupClose}>
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
