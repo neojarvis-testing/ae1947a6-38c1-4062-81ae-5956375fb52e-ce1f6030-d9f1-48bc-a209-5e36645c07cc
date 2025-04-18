@@ -61,7 +61,7 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 login-background d-flex flex-column align-items-center justify-content-center">
                     <h1>Travel Tales</h1>
-                    <p>Welcome to Travel Tales, your travel companion.</p>
+                    <p>hiii</p>
                 </div>
                 <div className="col-md-6 login-box">
                     <h2>Login</h2>

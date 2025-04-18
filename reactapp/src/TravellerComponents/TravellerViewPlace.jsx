@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TravellerNavbar from "./TravellerNavbar";
-import "./TravellerViewPlace.css"; // Import the CSS file
+import "./TravellerViewPlace.css"; 
 import baseUrl from '../apiConfig'
 import axios from 'axios';
 

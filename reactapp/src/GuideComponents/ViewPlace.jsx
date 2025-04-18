@@ -17,7 +17,7 @@ const ViewPlace=() => {
       setLoading(true); 
       try{
       await axios
-          .get(`${baseUrl}`, {
+          .get(`${baseUrl}/`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },

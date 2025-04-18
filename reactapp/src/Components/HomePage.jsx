@@ -12,7 +12,7 @@ const HomePage = () => {
     const fetchHomePage = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`${baseUrl}`);
+            const response = await axios.get(`${baseUrl}/home`);
             console.log('Response:', response.data);
             setHomePage(response.data);
             setIsLoading(false);
