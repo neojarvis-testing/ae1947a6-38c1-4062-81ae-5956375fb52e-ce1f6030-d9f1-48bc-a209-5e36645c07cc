@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
+
 const HomePage = () => {
     const [homePage, setHomePage] = useState([]);
     const [isLoading, setIsLoading] = useState(true);

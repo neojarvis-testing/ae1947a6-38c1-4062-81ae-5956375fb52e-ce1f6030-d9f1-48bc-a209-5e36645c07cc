@@ -3,6 +3,8 @@ import { Modal, Button } from 'react-bootstrap';
 import GuideNavbar from './GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PlaceForm.css';
+import GuideNavbar from './GuideNavbar'
+
 
 const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
     const [name, setName] = useState('');
