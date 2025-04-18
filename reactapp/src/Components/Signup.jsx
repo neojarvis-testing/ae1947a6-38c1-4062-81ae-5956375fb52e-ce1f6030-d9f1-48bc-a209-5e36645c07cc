@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
+import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 
 const Signup = () => {
@@ -59,11 +60,18 @@ const Signup = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await fakeSignup({ username, email, mobileNumber, password, userRole });
-                if (response.success) {
-                    setShowSuccessModal(true); // Show the success modal
+                const response = await axios.post(`${API_BASE_URL}/register`, {
+                    username,
+                    email,
+                    mobileNumber,
+                    password,
+                    userRole // Send user role to backend
+                });
+
+                if (response.status === 201) {
+                    setShowSuccessModal(true);
                 } else {
-                    setErrors({ form: data.Message });
+                    setErrors({ form: response.data.Message });
                 }
             } catch (err) {
                 setErrors({ form: 'An error occurred. Please try again later.' });
@@ -104,7 +112,7 @@ const Signup = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter email"
                             />
-                           {errors.email && <div className="text-danger">{errors.email}</div>}
+                            {errors.email && <div className="text-danger">{errors.email}</div>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="mobileNumber">Mobile Number <span className="text-danger">*</span></label>
@@ -159,7 +167,7 @@ const Signup = () => {
                         <button type="button" className="btn btn-primary btn-block" onClick={handleSignup}>Submit</button>
                         {errors.form && <div className="text-danger mt-3">{errors.form}</div>}
                     </form>
-                    <p className="mt-3">Already have an account? <a href="/">Login</a></p>
+                    <p className="mt-3">Already have an account? <a href="/login">Login</a></p>
                 </div>
             </div>
 

@@ -71,3 +71,10 @@ select option {
     background-color: #457b9d;
     color: #ffffff;
 }
+.dropdown-container {
+    width: 200px;
+    margin: 20px auto; /* Center the dropdown horizontally */
+  }
+  
+  
+  

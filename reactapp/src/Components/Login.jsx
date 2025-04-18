@@ -1,52 +1,60 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+import API_BASE_URL from '../apiConfig';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    
-    const handleLogin = async () => {
-        setError('');
-        setEmailError('');
-        setPasswordError('');
+    const [error, setError] = useState('');
 
+    const navigate = useNavigate();
+    
+    const validateForm = () => {
+        let valid = true;
         if (!email) {
             setEmailError('Email is required');
+            valid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            setEmailError('Invalid Email');
+            valid = false;
+        } else {
+            setEmailError('');
         }
+
         if (!password) {
             setPasswordError('Password is required');
-        }
-        if (!email || !password) {
-            return;
+            valid = false;
+        } else {
+            setPasswordError('');
         }
 
-        try {
-        
-            const response = await fakeLogin(email, password);
-            if (response.success) {
-                window.location.href = '/dashboard';
-            } else {
-                setError('Invalid email or password');
-            }
-        } catch (err) {
-            setError('An error occurred. Please try again later.');
-        }
+        return valid;
     };
 
-    const fakeLogin = (email, password) => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                if (email === 'test@example.com' && password === 'password') {
-                    resolve({ success: true });
-                } else {
-                    resolve({ success: false });
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            try {
+                const response = await axios.post(`${API_BASE_URL}/login`, { email, password });
+                const { token, role } = response.data;
+                
+                localStorage.setItem('token', token);
+                localStorage.setItem('userRole', role);
+
+                if (role === 'Guide') {
+                    navigate('/guide');
+                } else if (role === 'Traveller') {
+                    navigate('/traveller');
                 }
-            }, 1000);
-        });
+            } catch (error) {
+                setError("Login failed. Please check your credentials and try again.");
+            }
+        }
     };
 
     return (
@@ -54,7 +62,7 @@ const Login = () => {
             <div className="row">
                 <div className="col-md-6 login-background d-flex flex-column align-items-center justify-content-center">
                     <h1>Travel Tales</h1>
-                    <p>Welcome to Travel Tales, your travel companion. Browse travel diaries around the world, create wonderful memories, find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
+                    <p>Welcome to Travel Tales, your travel companion.</p>
                 </div>
                 <div className="col-md-6 login-box">
                     <h2>Login</h2>
@@ -82,7 +90,7 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Password"
                             />
-                           {passwordError && <div className="text-danger">{passwordError}</div>}
+                            {passwordError && <div className="text-danger">{passwordError}</div>}
                         </div>
 
                         <button type="button" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
