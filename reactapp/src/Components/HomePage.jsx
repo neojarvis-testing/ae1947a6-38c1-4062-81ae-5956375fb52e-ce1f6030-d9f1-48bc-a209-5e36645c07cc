@@ -3,6 +3,7 @@ import GuideNavbar from '../GuideComponents/GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import axios from 'axios';
+import baseUrl from '../apiConfig';
 
 const HomePage = () => {
     const [homePage, setHomePage] = useState([]);
