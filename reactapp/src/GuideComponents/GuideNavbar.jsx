@@ -30,13 +30,6 @@ const GuideNavbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                            <select>
-                                <option value="addplace"><a href="/PlaceForm">Add Place</a></option>
-                                <option value="viewplace"><a href="/ViewPlace">View Place</a></option>
-                            </select>
-                            <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
-                            <li className="nav-item">
-                                <button className="btn btn-danger" onClick={handleLogoutClick}>Logout</button>
                             </li>
                         </ul>
                     </div>
