@@ -12,16 +12,6 @@ const TravellerNavbar = () => {
     const handleCloseModel = () => {
         setShowLogoutModel(false);
     };
-
-    const handleLogout = () => {
-        navigate('/login');
-        setShowLogoutModel(false);
-    };
-
-    const handleCancel = () => {
-        setShowLogoutModel(false);
-    };
-
     const handleLogoutClick = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('userRole');

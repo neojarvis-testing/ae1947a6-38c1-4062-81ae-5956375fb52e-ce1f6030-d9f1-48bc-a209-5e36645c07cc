@@ -9,6 +9,7 @@ import ViewPlace from './GuideComponents/ViewPlace';
 import HomePage from './Components/HomePage';
 import ErrorPage from './Components/ErrorPage';
 import PrivateRoute from './Components/PrivateRoute';
+import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
 
 const App = () => {
     return (
@@ -20,6 +21,8 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/guide" element={<GuideNavbar />} />
                     <Route path="/traveller" element={<TravellerNavbar />} />
+                    <Route path="/travellerviewplace" element={<TravellerViewPlace />} />
+                    
                     <Route path="/placeform" element={<PlaceForm />} />
                     <Route path="/viewplace" element={<ViewPlace />} />
                     <Route path="/home" element={<HomePage/>}/> 
