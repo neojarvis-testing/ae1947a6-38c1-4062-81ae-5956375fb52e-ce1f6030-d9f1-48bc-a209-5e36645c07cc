@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
+=======
+import { Link} from 'react-router-dom';
+import './GuideNavbar.css';
+>>>>>>> 4fd1607be12621b695f3dd7170f2e6f865f54a8f
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';

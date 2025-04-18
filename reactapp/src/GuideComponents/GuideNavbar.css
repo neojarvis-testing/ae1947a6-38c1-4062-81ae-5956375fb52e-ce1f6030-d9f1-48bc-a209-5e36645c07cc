@@ -71,6 +71,7 @@ select option {
     background-color: #457b9d;
     color: #ffffff;
 }
+<<<<<<< HEAD
 .modal-container {
     position: fixed;
     top: 0;
@@ -98,3 +99,12 @@ select option {
 .modal .btn {
     margin: 5px;
 }
+=======
+.dropdown-container {
+    width: 200px;
+    margin: 20px auto; /* Center the dropdown horizontally */
+  }
+  
+  
+  
+>>>>>>> 4fd1607be12621b695f3dd7170f2e6f865f54a8f
