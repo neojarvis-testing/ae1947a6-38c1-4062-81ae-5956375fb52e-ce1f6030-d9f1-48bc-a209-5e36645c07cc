@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
-import API_BASE_URL from '../apiConfig';
+import baseUrl from '../apiConfig';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
@@ -40,22 +42,14 @@ const Login = () => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                const response = await axios.post(`${API_BASE_URL}/login`, { email, password });
-                const { token, role } = response.data;
-                if(token && role){
-                localStorage.setItem('token', token);
-                localStorage.setItem('userRole', role);
+                const response = await axios.post(`${baseUrl}/login`, { email, password });
+                console.log(response.data);
+                const fetchedToken = response.data.Token;
+                localStorage.setItem("token", fetchedToken);
+                const decoded = jwtDecode(fetchedToken);
 
-                if (role === 'Guide') {
-                    navigate('/guide');
-                } else if (role === 'Traveller') {
-                    navigate('/traveller');
-                }
-            }
-           else {
-                    setError("Login failed. Please check your credentials and try again.");
-            }
-                
+                console.log(decoded);
+                navigate(decoded.role === "Traveller" ? "/traveller" : "/guide");
             } catch (error) {
                 setError("Login failed. Please check your credentials and try again.");
             }

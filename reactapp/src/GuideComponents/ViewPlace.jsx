@@ -18,7 +18,11 @@ const ViewPlace=() => {
       setLoading(true); 
       try{
       await axios
-          .get(`${baseUrl}`)
+          .get(`${baseUrl}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
           .then((response)=>{
             setPlace(response.data);
             setLoading(false);
@@ -38,7 +42,11 @@ const ViewPlace=() => {
 
     const handleDelete=(placeId)=>{
       axios                                 
-          .delete(`${baseUrl}/${placeId}`)
+          .delete(`${baseUrl}/${placeId}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
           .then(()=>{
             setSuccessMessage("Place successfully deleted.");
             setPlace((prePlaces) => prePlaces.filter((place)=>place.placeId !== placeId));
