@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Signup.css';
 import { Modal, Button } from 'react-bootstrap';
+import API_BASE_URL from '../apiConfig';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -61,24 +62,25 @@ const Signup = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await fakeSignup({ username, email, mobileNumber, password, userRole });
-                if (response.success) {
-                    window.location.href = '/login';
+                const response = await fetch(`${API_BASE_URL}/register`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, mobileNumber, password, userRole })
+                });
+ 
+                const data = await response.json();
+ 
+                if (response.status === 201) {
+                    setShowSuccessModal(true);
                 } else {
-                    setErrors({ form: 'An error occurred. Please try again later.' });
+                    setErrors({ form: data.Message });
                 }
             } catch (err) {
                 setErrors({ form: 'An error occurred. Please try again later.' });
             }
         }
-    };
-
-    const fakeSignup = (data) => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({ success: true });
-            }, 1000);
-        });
     };
 
     const handleCloseModal = () => {
