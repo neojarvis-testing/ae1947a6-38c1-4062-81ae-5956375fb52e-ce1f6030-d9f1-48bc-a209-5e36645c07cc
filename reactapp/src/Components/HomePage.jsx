@@ -3,6 +3,7 @@ import GuideNavbar from '../GuideComponents/GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import axios from 'axios';
+import API_BASE_URL from '../apiConfig';
 
 const HomePage = () => {
     const [homePage, setHomePage] = useState([]);
@@ -12,7 +13,7 @@ const HomePage = () => {
     const fetchHomePage = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`${baseUrl}`);
+            const response = await axios.get(`${API_BASE_URL}`);
             console.log('Response:', response.data);
             setHomePage(response.data);
             setIsLoading(false);

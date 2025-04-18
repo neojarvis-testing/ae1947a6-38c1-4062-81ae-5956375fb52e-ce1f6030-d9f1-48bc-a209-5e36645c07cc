@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PlaceForm.css';
 import { Modal, Button } from 'react-bootstrap';
-import GuideNavbar from './GuideNavbar';
+import GuideNavbar from './GuideNavbar'
 
 const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
     const [name, setName] = useState(initialData.name || '');
