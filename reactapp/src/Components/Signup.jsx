@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
+import API_BASE_URL from '../apiConfig';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -62,20 +63,12 @@ const Signup = () => {
                 if (response.success) {
                     setShowSuccessModal(true); // Show the success modal
                 } else {
-                    setErrors({ form: 'An error occurred. Please try again later.' });
+                    setErrors({ form: data.Message });
                 }
             } catch (err) {
                 setErrors({ form: 'An error occurred. Please try again later.' });
             }
         }
-    };
-
-    const fakeSignup = (data) => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({ success: true });
-            }, 1000);
-        });
     };
 
     const handleCloseModal = () => {
