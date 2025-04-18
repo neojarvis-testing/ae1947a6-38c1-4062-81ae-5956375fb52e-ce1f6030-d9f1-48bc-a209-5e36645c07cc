@@ -92,7 +92,7 @@ const Login = () => {
                             {passwordError && <div className="text-danger">{passwordError}</div>}
                         </div>
 
-                        <button type="button" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
+                        <button type="button" className="btn btn-outline-primary" onClick={handleLogin}>Login</button>
                         {error && <div className="text-danger mt-3">{error}</div>}
                     </form>
                     <p className="mt-3">Don't have an account? <a href="/signup">Signup</a></p>
