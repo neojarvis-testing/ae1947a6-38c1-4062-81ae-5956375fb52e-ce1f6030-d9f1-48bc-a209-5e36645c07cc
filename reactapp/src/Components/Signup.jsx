@@ -135,7 +135,7 @@ const Signup = () => {
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Pasword"/>
+                                placeholder="Password"/>
                             {errors.password && <div className="text-danger">{errors.password}</div>}
                         </div>
                         <div className="form-group">

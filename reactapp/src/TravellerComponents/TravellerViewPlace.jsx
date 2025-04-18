@@ -8,27 +8,31 @@ const TravellerViewPlace = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [errorOccurred, setErrorOccurred] = useState(false);
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setPlaces(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching places:", error);
+  const fetchTravel=async ()=>{
+    setIsLoading(true); 
+    try{
+    await axios
+        .get(`${baseUrl}`)
+        .then((response)=>{
+          setPlaces(response.data);
+          setIsLoading(false);
+        })
+      }catch(error)
+      {
+        setErrors('Failed to load places' );
         setErrorOccurred(true);
-        setIsLoading(false);  
-      });
-  }, []);
+      }
+      finally{
+        setIsLoading(false);
+
+      }
+  };
+  useEffect(()=>{
+    fetchTravel();
+  },[]);
+
 
   const filteredPlaces = places.filter((place) =>
     place.name?.toLowerCase().includes(searchQuery.toLowerCase())
