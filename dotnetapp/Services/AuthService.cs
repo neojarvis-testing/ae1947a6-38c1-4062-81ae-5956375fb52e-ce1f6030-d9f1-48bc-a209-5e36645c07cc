@@ -46,17 +46,17 @@ namespace dotnetapp.Services
             {
                 return (400, "Invalid email");
             }
-             var passwordHasher = new PasswordHasher<User>();
-             var result = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password);
-            if (result == PasswordVerificationResult.Failed)
-            {
-                return (400, "Invalid password");
-             }
+            //  var passwordHasher = new PasswordHasher<User>();
+            //  var result = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password);
+            // if (result == PasswordVerificationResult.Failed)
+            // {
+            //     return (400, "Invalid password");
+            //  }
 
-         //   if (user.Password != model.Password)
-          //  {
-            //    return (400, "Invalid password");
-            //}
+           if (user.Password != model.Password)
+           {
+               return (400, "Invalid password");
+            }
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),

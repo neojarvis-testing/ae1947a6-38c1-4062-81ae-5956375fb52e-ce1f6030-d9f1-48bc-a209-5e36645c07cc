@@ -12,6 +12,13 @@ const TravellerNavbar = () => {
     const handleCloseModel = () => {
         setShowLogoutModel(false);
     };
+    const handleLogout = () => {
+        navigate('/login');
+        setShowLogoutModel(false);
+    };
+    const handleCancel = () => {
+        setShowLogoutModel(false);
+    };
     const handleLogoutClick = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('userRole');
@@ -30,7 +37,7 @@ const TravellerNavbar = () => {
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item"><Link className="nav-link" to="/home">Home</Link></li>
                             <li className="nav-item"><Link className="nav-link" to="/viewplace">Place</Link></li>
-                            <li className="nav-item"><Link className="nav-link" to="/profile">DemoTraveller/Traveller</Link></li>
+                            <li className="nav-item"><Link className="nav-link">DemoTraveller/Traveller</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                             </li>
