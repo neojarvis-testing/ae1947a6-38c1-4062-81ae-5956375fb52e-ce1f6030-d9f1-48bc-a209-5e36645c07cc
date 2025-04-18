@@ -1,12 +1,34 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom' 
+import { useNavigate } from 'react-router-dom';
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
 import 'bootstrap/dist/css/bootstrap.css';
 
-const ViewPlace=() => {
+const ViewPlace = () => {
+    const navigate = useNavigate();
+    const [places, setPlaces] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [errors, setErrors] = useState(null);
+    const [successMessage, setSuccessMessage] = useState('');
 
+
+    // Fetch places from API
+    const fetchPlaces = async () => {
+        setLoading(true);
+        try {
+            const token = localStorage.getItem('token'); // Retrieve token from localStorage
+            const response = await axios.get(`${baseUrl}/Place`, {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Add Authorization header
+                },
+            });
+            setPlaces(response.data);
+        } catch (err) {
+            console.error('Error fetching places:', err);
+            setErrors('Failed to fetch places. Please try again later.');
+        } finally {
+            setLoading(false); // Stop loading spinner
     const navigate=useNavigate();
     const [place, setPlace] = useState([]);
     const [loading,setLoading]=useState(true);
@@ -29,91 +51,111 @@ const ViewPlace=() => {
         }catch(error)
         {
           setErrors('Failed to load places' );
-        }
-        finally{
-          setLoading(false);
 
         }
     };
-    useEffect(()=>{
-      fetchPlaces();
-    },[]);
 
-    const handleDelete=(placeId)=>{
-      axios                                 
-          .delete(`${baseUrl}/${placeId}`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .then(()=>{
-            setSuccessMessage("Place successfully deleted.");
-            setPlace((prePlaces) => prePlaces.filter((place)=>place.placeId !== placeId));
-            setTimeout(()=> setSuccessMessage(""),3000);
-          })
-      .catch(()=>{
-        setErrors('Failed to delete place.');
-        setTimeout(()=> setErrors(""),3000);
-      });
+    useEffect(() => {
+        fetchPlaces();
+    }, []);
+
+    // Handle edit button
+    const handleEdit = (id) => {
+        navigate(`/edit/${id}`);
     };
 
-    const handleEdit=(id)=>{
-      navigate(`/edit/${id}`);
-    }
+    // Handle delete button
+    const handleDelete = async (placeId) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this place?');
+        if (confirmDelete) {
+            try {
+                const token = localStorage.getItem('token'); // Retrieve token from localStorage
+                console.log('Token:', token);
+                await axios.delete(`${baseUrl}/Place/${placeId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Add Authorization header
+                    },
+                });
+                setSuccessMessage("Place successfully deleted.");
+                setPlaces((prevPlaces) => prevPlaces.filter((place) => place.placeId !== placeId));
+                setTimeout(() => setSuccessMessage(""), 3000);
+            } catch (err) {
+                console.error('Error deleting place:', err);
+                setErrors('Failed to delete place.');
+                setTimeout(() => setErrors(""), 3000);
+            }
+        }
+    };
 
-  return (
-    <div>
-      <GuideNavbar/>
-        <h2 style={{textAlign:"center"}}>Places</h2>
-        {successMessage && <p class="text-success"><h2>{successMessage}</h2></p>}
-        {errors && <p class="text-danger"><h2>{errors}</h2></p>}
-        {loading && <p>Loading...</p>}
-        {!loading && !errors && <p><h2>{errors}</h2></p>}
-        <table class="table table-light table-striped" >
-                      <thead>
+    return (
+        <div className="container mt-5">
+            <GuideNavbar />
+            <h2 className="text-center mb-4">Places</h2>
+
+            {/* Display Error */}
+            {errors && <p className="text-danger text-center">{errors}</p>}
+
+            {/* Display Spinner */}
+            {loading && (
+                <div className="text-center">
+                    <div className="spinner-border text-primary mb-2" role="status" aria-hidden="true"></div>
+                    <div className="mt-2">Loading...</div>
+                </div>
+            )}
+
+            {/* Always Render Table */}
+            <table className="table table-bordered table-striped text-center">
+                <thead className="thead-dark">
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Location</th>
+                        <th>Best time to visit</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {places.length === 0 && !loading && !errors && (
                         <tr>
-                          <th >Image</th>
-                          <th >Name</th>
-                          <th >Category</th>
-                          <th>Location</th>
-                          <th>Best time to visit</th>
-                          <th>Action</th>
+                            <td colSpan="6" className="text-center text-muted">
+                                No Places found.
+                            </td>
                         </tr>
-                      </thead>
-          {place.length===0 ? (
-            <p>No places available</p>
-          ) : (
-            <ul>
-              {Array.isArray(place) && place.map((myPlace)=>(
-                <li key={myPlace.PlaceId || myPlace.Name}>
-                  <div>
-                    
-                      <tbody>
-                        <tr>
-                          <td ><p>{myPlace.PlaceImage}</p></td>
-                          <td ><p>{myPlace.Name}</p></td>
-                          <td ><p>{myPlace.Category}</p></td>
-                          <td ><p>{myPlace.Location}</p></td>
-                          <td > <p>{myPlace.BestTimeToVisit}</p></td>
-                          <td>
-                            <button onClick={()=>handleEdit(myPlace.PlaceId)}  class="btn btn-primary ">Edit</button>
-                            <button onClick={()=> handleDelete(myPlace.PlaceId)} class="btn btn-danger">Delete</button>
-                          </td>
+                    )}
+                    {places.map((myPlace) => (
+                        <tr key={myPlace.placeId}>
+                            <td>
+                                <img
+                                    src={myPlace.placeImage || 'https://via.placeholder.com/100'}
+                                    alt={myPlace.name}
+                                    style={{ height: '50px', objectFit: 'cover' }}
+                                />
+                            </td>
+                            <td><p>{myPlace.name}</p></td>
+                            <td><p>{myPlace.category}</p></td>
+                            <td><p>{myPlace.location}</p></td>
+                            <td><p>{myPlace.bestTimeToVisit}</p></td>
+                            <td>
+                                <button
+                                    className="btn btn-primary btn-sm me-2"
+                                    onClick={() => handleEdit(myPlace.placeId)}
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    className="btn btn-danger btn-sm"
+                                    onClick={() => handleDelete(myPlace.placeId)}
+                                >
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
-                      </tbody>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-          </table>
-          
-    
+                    ))}
+                </tbody>
+            </table>
         </div>
-  )
-}
-    
-  
+    );
+};
 
-export default ViewPlace
-
+export default ViewPlace;
