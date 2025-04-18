@@ -36,7 +36,7 @@ const TravellerNavbar = () => {
                                 <Link className="nav-link" to="/places">Places</Link>
                             </li>
                             <li className="nav-item">
-                                <button className="btn btn-outline-light" onClick={handleLogoutClick}>Logout</button>
+                                <button className="btn btn-danger" onClick={handleLogoutClick}>Logout</button>
                             </li>
                         </ul>
                     </div>
