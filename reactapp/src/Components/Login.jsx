@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
-// import baseUrl from '../apiConfig';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -25,7 +24,6 @@ const Login = () => {
             return;
         }
 
-        
         try {
         
             const response = await fakeLogin(email, password);
@@ -54,11 +52,9 @@ const Login = () => {
     return (
         <div className="container-fluid login-container">
             <div className="row">
-                <div className="col-md-6 login-background">
+                <div className="col-md-6 login-background d-flex flex-column align-items-center justify-content-center">
                     <h1>Travel Tales</h1>
-                    <p>Welcome to Travel Tales, your travel companion
-                        Browse travel diaries around the world, create wonderful memories and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.
-                    </p>
+                    <p>Welcome to Travel Tales, your travel companion. Browse travel diaries around the world, create wonderful memories, find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
                 </div>
                 <div className="col-md-6 login-box">
                     <h2>Login</h2>
@@ -86,7 +82,7 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Password"
                             />
-                            {passwordError && <div className="text-danger">{passwordError}</div>}
+                           {passwordError && <div className="text-danger">{passwordError}</div>}
                         </div>
 
                         <button type="button" className="btn btn-primary btn-block" onClick={handleLogin}>Login</button>
