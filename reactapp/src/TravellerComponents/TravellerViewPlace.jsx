@@ -16,7 +16,11 @@ const TravellerViewPlace = () => {
     setIsLoading(true); 
     try{
     await axios
-        .get(`${baseUrl}`)
+        .get(`${baseUrl}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
         .then((response)=>{
           setPlaces(response.data);
           setIsLoading(false);

@@ -7,12 +7,15 @@ import { useNavigate } from 'react-router-dom';
 const TravellerNavbar = () => {
 
     const navigate=useNavigate();
-    
+
     const handleLogoutClick = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('userRole');
         navigate('/login');
     };
+
+    
+
 
     return (
         <div className="home-page">
@@ -25,6 +28,8 @@ const TravellerNavbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item"><Link className="nav-link" to="/profile">Traveller</Link></li>
+
+
                             <li className="nav-item"><Link className="nav-link" to="/places">Places</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-danger" onClick={handleLogoutClick}>Logout</button>
