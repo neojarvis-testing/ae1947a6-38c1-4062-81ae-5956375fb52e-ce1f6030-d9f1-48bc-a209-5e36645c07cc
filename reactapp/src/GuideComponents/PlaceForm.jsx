@@ -39,7 +39,7 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
 
     return (
         <div className="container place-form-container">
-
+            <GuideNavbar/>
             <h2 className="text-center">{initialData.name ? 'Edit Place' : 'Create New Place'}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
