@@ -3,9 +3,8 @@ import { Modal, Button } from 'react-bootstrap';
 import GuideNavbar from './GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PlaceForm.css';
-import GuideNavbar from './GuideNavbar'
-
-
+ 
+ 
 const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
@@ -13,27 +12,8 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
     const [placeImage, setPlaceImage] = useState('');
     const [location, setLocation] = useState('');
     const [errors, setErrors] = useState({});
-    const [showPopup, setShowPopup] = useState(false);
-    const [isEditing, setIsEditing] = useState(!!initialData.name);
-
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-
-        if (files && files.length > 0) {
-            const file = files[0];
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPlaceImage(reader.result); // Store the base64-encoded image
-            };
-            reader.readAsDataURL(file);
-        } else {
-            if (name === 'name') setName(value);
-            if (name === 'category') setCategory(value);
-            if (name === 'bestTimeToVisit') setBestTimeToVisit(value);
-            if (name === 'location') setLocation(value);
-        }
-    };
-
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+ 
     useEffect(() => {
         if (isEditing && initialData) {
             setName(initialData.name || '');
@@ -43,7 +23,7 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
             setLocation(initialData.location || '');
         }
     }, [isEditing, initialData]);
-
+ 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -51,11 +31,11 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
                 setErrors(prev => ({ ...prev, placeImage: 'Only image files are allowed' }));
                 return;
             }
-            if (file.size > 2 * 1024 * 1024) { 
+            if (file.size > 2 * 1024 * 1024) {
                 setErrors(prev => ({ ...prev, placeImage: 'Image size should be less than 2MB' }));
                 return;
             }
-
+ 
             const reader = new FileReader();
             reader.onloadend = () => {
                 setPlaceImage(reader.result);
@@ -64,19 +44,19 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
             reader.readAsDataURL(file);
         }
     };
-
+ 
     const handleSubmit = (e) => {
         e.preventDefault();
         let validationErrors = {};
-
+ 
         if (!name) validationErrors.name = 'Name is required';
         if (!category) validationErrors.category = 'Category is required';
         if (!location) validationErrors.location = 'Location is required';
         if (!bestTimeToVisit) validationErrors.bestTimeToVisit = 'Best Time to Visit is required';
         if (!placeImage) validationErrors.placeImage = 'Place image is required';
-
+ 
         setErrors(validationErrors);
-
+ 
         if (Object.keys(validationErrors).length === 0) {
             const placeData = { name, category, bestTimeToVisit, placeImage, location };
             if (typeof onSubmit === 'function') {
@@ -87,15 +67,16 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
             }
         }
     };
-
-    const handlePopupClose = () => {
-        setShowPopup(false);
+ 
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
         onBack();
     };
-
+ 
     return (
-        <div className="container place-form-container">
+        <div>
             <GuideNavbar />
+            <div className="container place-form-container">
             <button className="btn btn-secondary mb-3" onClick={onBack}>Back</button>
             <h2 className="text-center">{isEditing ? 'Edit Place' : 'Create New Place'}</h2>
             <form onSubmit={handleSubmit}>
@@ -105,9 +86,9 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
                         type="text"
                         className="form-control"
                         id="name"
-                        name="name"
                         value={name}
-                        onChange={handleChange}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter place name"
                     />
                     {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
@@ -115,10 +96,9 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
                     <label htmlFor="category">Category <span className="text-danger">*</span></label>
                     <select
                         id="category"
-                        name="category"
                         className="form-control"
                         value={category}
-                        onChange={handleChange}
+                        onChange={(e) => setCategory(e.target.value)}
                     >
                         <option value="">Select Category</option>
                         <option value="Beach">Beach</option>
@@ -134,9 +114,8 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
                         type="text"
                         className="form-control"
                         id="bestTimeToVisit"
-                        name="bestTimeToVisit"
                         value={bestTimeToVisit}
-                        onChange={handleChange}
+                        onChange={(e) => setBestTimeToVisit(e.target.value)}
                         placeholder="Enter best time to visit"
                     />
                     {errors.bestTimeToVisit && <div className="text-danger">{errors.bestTimeToVisit}</div>}
@@ -147,9 +126,8 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
                         type="text"
                         className="form-control"
                         id="location"
-                        name="location"
                         value={location}
-                        onChange={handleChange}
+                        onChange={(e) => setLocation(e.target.value)}
                         placeholder="Enter location"
                     />
                     {errors.location && <div className="text-danger">{errors.location}</div>}
@@ -168,7 +146,7 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
                     {isEditing ? 'Update Place' : 'Add Place'}
                 </button>
             </form>
-
+ 
             <Modal show={showSuccessModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Success</Modal.Title>
@@ -181,7 +159,10 @@ const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
                 </Modal.Footer>
             </Modal>
         </div>
+        </div>
     );
 };
-
+ 
 export default PlaceForm;
+ 
+ 
