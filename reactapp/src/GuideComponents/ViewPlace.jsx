@@ -13,22 +13,7 @@ const ViewPlace = () => {
     const [errors, setErrors] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
 
-    const fetchPlaces = async () => {
-        setLoading(true);
-        try {
-            await axios
-                .get(`${baseUrl}`)
-                .then((response) => {
-                    setPlace(response.data);
-                    setLoading(false);
-                })
-        } catch (error) {
-            setErrors('Failed to load places');
-        }
-        finally {
-            setLoading(false);
-
-        }
+    
 
         const fetchPlaces = () => {
             setLoading(true);
@@ -111,5 +96,5 @@ const ViewPlace = () => {
             </div>
         );
     };
-}
+
 export default ViewPlace
