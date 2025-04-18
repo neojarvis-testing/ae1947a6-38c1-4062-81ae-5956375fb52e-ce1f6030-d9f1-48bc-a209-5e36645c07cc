@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
+import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 
 const Signup = () => {
@@ -59,11 +60,18 @@ const Signup = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await fakeSignup({ username, email, mobileNumber, password, userRole });
-                if (response.success) {
-                    setShowSuccessModal(true); // Show the success modal
+                const response = await axios.post(`${API_BASE_URL}/register`, {
+                    username,
+                    email,
+                    mobileNumber,
+                    password,
+                    userRole
+                });
+
+                if (response.status === 201) {
+                    setShowSuccessModal(true);
                 } else {
-                    setErrors({ form: data.Message });
+                    setErrors({ form: response.data.Message });
                 }
             } catch (err) {
                 setErrors({ form: 'An error occurred. Please try again later.' });
