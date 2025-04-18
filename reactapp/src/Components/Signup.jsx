@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Signup.css';
+import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import API_BASE_URL from '../apiConfig';
 
@@ -14,6 +13,8 @@ const Signup = () => {
     const [errors, setErrors] = useState({});
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
+    const navigate = useNavigate();
+
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
@@ -22,35 +23,31 @@ const Signup = () => {
     const handleSignup = async () => {
         let validationErrors = {};
 
-        if (!username){
+        if (!username) {
             validationErrors.username = 'User Name is required';
         }
 
         if (!email) {
             validationErrors.email = 'Email is required';
-        }
-        else if (!validateEmail(email)){
+        } else if (!validateEmail(email)) {
             validationErrors.email = 'Please enter a valid email';
         }
 
         if (!mobileNumber) {
             validationErrors.mobileNumber = 'Mobile number is required';
-        }
-        else if (mobileNumber.length !== 10) {
+        } else if (mobileNumber.length !== 10) {
             validationErrors.mobileNumber = 'Mobile number must be 10 digits';
         }
 
         if (!password) {
             validationErrors.password = 'Password is required';
-        }
-        else if (password.length < 6) {
+        } else if (password.length < 6) {
             validationErrors.password = 'Password must be at least 6 characters';
         }
 
         if (!confirmPassword) {
             validationErrors.confirmPassword = 'Confirm Password is required';
-        }
-        else if (password !== confirmPassword) {
+        } else if (password !== confirmPassword) {
             validationErrors.confirmPassword = 'Passwords do not match';
         }
 
@@ -62,18 +59,9 @@ const Signup = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await fetch(`${API_BASE_URL}/register`,{
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, email, mobileNumber, password, userRole })
-                });
- 
-                const data = await response.json();
- 
-                if (response.status === 201) {
-                    setShowSuccessModal(true);
+                const response = await fakeSignup({ username, email, mobileNumber, password, userRole });
+                if (response.success) {
+                    setShowSuccessModal(true); // Show the success modal
                 } else {
                     setErrors({ form: data.Message });
                 }
@@ -85,7 +73,7 @@ const Signup = () => {
 
     const handleCloseModal = () => {
         setShowSuccessModal(false);
-        window.location.href = '/login';
+        navigate('/');
     };
 
     return (
@@ -116,12 +104,13 @@ const Signup = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter email"
                             />
-                            {errors.email && <div className="text-danger">{errors.email}</div>}
+                           {errors.email && <div className="text-danger">{errors.email}</div>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="mobileNumber">Mobile Number <span className="text-danger">*</span></label>
                             <input
                                 type="text"
+                                className="form-control"
                                 id="mobileNumber"
                                 value={mobileNumber}
                                 onChange={(e) => setMobileNumber(e.target.value)}
@@ -137,7 +126,8 @@ const Signup = () => {
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Password"/>
+                                placeholder="Password"
+                            />
                             {errors.password && <div className="text-danger">{errors.password}</div>}
                         </div>
                         <div className="form-group">
@@ -169,7 +159,7 @@ const Signup = () => {
                         <button type="button" className="btn btn-primary btn-block" onClick={handleSignup}>Submit</button>
                         {errors.form && <div className="text-danger mt-3">{errors.form}</div>}
                     </form>
-                    <p className="mt-3">Already have an account? <a href="/login">Login</a></p>
+                    <p className="mt-3">Already have an account? <a href="/">Login</a></p>
                 </div>
             </div>
 
