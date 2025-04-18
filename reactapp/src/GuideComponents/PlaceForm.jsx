@@ -1,17 +1,50 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './PlaceForm.css';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import GuideNavbar from './GuideNavbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './PlaceForm.css';
+import GuideNavbar from './GuideNavbar'
 
-const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
-    const [name, setName] = useState(initialData.name || '');
-    const [category, setCategory] = useState(initialData.category || '');
-    const [bestTimeToVisit, setBestTimeToVisit] = useState(initialData.bestTimeToVisit || '');
-    const [placeImage, setPlaceImage] = useState(initialData.placeImage || '');
-    const [location, setLocation] = useState(initialData.location || '');
+
+const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
+    const [bestTimeToVisit, setBestTimeToVisit] = useState('');
+    const [placeImage, setPlaceImage] = useState('');
+    const [location, setLocation] = useState('');
     const [errors, setErrors] = useState({});
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+    useEffect(() => {
+        if (isEditing && initialData) {
+            setName(initialData.name || '');
+            setCategory(initialData.category || '');
+            setBestTimeToVisit(initialData.bestTimeToVisit || '');
+            setPlaceImage(initialData.placeImage || '');
+            setLocation(initialData.location || '');
+        }
+    }, [isEditing, initialData]);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (!file.type.startsWith('image/')) {
+                setErrors(prev => ({ ...prev, placeImage: 'Only image files are allowed' }));
+                return;
+            }
+            if (file.size > 2 * 1024 * 1024) { 
+                setErrors(prev => ({ ...prev, placeImage: 'Image size should be less than 2MB' }));
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPlaceImage(reader.result);
+                setErrors(prev => ({ ...prev, placeImage: '' }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,15 +53,19 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
         if (!name) validationErrors.name = 'Name is required';
         if (!category) validationErrors.category = 'Category is required';
         if (!location) validationErrors.location = 'Location is required';
-        if (!bestTimeToVisit) validationErrors.bestTimeToVisit = 'Best Time to visit is required';
+        if (!bestTimeToVisit) validationErrors.bestTimeToVisit = 'Best Time to Visit is required';
         if (!placeImage) validationErrors.placeImage = 'Place image is required';
 
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            const placeData = { name, category, bestTimeToVisit, placeImage: URL.createObjectURL(placeImage), location };
-            onSubmit(placeData);
-            setShowSuccessModal(true);
+            const placeData = { name, category, bestTimeToVisit, placeImage, location };
+            if (typeof onSubmit === 'function') {
+                onSubmit(placeData);
+                setShowSuccessModal(true);
+            } else {
+                console.error('onSubmit function is not provided or is not callable.');
+            }
         }
     };
 
@@ -39,9 +76,9 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
 
     return (
         <div className="container place-form-container">
-            <GuideNavbar/>
+            <GuideNavbar />
             <button className="btn btn-secondary mb-3" onClick={onBack}>Back</button>
-            <h2 className="text-center">{initialData.name ? 'Edit Place' : 'Create New Place'}</h2>
+            <h2 className="text-center">{isEditing ? 'Edit Place' : 'Create New Place'}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name <span className="text-danger">*</span></label>
@@ -101,12 +138,12 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                         type="file"
                         className="form-control-file"
                         id="placeImage"
-                        onChange={(e) => setPlaceImage(e.target.files[0])}
+                        onChange={handleImageChange}
                     />
                     {errors.placeImage && <div className="text-danger">{errors.placeImage}</div>}
                 </div>
                 <button type="submit" className="btn btn-primary btn-block">
-                    {initialData.name ? 'Update Place' : 'Add Place'}
+                    {isEditing ? 'Update Place' : 'Add Place'}
                 </button>
             </form>
 
@@ -114,7 +151,7 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Success</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Place updated successfully!</Modal.Body>
+                <Modal.Body>{isEditing ? 'Place updated successfully!' : 'Place added successfully!'}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleCloseModal}>
                         Close

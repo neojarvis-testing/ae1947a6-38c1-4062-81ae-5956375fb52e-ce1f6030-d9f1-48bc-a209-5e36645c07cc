@@ -21,14 +21,14 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Guide,Traveller")]
         public async Task<ActionResult<IEnumerable<Place>>> GetAllPlaces(){
             var place=await placeService.GetAllPlaces();
             return Ok(place);    
         }
 
         [HttpGet("{placeId}")]
-        [Authorize]
+        [Authorize(Roles = "Guide,Traveller")]
         public async Task<ActionResult<IEnumerable<Place>>> GetPlaceById(int placeId){
             var place=await placeService.GetPlaceById(placeId);
             if(place == null){
@@ -38,7 +38,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles= UserRoles.Guide)]
+        [Authorize(Roles="Guide")]
         public async Task<ActionResult> AddPlace([FromBody] Place place){
             try{
                 var success = await placeService.AddPlace(place);
@@ -54,7 +54,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPut("{placeId}")]
-        [Authorize(Roles= UserRoles.Guide)]
+        [Authorize(Roles="Guide")]
         public async Task<ActionResult> UpdatePlace(int placeId,[FromBody] Place place){
             try{
                 var success = await placeService.GetPlaceById(placeId);
@@ -71,7 +71,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpDelete("{placeId}")]
-        [Authorize(Roles= UserRoles.Guide)]
+        [Authorize(Roles="Guide")]
         public async Task<ActionResult> DeletePlace(int placeId){
             try{
                 var success = await placeService.DeletePlace(placeId);
