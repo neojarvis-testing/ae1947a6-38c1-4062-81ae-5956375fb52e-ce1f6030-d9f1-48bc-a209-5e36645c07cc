@@ -33,7 +33,7 @@ const Signup = () => {
         }
 
         if (!mobileNumber) {
-            validationErrors.mobileNumber = 'Mobile Number is required';
+            validationErrors.mobileNumber = 'Mobile number is required';
         }
         else if (mobileNumber.length !== 10) {
             validationErrors.mobileNumber = 'Mobile number must be 10 digits';
@@ -135,7 +135,7 @@ const Signup = () => {
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Enter pasword" />
+                                placeholder="Password"/>
                             {errors.password && <div className="text-danger">{errors.password}</div>}
                         </div>
                         <div className="form-group">
@@ -146,7 +146,7 @@ const Signup = () => {
                                 id="confirmPassword"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                placeholder="Confirm password"
+                                placeholder="Confirm Password"
                             />
                             {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
                         </div>
