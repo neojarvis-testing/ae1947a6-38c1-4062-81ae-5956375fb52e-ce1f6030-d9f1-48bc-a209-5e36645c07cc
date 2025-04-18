@@ -9,13 +9,17 @@ const LogoutModel = ({ onClose }) => {
       navigate('/Login');
       onClose();
     };
+    const handleCancel =() =>
+    {
+        navigate('/ViewPlace');
+    }
 
     return (
         <div className="modal-container">
             <div className="modal">
                 <h2>Are you sure you want to logout?</h2>
                 <button className="btn btn-success" onClick={handleLogout}>Yes, Logout</button>
-                <button className="btn btn-danger" onClick={onClose}>Cancel</button>
+                <button className="btn btn-danger" onClick={handleCancel}>Cancel</button>
             </div>
         </div>
     );
