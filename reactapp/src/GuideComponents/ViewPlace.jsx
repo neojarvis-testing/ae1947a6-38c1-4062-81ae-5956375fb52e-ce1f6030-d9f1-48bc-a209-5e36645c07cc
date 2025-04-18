@@ -14,18 +14,23 @@ const ViewPlace=() => {
     const [errors,setErrors]=useState(null);
     const [successMessage,setSuccessMessage]=useState('');
 
-    const fetchPlaces=()=>{
+    const fetchPlaces=async ()=>{
       setLoading(true); 
-      axios
+      try{
+      await axios
           .get(`${baseUrl}`)
           .then((response)=>{
             setPlace(response.data);
             setLoading(false);
           })
-          .catch(()=>{
-            setErrors('Failed to load places' );
-            setLoading(false);
-          });
+        }catch(error)
+        {
+          setErrors('Failed to load places' );
+        }
+        finally{
+          setLoading(false);
+
+        }
     };
     useEffect(()=>{
       fetchPlaces();
@@ -57,15 +62,7 @@ const ViewPlace=() => {
         {errors && <p class="text-danger"><h2>{errors}</h2></p>}
         {loading && <p>Loading...</p>}
         {!loading && !errors && <p><h2>{errors}</h2></p>}
-          
-          {place.length===0 ? (
-            <p>No places available</p>
-          ) : (
-            <ul>
-              {Array.isArray(place) && place.map((myPlace)=>(
-                <li key={myPlace.PlaceId || myPlace.Name}>
-                  <div>
-                    <table class="table table-light table-striped" >
+        <table class="table table-light table-striped" >
                       <thead>
                         <tr>
                           <th >Image</th>
@@ -76,6 +73,14 @@ const ViewPlace=() => {
                           <th>Action</th>
                         </tr>
                       </thead>
+          {place.length===0 ? (
+            <p>No places available</p>
+          ) : (
+            <ul>
+              {Array.isArray(place) && place.map((myPlace)=>(
+                <li key={myPlace.PlaceId || myPlace.Name}>
+                  <div>
+                    
                       <tbody>
                         <tr>
                           <td ><p>{myPlace.PlaceImage}</p></td>
@@ -89,12 +94,12 @@ const ViewPlace=() => {
                           </td>
                         </tr>
                       </tbody>
-                    </table>
                   </div>
                 </li>
               ))}
             </ul>
           )}
+          </table>
           
     
         </div>
