@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GuideNavbar from '../GuideComponents/GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
-
+import axios from 'axios';
 
 const HomePage = () => {
     const [homePage, setHomePage] = useState([]);
@@ -12,26 +12,24 @@ const HomePage = () => {
     const fetchHomePage = async () => {
         setIsLoading(true);
         try {
-            await axios
-                .get(`${baseUrl}`)
-                .then((response) => {
-                    setHomePage(response.data);
-                    setIsLoading(false);
-                })
+            const response = await axios.get(`${baseUrl}`);
+            console.log('Response:', response.data);
+            setHomePage(response.data);
+            setIsLoading(false);
         } catch (error) {
+            console.error('Error fetching home page:', error);
             setErrorOccurred('Failed to load HomePage');
-
-        }
-        finally {
             setIsLoading(false);
         }
     };
+
     useEffect(() => {
-        fetchTravel();
+        fetchHomePage();
     }, []);
+
     return (
         <div className="home-page">
-            <GuideNavbar/>
+            <GuideNavbar />
             <main className="container">
                 <div className="welcome-section row align-items-center">
                     <div className="col-md-12 image-container">
@@ -41,7 +39,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </main>
-            <div >
+            <div>
                 <p className="wel">Welcome to Travel Tales, your gateway to exploring amazing travel destinations around the world. Discover curated itineraries and find your perfect getaway, and receive personalized recommendations tailored to your travel style and budget.</p>
             </div>
             <footer className="text-center mt-4">
