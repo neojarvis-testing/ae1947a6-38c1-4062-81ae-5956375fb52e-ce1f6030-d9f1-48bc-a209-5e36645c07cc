@@ -127,8 +127,8 @@ select.form-control {
 .container.place-form-container .form-group input:focus,
 .container.place-form-container .form-group select:focus,
 .container.place-form-container .form-group .form-control-file:focus {
-    box-shadow: 0 0 30px rgba(46, 166, 218, 0.5); /* Yellow box shadow */
-    outline: none; /* Remove default outline */
+    box-shadow: 0 0 30px rgba(46, 166, 218, 0.5);
+    outline: none; 
 }
 
 .container.place-form-container {
