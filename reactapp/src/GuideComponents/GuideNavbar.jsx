@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import './GuideNavbar.css';
-import { navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoutModel from './LogoutModel';
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
-
+    const navigate=useNavigate();
     const handleLogoutClick = () => {
         setShowLogoutModel(true);
         navigate('/LogoutModel')
