@@ -12,6 +12,7 @@ const ViewPlace = () => {
     const [errors, setErrors] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
 
+
     // Fetch places from API
     const fetchPlaces = async () => {
         setLoading(true);
@@ -28,6 +29,29 @@ const ViewPlace = () => {
             setErrors('Failed to fetch places. Please try again later.');
         } finally {
             setLoading(false); // Stop loading spinner
+    const navigate=useNavigate();
+    const [place, setPlace] = useState([]);
+    const [loading,setLoading]=useState(true);
+    const [errors,setErrors]=useState(null);
+    const [successMessage,setSuccessMessage]=useState('');
+
+    const fetchPlaces=async ()=>{
+      setLoading(true); 
+      try{
+      await axios
+          .get(`${baseUrl}/`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((response)=>{
+            setPlace(response.data);
+            setLoading(false);
+          })
+        }catch(error)
+        {
+          setErrors('Failed to load places' );
+
         }
     };
 

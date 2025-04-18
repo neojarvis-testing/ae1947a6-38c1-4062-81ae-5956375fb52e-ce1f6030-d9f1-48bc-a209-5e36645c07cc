@@ -13,6 +13,8 @@ const GuideNavbar = () => {
     const navigate = useNavigate();
 
     const handleLogoutClick = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userRole');
         setShowLogoutModel(true);
     };
 
@@ -21,7 +23,7 @@ const GuideNavbar = () => {
     };
 
     const handleLogout = () => {
-        navigate('/Login');
+        navigate('/login');
         setShowLogoutModel(false);
     };
 
@@ -46,7 +48,6 @@ const GuideNavbar = () => {
                                     window.location.href = e.target.value;
                                 }
                             }}>
-
                                 <option value="">Place</option>
                                 <option value="placeform"><a href="/placeform">Add Place</a></option>
                                 <option value="viewplace"><a href="/viewplace">View Place</a></option>

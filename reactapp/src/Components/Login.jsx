@@ -7,76 +7,91 @@ import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-
-    const [error, setError] = useState('');
-
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
+ 
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
-    
-    const validateForm = () => {
-        let valid = true;
-        if (!email) {
-            setEmailError('Email is required');
-            valid = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setEmailError('Invalid Email');
-            valid = false;
-        } else {
-            setEmailError('');
-        }
-
-        if (!password) {
-            setPasswordError('Password is required');
-            valid = false;
-        } else {
-            setPasswordError('');
-        }
-
-        return valid;
+ 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+ 
+    const validate = () => {
+        const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+        let formErrors = {};
+ 
+        if (!formData.email) {
+            formErrors.email = "Email is required";
+        } else if (!validEmail.test(formData.email)) {
+            formErrors.email = "Please enter a valid email.";
+        }
+ 
+        if (!formData.password) {
+            formErrors.password = "Password is required";
+        } else if (formData.password.length < 6) {
+            formErrors.password = "Password must be at least 6 characters.";
+        }
+ 
+        setErrors(formErrors);
+        return Object.keys(formErrors).length === 0;
+    };
+ 
 
-    const handleLogin = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validateForm()) {
+        if (validate()) {
             try {
-                const response = await axios.post(`${baseUrl}/login`, { email, password });
-                console.log(response.data);
-                const fetchedToken = response.data.Token;
-                localStorage.setItem("token", fetchedToken);
-                const decoded = jwtDecode(fetchedToken);
-
-                console.log(decoded);
-                navigate(decoded.role === "Traveller" ? "/traveller" : "/guide");
+                const response = await axios.post(`${baseUrl}/login`, formData);
+                const token  = response.data.Token; // Ensure the token is correctly retrieved
+                console.log('Token:', token); // Log the token to check its value
+    
+                localStorage.setItem('token', token);
+    
+                // Decode the token
+                const decodedToken = jwtDecode(token);
+                console.log('Decoded Token:', decodedToken);
+    
+                // Extract and store username and role
+                const username = decodedToken.name; // Ensure the backend includes 'username' in the token
+                const role = decodedToken.role;
+    
+                localStorage.setItem('username', username);
+                localStorage.setItem('role', role);
+    
+                // Navigate to the homepage
+                navigate('/home');
             } catch (error) {
-                setError("Login failed. Please check your credentials and try again.");
+                console.error("Login failed:", error.response?.data || error.message);
+                setErrors({ apiError: "Invalid email or password." });
             }
         }
     };
-
+    
+ 
     return (
         <div className="container-fluid login-container">
             <div className="row">
                 <div className="col-md-6 login-background d-flex flex-column align-items-center justify-content-center">
                     <h1>Travel Tales</h1>
-                    <p>Welcome to Travel Tales, your travel companion.</p>
+                    <p>hiii</p>
                 </div>
                 <div className="col-md-6 login-box">
                     <h2>Login</h2>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 className="form-control"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
                                 placeholder="Email"
                             />
-                            {emailError && <div className="text-danger">{emailError}</div>}
+                            {errors.email && <div className="text-danger">{errors.email}</div>}
                         </div>
 
                         <div className="form-group">
@@ -84,18 +99,17 @@ const Login = () => {
                             <input
                                 type="password"
                                 className="form-control"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
                                 placeholder="Password"
                             />
-                            {passwordError && <div className="text-danger">{passwordError}</div>}
+                            {errors.password && <div className="text-danger">{errors.password}</div>}
                         </div>
-
-                        <button type="button" className="btn btn-outline-primary" onClick={handleLogin}>Login</button>
-                        {error && <div className="text-danger mt-3">{error}</div>}
+                        {errors.apiError && <span className='text-danger'>{errors.apiError}</span>}
+                        <button type="submit" className="btn btn-primary">Login</button>
                     </form>
-                    <p className="mt-3">Don't have an account? <a href="/signup">Signup</a></p>
+                    <p className="mt-3">Don't have an account?<span onClick={()=>navigate('/signup')}>Signup</span></p>
                 </div>
             </div>
         </div>

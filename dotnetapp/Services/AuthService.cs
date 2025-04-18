@@ -53,10 +53,10 @@ namespace dotnetapp.Services
             //     return (400, "Invalid password");
             //  }
 
-         //   if (user.Password != model.Password)
-          //  {
-            //    return (400, "Invalid password");
-            //}
+           if (user.Password != model.Password)
+           {
+               return (400, "Invalid password");
+            }
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),
