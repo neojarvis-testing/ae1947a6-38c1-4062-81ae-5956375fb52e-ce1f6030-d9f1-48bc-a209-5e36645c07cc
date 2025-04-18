@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TravellerNavbar from "./TravellerNavbar";
 import "./TravellerViewPlace.css"; // Import the CSS file
+import baseUrl from '../apiConfig'
+import axios from 'axios';
 
 const TravellerViewPlace = () => {
   const [places, setPlaces] = useState([]);
@@ -21,8 +23,8 @@ const TravellerViewPlace = () => {
         })
       }catch(error)
       {
-        setErrors('Failed to load places' );
-        setErrorOccurred(true);
+        setErrorOccurred('Failed to load places' );
+    
       }
       finally{
         setIsLoading(false);
