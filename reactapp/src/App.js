@@ -14,25 +14,20 @@ import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
 
 const App = () => {
     return (
-        <Router>
+        <div>        
+            <Router>
             <div>
-                <TravellerNavbar/>
-                <GuideNavbar />
-                <Login/>
-                <HomePage/>
-                <ErrorPage/>
-                <TravellerViewPlace/>
-                <Signup/>
-                <PlaceForm/>
-                <ViewPlace/>
-                <LogoutModel/>
                 <Routes>
+                    <Route path='/Signup' element={<Signup/>}></Route> 
+                    <Route path='/' element={<Login/>}></Route>
                     <Route path ="/HomePage" element={<HomePage/>} ></Route>
                     <Route path="/PlaceForm" element={<PlaceForm/>} ></Route>
                     <Route path="/ViewPlace" element={<ViewPlace/>} ></Route>
                 </Routes>
             </div>
         </Router>
+        </div>
+ 
     );
 };
 
