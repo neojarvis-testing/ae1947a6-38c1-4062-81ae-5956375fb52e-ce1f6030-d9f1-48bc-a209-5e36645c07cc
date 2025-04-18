@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+import API_BASE_URL from '../apiConfig';
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -25,30 +27,23 @@ const Login = () => {
         }
 
         try {
-        
-            const response = await fakeLogin(email, password);
-            if (response.success) {
-                window.location.href = '/dashboard';
+            const response = await axios.post(`${API_BASE_URL}/login`, {
+                email,
+                password
+            });
+
+            if (response.status === 200) {
+                localStorage.setItem('token', response.data.Token);
+                window.location.href = '/homepage';
             } else {
-                setError('Invalid email or password');
+                setError(response.data.Message);
             }
         } catch (err) {
             setError('An error occurred. Please try again later.');
         }
     };
 
-    const fakeLogin = (email, password) => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                if (email === 'test@example.com' && password === 'password') {
-                    resolve({ success: true });
-                } else {
-                    resolve({ success: false });
-                }
-            }, 1000);
-        });
-    };
-
+    
     return (
         <div className="container-fluid login-container">
             <div className="row">
