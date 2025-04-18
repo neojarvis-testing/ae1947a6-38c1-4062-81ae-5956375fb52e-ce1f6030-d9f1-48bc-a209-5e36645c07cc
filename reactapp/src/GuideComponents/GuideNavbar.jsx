@@ -31,7 +31,7 @@ const GuideNavbar = () => {
                         <ul className="navbar-nav ms-auto">
 
                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-<li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
+                            <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                             </li>
