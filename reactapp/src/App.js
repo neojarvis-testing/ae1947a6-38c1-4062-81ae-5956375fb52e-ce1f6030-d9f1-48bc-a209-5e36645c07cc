@@ -20,14 +20,14 @@ const App = () => {
                     <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/guide" element={<GuideNavbar />} />
+                    <Route path="/traveller" element={<TravellerNavbar />} />
                     
-                    <Route element={<PrivateRoute allowedRoles={['Guide']} />}>
-                        <Route path="/guide" element={<GuideNavbar />} />
+                    {/* <Route element={<PrivateRoute allowedRoles={['Guide']} />}>
                     </Route>
-                    
+
                     <Route element={<PrivateRoute allowedRoles={['Traveller']} />}>
-                        <Route path="/traveller" element={<TravellerNavbar />} />
-                    </Route>
+                    </Route> */}
                 </Routes>
             </div>
         </Router>
