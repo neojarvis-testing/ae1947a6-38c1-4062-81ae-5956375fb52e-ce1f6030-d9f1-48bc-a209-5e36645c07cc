@@ -2,14 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GuideNavbar from './GuideComponents/GuideNavbar';
 import PlaceForm from './GuideComponents/PlaceForm';
-import ViewPlace from './GuideComponents/ViewPlace';
 import Login from './Components/Login';
-import Signup from './Components/Signup';
-import HomePage from './Components/HomePage';
-import LogoutModel from './GuideComponents/LogoutModel';
 import TravellerNavbar from './TravellerComponents/TravellerNavbar';
+import Signup from './Components/Signup';
+import ViewPlace from './GuideComponents/ViewPlace';
+import HomePage from './Components/HomePage';
 import ErrorPage from './Components/ErrorPage';
-import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
 import PrivateRoute from './Components/PrivateRoute';
 
 const App = () => {
@@ -22,7 +20,9 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/guide" element={<GuideNavbar />} />
                     <Route path="/traveller" element={<TravellerNavbar />} />
-                    
+                    <Route path="/placeform" element={<PlaceForm />} />
+                    <Route path="/viewplace" element={<ViewPlace />} />
+                    <Route path="/home" elemet={<HomePage/>}/> 
                     {/* <Route element={<PrivateRoute allowedRoles={['Guide']} />}>
                     </Route>
 
