@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
+import GuideNavbar from './GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PlaceForm.css';
-import GuideNavbar from './GuideNavbar';
+import GuideNavbar from './GuideNavbar'
 
-const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
-    const [name, setName] = useState(initialData.name || '');
-    const [category, setCategory] = useState(initialData.category || '');
-    const [bestTimeToVisit, setBestTimeToVisit] = useState(initialData.bestTimeToVisit || '');
-    const [placeImage, setPlaceImage] = useState(initialData.placeImage || '');
-    const [location, setLocation] = useState(initialData.location || '');
+
+const PlaceForm = ({ isEditing, initialData = {}, onSubmit, onBack }) => {
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
+    const [bestTimeToVisit, setBestTimeToVisit] = useState('');
+    const [placeImage, setPlaceImage] = useState('');
+    const [location, setLocation] = useState('');
     const [errors, setErrors] = useState({});
     const [showPopup, setShowPopup] = useState(false);
     const [isEditing, setIsEditing] = useState(!!initialData.name);
@@ -31,6 +34,37 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
         }
     };
 
+    useEffect(() => {
+        if (isEditing && initialData) {
+            setName(initialData.name || '');
+            setCategory(initialData.category || '');
+            setBestTimeToVisit(initialData.bestTimeToVisit || '');
+            setPlaceImage(initialData.placeImage || '');
+            setLocation(initialData.location || '');
+        }
+    }, [isEditing, initialData]);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (!file.type.startsWith('image/')) {
+                setErrors(prev => ({ ...prev, placeImage: 'Only image files are allowed' }));
+                return;
+            }
+            if (file.size > 2 * 1024 * 1024) { 
+                setErrors(prev => ({ ...prev, placeImage: 'Image size should be less than 2MB' }));
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPlaceImage(reader.result);
+                setErrors(prev => ({ ...prev, placeImage: '' }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let validationErrors = {};
@@ -38,15 +72,19 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
         if (!name) validationErrors.name = 'Name is required';
         if (!category) validationErrors.category = 'Category is required';
         if (!location) validationErrors.location = 'Location is required';
-        if (!bestTimeToVisit) validationErrors.bestTimeToVisit = 'Best Time to visit is required';
+        if (!bestTimeToVisit) validationErrors.bestTimeToVisit = 'Best Time to Visit is required';
         if (!placeImage) validationErrors.placeImage = 'Place image is required';
 
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
             const placeData = { name, category, bestTimeToVisit, placeImage, location };
-            onSubmit(placeData);
-            setShowPopup(true);
+            if (typeof onSubmit === 'function') {
+                onSubmit(placeData);
+                setShowSuccessModal(true);
+            } else {
+                console.error('onSubmit function is not provided or is not callable.');
+            }
         }
     };
 
@@ -59,7 +97,7 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
         <div className="container place-form-container">
             <GuideNavbar />
             <button className="btn btn-secondary mb-3" onClick={onBack}>Back</button>
-            <h2 className="text-center">{initialData.name ? 'Edit Place' : 'Create New Place'}</h2>
+            <h2 className="text-center">{isEditing ? 'Edit Place' : 'Create New Place'}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name <span className="text-danger">*</span></label>
@@ -122,38 +160,26 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
                         type="file"
                         className="form-control-file"
                         id="placeImage"
-                        name="placeImage"
-                        onChange={handleChange}
+                        onChange={handleImageChange}
                     />
                     {errors.placeImage && <div className="text-danger">{errors.placeImage}</div>}
                 </div>
                 <button type="submit" className="btn btn-primary btn-block">
-                    {initialData.name ? 'Update Place' : 'Add Place'}
+                    {isEditing ? 'Update Place' : 'Add Place'}
                 </button>
             </form>
 
-            {/* Success Modal */}
-            {showPopup && (
-                <div className="modal fade show d-block" tabIndex="-1" role="dialog">
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content shadow-sm border-0">
-                            <div className="modal-header bg-success text-white">
-                                <h5 className="modal-title mx-auto">🎉 Success!</h5>
-                            </div>
-                            <div className="modal-body text-center">
-                                <p className="mb-0">
-                                    {isEditing ? 'Place updated successfully!' : 'Place added successfully!'}
-                                </p>
-                            </div>
-                            <div className="modal-footer justify-content-center">
-                                <button type="button" className="btn btn-success px-4" onClick={handlePopupClose}>
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <Modal show={showSuccessModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Success</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{isEditing ? 'Place updated successfully!' : 'Place added successfully!'}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleCloseModal}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };

@@ -15,7 +15,7 @@ const TravellerNavbar = () => {
     };
 
     
-
+    
 
     return (
         <div className="home-page">
