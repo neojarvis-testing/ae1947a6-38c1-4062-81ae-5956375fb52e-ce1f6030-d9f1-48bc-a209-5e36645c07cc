@@ -61,7 +61,7 @@ const Signup = () => {
             try {
                 const response = await fakeSignup({ username, email, mobileNumber, password, userRole });
                 if (response.success) {
-                    setShowSuccessModal(true); // Show the success modal
+                    setShowSuccessModal(true); 
                 } else {
                     setErrors({ form: data.Message });
                 }
