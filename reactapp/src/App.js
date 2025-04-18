@@ -6,10 +6,7 @@ import ViewPlace from './GuideComponents/ViewPlace';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import HomePage from './Components/HomePage';
-import LogoutModel from './GuideComponents/LogoutModel';
-import TravellerNavbar from './TravellerComponents/TravellerNavbar';
-import ErrorPage from './Components/ErrorPage';
-import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
+
 
 
 
@@ -24,6 +21,7 @@ const App = () => {
                     <Route path ="/HomePage" element={<HomePage/>} ></Route>
                     <Route path="/PlaceForm" element={<PlaceForm/>} ></Route>
                     <Route path="/ViewPlace" element={<ViewPlace/>} ></Route>
+                    <Route path="/GuideNavBar" element={<GuideNavbar/>} ></Route>
                 </Routes>
             </div>
         </Router>
