@@ -7,16 +7,9 @@ import baseUrl from '../apiConfig';
 import TravellerNavbar from '../TravellerComponents/TravellerNavbar';
 
 const HomePage = () => {
-    const [username, setUsername] = useState('');
-    const [role, setRole] = useState('');
-
-    useEffect(() => {
-        const storedUsername = localStorage.getItem('username') || 'GuideUser';
-        const storedRole = localStorage.getItem('role') || 'Traveller';
-        setUsername(storedUsername);
-        setRole(storedRole);
-    }, []);
-
+    const userName=localStorage.getItem('userName') || 'Guest';
+    const role=localStorage.getItem('role') || 'Traveller';
+   
     const [homePage, setHomePage] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorOccurred, setErrorOccurred] = useState(false);
@@ -41,7 +34,8 @@ const HomePage = () => {
 
     return (
         <div className="home-page">
-            <span>{role === "Traveller" ? <TravellerNavbar username={username} role={role}/> : <GuideNavbar username={username} role={role}/>}</span>
+            
+            <span>{role === "Traveller" ? <TravellerNavbar/> : <GuideNavbar/>}</span>
             <main className="container">
                 <div className="welcome-section row align-items-center">
                     <div className="col-md-12 image-container">

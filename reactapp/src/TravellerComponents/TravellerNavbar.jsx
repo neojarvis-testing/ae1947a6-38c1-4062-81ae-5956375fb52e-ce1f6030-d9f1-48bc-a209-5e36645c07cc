@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 
-const TravellerNavbar = ({username,role}) => {
+const TravellerNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
     const navigate=useNavigate();
 
@@ -37,7 +37,7 @@ const TravellerNavbar = ({username,role}) => {
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item"><Link className="nav-link" to="/home">Home</Link></li>
                             <li className="nav-item"><Link className="nav-link" to="/travellerviewplace">Place</Link></li>
-                            <li className="nav-item"><Link className="nav-link">{username}/{role}</Link></li>
+                            <li className="nav-item"><Link className="nav-link">DemoTraveller/Traveller</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                             </li>
