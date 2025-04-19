@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Correct import for jwtDecode
+import {jwtDecode} from 'jwt-decode'; // Correct import for jwt-decode
 
 const getUserRole = () => {
   const token = localStorage.getItem('token');
@@ -15,14 +15,14 @@ const getUserRole = () => {
   }
 };
 
-const PrivateRoute = ({ children, requiredRole }) => {
+const PrivateRoute = ({ children, allowedRoles }) => {
   const role = getUserRole();
 
   if (!role) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 
-  if (role !== requiredRole) {
+  if (!allowedRoles.includes(role)) {
     return (
       <div className="text-center mt-5">
         <h1 className="text-danger">Access Denied</h1>
@@ -35,4 +35,3 @@ const PrivateRoute = ({ children, requiredRole }) => {
 };
 
 export default PrivateRoute;
-
