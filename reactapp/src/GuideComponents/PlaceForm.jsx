@@ -83,38 +83,47 @@ const PlaceForm = ({ mode }) => {
  
     const handleSubmit = async (e) => {
         e.preventDefault();
- 
+    
         if (!validateForm()) return;
- 
+    
         setLoading(true);
- 
+    
         try {
             const token = localStorage.getItem('token');
             const headers = {
                 Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
             };
- 
+    
+            const payload = {
+                name: formData.name,
+                category: formData.category,
+                bestTimeToVisit: formData.bestTimeToVisit,
+                location: formData.location,
+                placeImage: formData.placeImage,
+            };
+    
             if (mode === 'edit') {
-                await axios.put(`${baseUrl}/Place/${id}`, formData, { headers });
+                await axios.put(`${baseUrl}/Places/${id}`, payload, { headers });
+            } else {
+                await axios.post(`${baseUrl}/Places`, payload, { headers });
             }
-            else {
- 
-                await axios.post(`${baseUrl}/Place`, formData, { headers });
-            }
- 
+    
             setLoading(false);
             setShowPopup(true);
-        }
-        catch (error) {
+        } catch (error) {
             setLoading(false);
             console.error('Error saving place:', error);
- 
+    
             if (error.response && error.response.status === 401) {
                 localStorage.removeItem('token');
-                navigate('/');
+                navigate('/login');
+            } else {
+                setFormError('Error saving place. Please try again.');
             }
         }
-    }
+    };
+    
  
                 const handlePopupClose = () => {
                     setShowPopup(false);

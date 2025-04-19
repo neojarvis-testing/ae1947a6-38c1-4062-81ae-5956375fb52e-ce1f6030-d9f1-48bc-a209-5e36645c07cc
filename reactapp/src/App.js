@@ -27,7 +27,7 @@ const App = () => {
                         path="/guide"
                         element={
                             <PrivateRoute allowedRoles={['Guide']}>
-                                <GuideNavbar username="GuideUser" role="Guide" />
+                                <GuideNavbar />
                             </PrivateRoute>
                         }
                     />
@@ -56,12 +56,12 @@ const App = () => {
                         }
                     />
 
-                    {/* Private Routes for Traveller */}
+                  
                     <Route
                         path="/traveller"
                         element={
                             <PrivateRoute allowedRoles={['Traveller']}>
-                                <TravellerNavbar username="TravellerUser" role="Traveller" />
+                                <TravellerNavbar />
                             </PrivateRoute>
                         }
                     />
