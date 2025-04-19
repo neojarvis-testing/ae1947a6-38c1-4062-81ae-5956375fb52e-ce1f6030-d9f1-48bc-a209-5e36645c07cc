@@ -13,6 +13,7 @@ const ViewPlace = () => {
     const [successMessage, setSuccessMessage] = useState('');
 
     // Fetch places from API
+
     useEffect(() => {
         const fetchPlaces = async () => {
             setLoading(true);
@@ -23,7 +24,9 @@ const ViewPlace = () => {
                         Authorization: `Bearer ${token}`, // Add Authorization header
                     },
                 });
+
                 console.log(response);
+
                 setPlaces(response.data);
             } catch (err) {
                 console.error('Error fetching places:', err);
