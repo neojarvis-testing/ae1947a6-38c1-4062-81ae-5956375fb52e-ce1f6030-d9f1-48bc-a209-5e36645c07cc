@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
- 
-import API_BASE_URL from '../apiConfig';
- 
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
  
