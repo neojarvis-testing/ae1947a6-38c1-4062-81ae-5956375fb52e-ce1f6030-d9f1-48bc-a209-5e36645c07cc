@@ -7,9 +7,9 @@ import baseUrl from '../apiConfig';
 import TravellerNavbar from '../TravellerComponents/TravellerNavbar';
 
 const HomePage = () => {
-    const userName=localStorage.getItem('userName') || 'Guest';
-    const role=localStorage.getItem('role') || 'Traveller';
-   
+    const username = localStorage.getItem('username') || 'Guest';
+    const role = localStorage.getItem('role') || 'Traveller';
+
     const [homePage, setHomePage] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorOccurred, setErrorOccurred] = useState(false);
@@ -34,8 +34,7 @@ const HomePage = () => {
 
     return (
         <div className="home-page">
-            
-            <span>{role === "Traveller" ? <TravellerNavbar/> : <GuideNavbar/>}</span>
+            {role === "Traveller" ? <TravellerNavbar username={username} role={role} /> : <GuideNavbar username={username} role={role} />}
             <main className="container">
                 <div className="welcome-section row align-items-center">
                     <div className="col-md-12 image-container">

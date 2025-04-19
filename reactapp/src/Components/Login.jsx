@@ -61,7 +61,7 @@ const Login = () => {
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', role);
     
-                // Navigate to the homepage
+                
                 navigate('/home');
             } catch (error) {
                 console.error("Login failed:", error.response?.data || error.message);

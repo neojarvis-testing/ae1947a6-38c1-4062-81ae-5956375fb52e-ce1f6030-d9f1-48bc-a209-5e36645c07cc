@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
- 
+
 import API_BASE_URL from '../apiConfig';
- 
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
  
@@ -123,7 +122,7 @@ const PlaceForm = ({ mode }) => {
  
                 return (
                     <div className="container mt-5">
-                        <GuideNavbar username="DemoGuide" role="Guide" />
+                       
                         <button className="btn btn-link mb-3" onClick={() => navigate(-1)}>
                             Back
                         </button>
