@@ -5,13 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
 
-const PlaceForm = ({ mode,userName,role }) => {
+const PlaceForm = ({ mode  }) => {
   const navigate = useNavigate();
-
-  userName=localStorage.getItem('userName') || 'Guest';
-  role=localStorage.getItem('role') || 'Traveller';
-
-  const { id } = useParams(); // Get the place ID from the URL params
+  const { id } = useParams(); 
   const [formData, setFormData] = useState({
     Name: '',
     Category: '',
@@ -24,6 +20,8 @@ const PlaceForm = ({ mode,userName,role }) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState('');
+  const username=localStorage.getItem('username') || 'Guide';
+  const role=localStorage.getItem('role') || 'Traveller';
 
   // Fetch place data when editing
   useEffect(() => {
@@ -93,7 +91,7 @@ const PlaceForm = ({ mode,userName,role }) => {
     try {
       const token = localStorage.getItem('token');
       const headers = { Authorization: `Bearer ${token}` };
-      if (mode === 'edit') {
+      if (mode === 'edit' ) {
         await axios.put(`${baseUrl}/Place/${id}`, formData, { headers });
       } else {
         await axios.post(`${baseUrl}/Place`, formData, { headers });
@@ -118,7 +116,7 @@ const PlaceForm = ({ mode,userName,role }) => {
   return (
     <div className="container mt-5">
 
-      <GuideNavbar username="DemoGuide" role="Guide" />
+      <GuideNavbar username={username} role={role} />
       <button className="btn btn-link mb-3" onClick={() => navigate(-1)}> Back </button>
       <div className="card mx-auto" style={{ maxWidth: '600px' }}>
         <div className="card-body p-4">
