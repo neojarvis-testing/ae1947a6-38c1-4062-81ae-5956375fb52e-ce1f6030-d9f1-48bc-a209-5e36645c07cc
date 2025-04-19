@@ -37,8 +37,7 @@ const ViewPlace = () => {
         };
         fetchPlaces();
     }, []);
- 
-   
+  
     const handleEdit = (place) => {
         console.log('Selected Place:', place);
         navigate('/editPlace', { state: { place } });
@@ -53,6 +52,7 @@ const ViewPlace = () => {
                 console.log('Token:', token);
                 await axios.delete(`${baseUrl}/Place/${placeId}`, {
                     headers: {
+                        Authorization: `Bearer ${token}`, 
                         Authorization: `Bearer ${token}`,
                     },
                 });

@@ -56,8 +56,6 @@ const GuideNavbar = () => {
                             <li className="nav-item">
                                 <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                             </li>
-                            <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
-                            
                         </ul>
                     </div>
                 </div>
