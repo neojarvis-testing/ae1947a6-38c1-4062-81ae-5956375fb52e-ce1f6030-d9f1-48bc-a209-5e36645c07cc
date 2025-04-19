@@ -38,7 +38,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles="Guide")]
+        [Authorize(Roles="Gu    ide")]
         public async Task<ActionResult> AddPlace([FromBody] Place place){
             try{
                 var success = await placeService.AddPlace(place);
