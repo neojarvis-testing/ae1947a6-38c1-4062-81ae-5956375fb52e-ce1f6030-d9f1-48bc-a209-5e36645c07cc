@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import baseUrl from '../apiConfig';
 import 'bootstrap/dist/css/bootstrap.css';
 import TravellerNavbar from './TravellerNavbar';
@@ -10,6 +9,9 @@ const ViewPlace = () => {
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  const username=localStorage.getItem('username') || 'Guide';
+  const role=localStorage.getItem('role') || 'Traveller';
 
   // Fetch places from API
   useEffect(() => {
@@ -43,7 +45,7 @@ const ViewPlace = () => {
 
   return (
     <div className="container mt-5">
-      <TravellerNavbar />
+      <TravellerNavbar username={username} role={role} />
       <h2 className="text-center mb-4">Available Places</h2>
 
       {/* Search Bar */}
