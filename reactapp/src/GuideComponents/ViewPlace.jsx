@@ -13,7 +13,6 @@ const ViewPlace = () => {
     const [successMessage, setSuccessMessage] = useState('');
 
     // Fetch places from API
-   
 
     useEffect(() => {
         const fetchPlaces = async () => {
@@ -25,6 +24,9 @@ const ViewPlace = () => {
                         Authorization: `Bearer ${token}`, // Add Authorization header
                     },
                 });
+
+                console.log(response);
+
                 setPlaces(response.data);
             } catch (err) {
                 console.error('Error fetching places:', err);
@@ -37,8 +39,9 @@ const ViewPlace = () => {
     }, []);
 
     // Handle edit button
-    const handleEdit = (id) => {
-        navigate(`/edit/${id}`);
+    const handleEdit = (place) => {
+        console.log('Selected Place:', place);
+        navigate('/editPlace', { state: { place } });
     };
 
     // Handle delete button
@@ -104,19 +107,19 @@ const ViewPlace = () => {
                         <tr key={myPlace.placeId}>
                             <td>
                                 <img
-                                    src={myPlace.placeImage || 'https://via.placeholder.com/100'}
-                                    alt={myPlace.name}
+                                    src={myPlace.PlaceImage || 'https://via.placeholder.com/100'}
+                                    alt={myPlace.Name}
                                     style={{ height: '50px', objectFit: 'cover' }}
                                 />
                             </td>
-                            <td><p>{myPlace.name}</p></td>
-                            <td><p>{myPlace.category}</p></td>
-                            <td><p>{myPlace.location}</p></td>
-                            <td><p>{myPlace.bestTimeToVisit}</p></td>
+                            <td><p>{myPlace.Name}</p></td>
+                            <td><p>{myPlace.Category}</p></td>
+                            <td><p>{myPlace.Location}</p></td>
+                            <td><p>{myPlace.BestTimeToVisit}</p></td>
                             <td>
                                 <button
                                     className="btn btn-primary btn-sm me-2"
-                                    onClick={() => handleEdit(myPlace.placeId)}
+                                    onClick={() => handleEdit(myPlace)}
                                 >
                                     Edit
                                 </button>
