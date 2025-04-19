@@ -17,10 +17,10 @@ const ViewPlace = () => {
         const fetchPlaces = async () => {
             setLoading(true);
             try {
-                const token = localStorage.getItem('token'); // Retrieve token from localStorage
+                const token = localStorage.getItem('token');
                 const response = await axios.get(`${baseUrl}/Place`, {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Add Authorization header
+                        Authorization: `Bearer ${token}`,
                     },
                 });
                 console.log(response);
@@ -29,13 +29,13 @@ const ViewPlace = () => {
                 console.error('Error fetching places:', err);
                 setErrors('Failed to fetch places. Please try again later.');
             } finally {
-                setLoading(false); // Stop loading spinner
+                setLoading(false);
             }
         };
         fetchPlaces();
     }, []);
 
-    // Handle edit button
+    
     const handleEdit = (place) => {
         console.log('Selected Place:', place);
         navigate('/editPlace', { state: { place } });
@@ -46,11 +46,11 @@ const ViewPlace = () => {
         const confirmDelete = window.confirm('Are you sure you want to delete this place?');
         if (confirmDelete) {
             try {
-                const token = localStorage.getItem('token'); // Retrieve token from localStorage
+                const token = localStorage.getItem('token');
                 console.log('Token:', token);
                 await axios.delete(`${baseUrl}/Place/${placeId}`, {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Add Authorization header
+                        Authorization: `Bearer ${token}`, 
                     },
                 });
                 setSuccessMessage("Place successfully deleted.");
