@@ -5,7 +5,7 @@ import baseUrl from '../apiConfig';
 import axios from 'axios';
 import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-
+ 
 const Login = () => {
     const [formData, setFormData] = useState({
         email: "",
@@ -39,7 +39,7 @@ const Login = () => {
         return Object.keys(formErrors).length === 0;
     };
  
-
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
@@ -47,20 +47,20 @@ const Login = () => {
                 const response = await axios.post(`${baseUrl}/login`, formData);
                 const token  = response.data.Token;
                 console.log('Token:', token);
-    
+   
                 localStorage.setItem('token', token);
-    
+   
                 // Decode the token
                 const decodedToken = jwtDecode(token);
                 console.log('Decoded Token:', decodedToken);
-    
+   
                 // Extract and store username and role
                 const username = decodedToken.name;
                 const role = decodedToken.role;
-    
+   
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', role);
-    
+   
                 // Navigate to the homepage
                 navigate('/home');
             } catch (error) {
@@ -69,7 +69,7 @@ const Login = () => {
             }
         }
     };
-    
+   
  
     return (
         <div className="container-fluid login-container">
@@ -93,7 +93,7 @@ const Login = () => {
                             />
                             {errors.email && <div className="text-danger">{errors.email}</div>}
                         </div>
-
+ 
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input
@@ -115,5 +115,7 @@ const Login = () => {
         </div>
     );
 };
-
+ 
 export default Login;
+ 
+ 

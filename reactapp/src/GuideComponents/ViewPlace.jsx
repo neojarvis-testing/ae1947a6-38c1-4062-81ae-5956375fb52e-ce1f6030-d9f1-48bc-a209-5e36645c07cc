@@ -87,6 +87,7 @@ fetchPlaces();
         </div>
       )}
 
+
       {/* Always Render Table */}
       <table className="table table-bordered table-striped text-center">
         <thead className="thead-dark">
@@ -141,6 +142,7 @@ fetchPlaces();
         </tbody>
       </table>
     </div>
+    
   );
 };
 
