@@ -23,7 +23,8 @@ const App = () => {
                     <Route path="/traveller" element={<TravellerNavbar username="TravllerUser" role="Traveller" />} />
                     <Route path="/travellerviewplace" element={<TravellerViewPlace />} />
                     
-                    <Route path="/placeform" element={<PlaceForm />} />
+                    <Route path="/placeform" element={<PlaceForm mode="add"/>} />
+                    <Route path="/editPlace" element={<PlaceForm mode="edit"/>} />
                     <Route path="/viewplace" element={<ViewPlace />} />
                     <Route path="/home" element={<HomePage/>}/> 
                     {/* <Route element={<PrivateRoute allowedRoles={['Guide']} />}>

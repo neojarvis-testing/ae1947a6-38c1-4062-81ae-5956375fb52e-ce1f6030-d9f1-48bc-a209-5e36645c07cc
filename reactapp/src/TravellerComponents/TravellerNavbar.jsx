@@ -36,7 +36,7 @@ const TravellerNavbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item"><Link className="nav-link" to="/home">Home</Link></li>
-                            <li className="nav-item"><Link className="nav-link" to="/viewplace">Place</Link></li>
+                            <li className="nav-item"><Link className="nav-link" to="/travellerviewplace">Place</Link></li>
                             <li className="nav-item"><Link className="nav-link">DemoTraveller/Traveller</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
