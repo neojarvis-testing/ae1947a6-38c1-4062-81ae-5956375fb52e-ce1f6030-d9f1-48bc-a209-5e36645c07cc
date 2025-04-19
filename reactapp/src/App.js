@@ -19,60 +19,19 @@ const App = () => {
                     <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/home" element={<HomePage />} />
-                    <Route path="*" element={<ErrorPage />} />
+                    <Route path="/guide" element={<GuideNavbar username="GuideUser" role="Guide" />} />
+                    <Route path="/traveller" element={<TravellerNavbar username="TravllerUser" role="Traveller" />} />
+                    <Route path="/travellerviewplace" element={<TravellerViewPlace />} />
+                    
+                    <Route path="/placeform" element={<PlaceForm mode="add"/>} />
+                    <Route path="/editPlace/:id" element={<PlaceForm mode="edit"/>} />
+                    <Route path="/viewplace" element={<ViewPlace />} />
+                    <Route path="/home" element={<HomePage/>}/> 
+                    {/* <Route element={<PrivateRoute allowedRoles={['Guide']} />}>
+                    </Route>
 
-                    {/* Private Routes for Guide */}
-                    <Route
-                        path="/guide"
-                        element={
-                            <PrivateRoute allowedRoles={['Guide']}>
-                                <GuideNavbar />
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route
-                        path="/placeform"
-                        element={
-                            <PrivateRoute allowedRoles={['Guide']}>
-                                <PlaceForm mode="add" />
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route
-                        path="/editPlace"
-                        element={
-                            <PrivateRoute allowedRoles={['Guide']}>
-                                <PlaceForm mode="edit" />
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route
-                        path="/viewplace"
-                        element={
-                            <PrivateRoute allowedRoles={['Guide']}>
-                                <ViewPlace />
-                            </PrivateRoute>
-                        }
-                    />
-
-                  
-                    <Route
-                        path="/traveller"
-                        element={
-                            <PrivateRoute allowedRoles={['Traveller']}>
-                                <TravellerNavbar />
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route
-                        path="/travellerviewplace"
-                        element={
-                            <PrivateRoute allowedRoles={['Traveller']}>
-                                <TravellerViewPlace />
-                            </PrivateRoute>
-                        }
-                    />
+                    <Route element={<PrivateRoute allowedRoles={['Traveller']} />}>
+                    </Route> */}
                 </Routes>
             </div>
         </Router>
