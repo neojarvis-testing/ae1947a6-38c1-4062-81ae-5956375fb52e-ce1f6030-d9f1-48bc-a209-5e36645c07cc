@@ -11,8 +11,8 @@ const ViewPlace = () => {
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
-    const username = localStorage.getItem('username') || 'Guest'; // Get the username from localStorage
-    const role = localStorage.getItem('role') || 'Traveller'; // Get the user's role from localStorage
+    const username = localStorage.getItem('username') || 'Guest'; 
+    const role = localStorage.getItem('role') || 'Traveller'; 
 
   // Fetch places from API
   useEffect(() => {
@@ -42,7 +42,7 @@ fetchPlaces();
         alert('Invalid place selected for editing');
         return;
     }
-    navigate(`/editPlace/${myPlace.PlaceId}`);
+    navigate(`/editplace/${myPlace.PlaceId}`);
 };
 
 
@@ -62,7 +62,8 @@ fetchPlaces();
         setSuccessMessage("Place successfully deleted.");
         setPlaces((prevPlaces) => prevPlaces.filter((place) => place.PlaceId !== placeId));
         setTimeout(() => setSuccessMessage(""), 3000);
-      } catch (err) {
+      } 
+      catch (err) {
         console.error('Error deleting place:', err);
         setErrors('Failed to delete place.');
         setTimeout(() => setErrors(""), 3000);
@@ -72,7 +73,7 @@ fetchPlaces();
 
   return (
     <div className="container mt-5">
-      <GuideNavbar />
+      <GuideNavbar username={username} role={role}/>
       <h2 className="text-center mb-4">Places</h2>
 
       {/* Display Error */}

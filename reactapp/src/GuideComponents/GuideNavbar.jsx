@@ -8,7 +8,7 @@ import './GuideNavbar.css';
 import baseUrl from '../apiConfig';
 
 
-const GuideNavbar = () => {
+const GuideNavbar = ({username,role}) => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
     const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const GuideNavbar = () => {
                                 <option value="placeform"><a href="/placeform">Add Place</a></option>
                                 <option value="viewplace"><a href="/viewplace">View Place</a></option>
                             </select>
-                            <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
+                            <li className="nav-item"><Link className="nav-link" to="/profile">{username}/{role}</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                             </li>
