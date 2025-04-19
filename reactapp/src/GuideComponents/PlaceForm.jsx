@@ -5,8 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
 
-const PlaceForm = ({ mode }) => {
+const PlaceForm = ({ mode,userName,role }) => {
   const navigate = useNavigate();
+
+  userName=localStorage.getItem('userName') || 'Guest';
+  role=localStorage.getItem('role') || 'Traveller';
+
   const { id } = useParams(); // Get the place ID from the URL params
   const [formData, setFormData] = useState({
     Name: '',
