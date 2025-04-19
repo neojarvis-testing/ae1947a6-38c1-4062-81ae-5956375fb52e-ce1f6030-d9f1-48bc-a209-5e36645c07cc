@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
- 
-import API_BASE_URL from '../apiConfig';
- 
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
  
@@ -93,12 +90,11 @@ const PlaceForm = ({ mode }) => {
             const headers = {
                 Authorization: `Bearer ${token}`,
             };
- 
+            
             if (mode === 'edit') {
                 await axios.put(`${baseUrl}/Place/${id}`, formData, { headers });
             }
             else {
- 
                 await axios.post(`${baseUrl}/Place`, formData, { headers });
             }
  

@@ -66,7 +66,7 @@ const Signup = () => {
                     email,
                     mobileNumber,
                     password,
-                    userRole // Send user role to backend
+                    userRole 
                 });
 
                 if (response.status === 201) {
