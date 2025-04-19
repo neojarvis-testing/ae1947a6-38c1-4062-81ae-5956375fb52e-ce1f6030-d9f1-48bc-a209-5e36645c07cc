@@ -25,12 +25,8 @@ const PlaceForm = ({ mode }) => {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [formError, setFormError] = useState('');
-<<<<<<< HEAD
- 
-=======
 
     // Fetch place data when editing
->>>>>>> 9c63535f62400b9e372a62d33e22271266866692
     useEffect(() => {
         const fetchPlaceData = async () => {
             if (mode === 'edit' && id) {
