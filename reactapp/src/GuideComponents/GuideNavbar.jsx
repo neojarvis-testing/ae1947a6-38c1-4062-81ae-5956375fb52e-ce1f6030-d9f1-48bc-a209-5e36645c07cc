@@ -5,14 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';
 import './GuideNavbar.css';
+import baseUrl from '../apiConfig';
 
-import baseUrl from '../apiConfig'
 
 const GuideNavbar = () => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
     const navigate = useNavigate();
 
     const handleLogoutClick = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userRole');
         setShowLogoutModel(true);
     };
 
@@ -21,7 +23,7 @@ const GuideNavbar = () => {
     };
 
     const handleLogout = () => {
-        navigate('/Login');
+        navigate('/login');
         setShowLogoutModel(false);
     };
 
@@ -46,15 +48,16 @@ const GuideNavbar = () => {
                                     window.location.href = e.target.value;
                                 }
                             }}>
-
                                 <option value="">Place</option>
-                                <option value="placefrom"><a href="/placeform">Add Place</a></option>
+                                <option value="placeform"><a href="/placeform">Add Place</a></option>
                                 <option value="viewplace"><a href="/viewplace">View Place</a></option>
                             </select>
                             <li className="nav-item"><Link className="nav-link" to="/profile">Demoguide/Guide</Link></li>
                             <li className="nav-item">
                                 <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
                             </li>
+                            <button className="btn btn-primary btn-block" onClick={handleLogoutClick}>Logout</button>
+                            
                         </ul>
                     </div>
                 </div>

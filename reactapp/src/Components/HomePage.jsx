@@ -3,9 +3,13 @@ import GuideNavbar from '../GuideComponents/GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import axios from 'axios';
-import API_BASE_URL from '../apiConfig';
+import baseUrl from '../apiConfig';
+import TravellerNavbar from '../TravellerComponents/TravellerNavbar';
 
 const HomePage = () => {
+    const userName=localStorage.getItem('userName') || 'Guest';
+    const role=localStorage.getItem('role') || 'Traveller';
+   
     const [homePage, setHomePage] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorOccurred, setErrorOccurred] = useState(false);
@@ -13,7 +17,7 @@ const HomePage = () => {
     const fetchHomePage = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`${API_BASE_URL}`);
+            const response = await axios.get(`${baseUrl}/home`);
             console.log('Response:', response.data);
             setHomePage(response.data);
             setIsLoading(false);
@@ -30,7 +34,8 @@ const HomePage = () => {
 
     return (
         <div className="home-page">
-            <GuideNavbar />
+            
+            <span>{role === "Traveller" ? <TravellerNavbar/> : <GuideNavbar/>}</span>
             <main className="container">
                 <div className="welcome-section row align-items-center">
                     <div className="col-md-12 image-container">
