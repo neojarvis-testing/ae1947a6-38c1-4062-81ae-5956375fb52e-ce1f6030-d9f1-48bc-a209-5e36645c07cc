@@ -9,6 +9,7 @@ import ViewPlace from './GuideComponents/ViewPlace';
 import HomePage from './Components/HomePage';
 import ErrorPage from './Components/ErrorPage';
 import PrivateRoute from './Components/PrivateRoute';
+import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
 
 const App = () => {
     return (
@@ -18,11 +19,14 @@ const App = () => {
                     <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/guide" element={<GuideNavbar />} />
-                    <Route path="/traveller" element={<TravellerNavbar />} />
-                    <Route path="/placeform" element={<PlaceForm />} />
+                    <Route path="/guide" element={<GuideNavbar username="GuideUser" role="Guide" />} />
+                    <Route path="/traveller" element={<TravellerNavbar username="TravllerUser" role="Traveller" />} />
+                    <Route path="/travellerviewplace" element={<TravellerViewPlace />} />
+                    
+                    <Route path="/placeform" element={<PlaceForm mode="add"/>} />
+                    <Route path="/editPlace" element={<PlaceForm mode="edit"/>} />
                     <Route path="/viewplace" element={<ViewPlace />} />
-                    <Route path="/home" elemet={<HomePage/>}/> 
+                    <Route path="/home" element={<HomePage/>}/> 
                     {/* <Route element={<PrivateRoute allowedRoles={['Guide']} />}>
                     </Route>
 

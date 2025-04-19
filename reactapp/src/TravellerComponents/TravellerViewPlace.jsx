@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TravellerNavbar from "./TravellerNavbar";
-import "./TravellerViewPlace.css"; // Import the CSS file
+import "./TravellerViewPlace.css"; 
 import baseUrl from '../apiConfig'
 import axios from 'axios';
 
@@ -10,6 +10,7 @@ const TravellerViewPlace = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [errorOccurred, setErrorOccurred] = useState(false);
+
   const navigate = useNavigate();
 
   const fetchTravel=async ()=>{
@@ -88,7 +89,6 @@ const TravellerViewPlace = () => {
               <th>Category</th>
               <th>Location</th>
               <th>Price</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -114,10 +114,7 @@ const TravellerViewPlace = () => {
                   <td>{place.Category}</td>
                   <td>{place.Location}</td>
                   <td>{place.Price}</td>
-                  <td>
-                    <button onClick={() => handleEdit(place.id)} className="edit">Edit</button>
-                    <button onClick={() => handleDelete(place.id)} className="delete">Delete</button>
-                  </td>
+                  
                 </tr>
               ))
             )}
