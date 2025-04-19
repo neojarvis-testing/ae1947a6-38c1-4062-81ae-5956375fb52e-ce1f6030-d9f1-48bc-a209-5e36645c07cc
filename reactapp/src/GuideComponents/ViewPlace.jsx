@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
 import 'bootstrap/dist/css/bootstrap.css';
-
+ 
 const ViewPlace = () => {
     const navigate = useNavigate();
     const [places, setPlaces] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
-
+ 
     // Fetch places from API
-
+ 
     useEffect(() => {
         const fetchPlaces = async () => {
             setLoading(true);
@@ -24,9 +24,9 @@ const ViewPlace = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-
+ 
                 console.log(response);
-
+ 
                 setPlaces(response.data);
             } catch (err) {
                 console.error('Error fetching places:', err);
@@ -37,13 +37,12 @@ const ViewPlace = () => {
         };
         fetchPlaces();
     }, []);
-
-    
+  
     const handleEdit = (place) => {
         console.log('Selected Place:', place);
         navigate('/editPlace', { state: { place } });
     };
-
+ 
     // Handle delete button
     const handleDelete = async (placeId) => {
         const confirmDelete = window.confirm('Are you sure you want to delete this place?');
@@ -54,6 +53,7 @@ const ViewPlace = () => {
                 await axios.delete(`${baseUrl}/Place/${placeId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, 
+                        Authorization: `Bearer ${token}`,
                     },
                 });
                 setSuccessMessage("Place successfully deleted.");
@@ -66,15 +66,15 @@ const ViewPlace = () => {
             }
         }
     };
-
+ 
     return (
         <div className="container mt-5">
             <GuideNavbar />
             <h2 className="text-center mb-4">Places</h2>
-
+ 
             {/* Display Error */}
             {errors && <p className="text-danger text-center">{errors}</p>}
-
+ 
             {/* Display Spinner */}
             {loading && (
                 <div className="text-center">
@@ -82,7 +82,7 @@ const ViewPlace = () => {
                     <div className="mt-2">Loading...</div>
                 </div>
             )}
-
+ 
             {/* Always Render Table */}
             <table className="table table-bordered table-striped text-center">
                 <thead className="thead-dark">
@@ -137,5 +137,6 @@ const ViewPlace = () => {
         </div>
     );
 };
-
+ 
 export default ViewPlace;
+ 
