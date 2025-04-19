@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+ 
 import API_BASE_URL from '../apiConfig';
-
+ 
 import GuideNavbar from './GuideNavbar';
 import baseUrl from '../apiConfig';
-
+ 
 const PlaceForm = ({ mode }) => {
-
+ 
     const navigate = useNavigate();
     const { id } = useParams(); // Get the place ID from the URL params
-
+ 
     const [formData, setFormData] = useState({
         name: '',
         category: '',
@@ -25,7 +25,7 @@ const PlaceForm = ({ mode }) => {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [formError, setFormError] = useState('');
-
+ 
     // Fetch place data when editing
     useEffect(() => {
         const fetchPlaceData = async () => {
@@ -47,7 +47,7 @@ const PlaceForm = ({ mode }) => {
         };
         fetchPlaceData();
     }, [mode, id]);
-
+ 
     const validateForm = () => {
         const newErrors = {};
         if (!formData.name) newErrors.name = 'Name is required';
@@ -58,10 +58,10 @@ const PlaceForm = ({ mode }) => {
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-
+ 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
-
+ 
         if (files && files.length > 0) {
             const file = files[0];
             setFileName(file.name);
@@ -80,47 +80,47 @@ const PlaceForm = ({ mode }) => {
             }));
         }
     };
-
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+ 
         if (!validateForm()) return;
-
+ 
         setLoading(true);
-
+ 
         try {
             const token = localStorage.getItem('token');
             const headers = {
                 Authorization: `Bearer ${token}`,
             };
-
+ 
             if (mode === 'edit') {
                 await axios.put(`${baseUrl}/Place/${id}`, formData, { headers });
             }
             else {
-
+ 
                 await axios.post(`${baseUrl}/Place`, formData, { headers });
             }
-
+ 
             setLoading(false);
             setShowPopup(true);
         }
         catch (error) {
             setLoading(false);
             console.error('Error saving place:', error);
-
+ 
             if (error.response && error.response.status === 401) {
                 localStorage.removeItem('token');
                 navigate('/');
             }
         }
     }
-
+ 
                 const handlePopupClose = () => {
                     setShowPopup(false);
                     navigate('/viewplace');
                 };
-
+ 
                 return (
                     <div className="container mt-5">
                         <GuideNavbar username="DemoGuide" role="Guide" />
@@ -241,5 +241,7 @@ const PlaceForm = ({ mode }) => {
                     </div>
                 );
                         }
-
+ 
                 export default PlaceForm;
+ 
+ 

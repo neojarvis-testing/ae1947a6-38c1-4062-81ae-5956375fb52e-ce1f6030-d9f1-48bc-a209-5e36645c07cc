@@ -45,30 +45,6 @@ const TravellerViewPlace = () => {
     place.name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this place?")) {
-      fetch(`${id}`, {
-        method: "DELETE",
-      })
-        .then((response) => {
-          if (response.ok) {
-            setPlaces((prevPlaces) =>
-              prevPlaces.filter((place) => place.id !== id)
-            );
-            console.log("Place deleted successfully.");
-          } else {
-            console.error("Failed to delete the place.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error deleting place:", error);
-        });
-    }
-  };
-
-  const handleEdit = (id) => {
-    navigate(`/edit/${id}`);
-  };
 
   return (
     <div>
