@@ -24,6 +24,7 @@ const PlaceForm = ({ onSubmit, initialData = {}, onBack }) => {
         if (!placeImage) validationErrors.placeImage = 'Place image is required';
 
         setErrors(validationErrors);
+        
 
         if (Object.keys(validationErrors).length === 0) {
             const placeData = { name, category, bestTimeToVisit, placeImage: URL.createObjectURL(placeImage), location };
