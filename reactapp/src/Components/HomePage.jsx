@@ -3,12 +3,8 @@ import GuideNavbar from '../GuideComponents/GuideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import axios from 'axios';
-<<<<<<< HEAD
-import API_BASE_URL from '../apiConfig';
-=======
 import baseUrl from '../apiConfig';
 import TravellerNavbar from '../TravellerComponents/TravellerNavbar';
->>>>>>> 66fea558f263cccdc0aaaefa2405f3cf525cef42
 
 const HomePage = () => {
     const userName=localStorage.getItem('userName') || 'Guest';
@@ -21,11 +17,7 @@ const HomePage = () => {
     const fetchHomePage = async () => {
         setIsLoading(true);
         try {
-<<<<<<< HEAD
-            const response = await axios.get(`${API_BASE_URL}`);
-=======
             const response = await axios.get(`${baseUrl}/home`);
->>>>>>> 66fea558f263cccdc0aaaefa2405f3cf525cef42
             console.log('Response:', response.data);
             setHomePage(response.data);
             setIsLoading(false);
