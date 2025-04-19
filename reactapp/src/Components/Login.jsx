@@ -49,17 +49,16 @@ const Login = () => {
                 console.log('Token:', token); // Log the token to check its value
     
                 localStorage.setItem('token', token);
-    
+                
                 // Decode the token
                 const decodedToken = jwtDecode(token);
                 console.log('Decoded Token:', decodedToken);
+                localStorage.setItem('role', decodedToken.role);
     
                 // Extract and store username and role
                 const username = decodedToken.name; // Ensure the backend includes 'username' in the token
-                const role = decodedToken.role;
     
                 localStorage.setItem('username', username);
-                localStorage.setItem('role', role);
     
                 // Navigate to the homepage
                 navigate('/home');
