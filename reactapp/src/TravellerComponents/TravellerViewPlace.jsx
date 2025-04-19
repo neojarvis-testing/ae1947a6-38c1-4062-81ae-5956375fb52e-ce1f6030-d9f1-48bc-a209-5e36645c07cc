@@ -1,128 +1,112 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import TravellerNavbar from "./TravellerNavbar";
-import "./TravellerViewPlace.css"; 
-import baseUrl from '../apiConfig'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import baseUrl from '../apiConfig';
+import 'bootstrap/dist/css/bootstrap.css';
+import TravellerNavbar from './TravellerNavbar';
 
-const TravellerViewPlace = () => {
+const ViewPlace = () => {
   const [places, setPlaces] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorOccurred, setErrorOccurred] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const navigate = useNavigate();
-
-  const fetchTravel=async ()=>{
-    setIsLoading(true); 
-    try{
-    await axios
-        .get(`${baseUrl}`, {
+  // Fetch places from API
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      setLoading(true);
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${baseUrl}/Place`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
-        })
-        .then((response)=>{
-          setPlaces(response.data);
-          setIsLoading(false);
-        })
-      }catch(error)
-      {
-        setErrorOccurred('Failed to load places' );
-    
+        });
+
+        console.log(response);
+
+        setPlaces(response.data);
+      } catch (err) {
+        console.error('Error fetching places:', err);
+        setErrors('Failed to fetch places. Please try again later.');
+      } finally {
+        setLoading(false);
       }
-      finally{
-        setIsLoading(false);
+    };
+    fetchPlaces();
+  }, []);
 
-      }
-  };
-  useEffect(()=>{
-    fetchTravel();
-  },[]);
-
-
+  // Filter places based on search query
   const filteredPlaces = places.filter((place) =>
-    place.name?.toLowerCase().includes(searchQuery.toLowerCase())
+    place.Name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this place?")) {
-      fetch(`${id}`, {
-        method: "DELETE",
-      })
-        .then((response) => {
-          if (response.ok) {
-            setPlaces((prevPlaces) =>
-              prevPlaces.filter((place) => place.id !== id)
-            );
-            console.log("Place deleted successfully.");
-          } else {
-            console.error("Failed to delete the place.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error deleting place:", error);
-        });
-    }
-  };
-
-  const handleEdit = (id) => {
-    navigate(`/edit/${id}`);
-  };
-
   return (
-    <div>
-      <TravellerNavbar/>
-      <div className="container mt-4">
-        <h1>Available Places</h1>
+    <div className="container mt-5">
+      <TravellerNavbar />
+      <h2 className="text-center mb-4">Available Places</h2>
+
+      {/* Search Bar */}
+      <div className="mb-4 text-right">
         <input
           type="text"
           placeholder="Search places..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          className="form-control"
+          style={{ maxWidth: '300px', display: 'inline-block' }}
         />
-        <table>
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Location</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {isLoading ? (
-              <tr>
-                <td colSpan="6" style={{ textAlign: "center" }}>Loading...</td>
-              </tr>
-            ) : errorOccurred || filteredPlaces.length === 0 ? (
-              <tr>
-                <td colSpan="6" style={{ textAlign: "center" }}>Oops! No places found....</td>
-              </tr>
-            ) : (
-              filteredPlaces.map((place) => (
-                <tr key={place.id}>
-                  <td>
-                    <img
-                      src={place.imageUrl || "https://via.placeholder.com/50"}
-                      alt={place.name}
-                      style={{ width: "50px", height: "40px" }}
-                    />
-                  </td>
-                  <td>{place.Name}</td>
-                  <td>{place.Category}</td>
-                  <td>{place.Location}</td>
-                  <td>{place.Price}</td>
-                  
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
       </div>
+
+      {/* Display Error */}
+      {errors && <p className="text-danger text-center">{errors}</p>}
+
+      {/* Display Spinner */}
+      {loading && (
+        <div className="text-center">
+          <div className="spinner-border text-primary mb-2" role="status" aria-hidden="true"></div>
+          <div className="mt-2">Loading...</div>
+        </div>
+      )}
+
+      {/* Always Render Table */}
+      <table className="table table-bordered table-striped text-center">
+        <thead className="thead-dark">
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Location</th>
+            <th>Best time to visit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredPlaces.length === 0 && !loading && !errors && (
+            <tr>
+              <td colSpan="6" className="text-center text-muted">
+                No Places found.
+              </td>
+            </tr>
+          )}
+          {filteredPlaces.map((myPlace) => (
+            <tr key={myPlace.placeId}>
+              <td>
+                <img
+                  src={myPlace.PlaceImage || 'https://via.placeholder.com/100'}
+                  alt={myPlace.Name}
+                  style={{ height: '50px', objectFit: 'cover' }}
+                />
+              </td>
+              <td><p>{myPlace.Name}</p></td>
+              <td><p>{myPlace.Category}</p></td>
+              <td><p>{myPlace.Location}</p></td>
+              <td><p>{myPlace.BestTimeToVisit}</p></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default TravellerViewPlace;
+export default ViewPlace;
