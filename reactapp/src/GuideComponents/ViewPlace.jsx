@@ -71,8 +71,8 @@ fetchPlaces();
   };
 
   return (
-    <div className="container mt-5">
-      <GuideNavbar />
+      <div className="container mt-5">
+          <GuideNavbar/>
       <h2 className="text-center mb-4">Places</h2>
 
       {/* Display Error */}
@@ -140,6 +140,7 @@ fetchPlaces();
         </tbody>
       </table>
     </div>
+    
   );
 };
 
