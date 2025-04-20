@@ -118,8 +118,7 @@ const Login = () => {
         //     </div>
         // </div>
         // </div>
-
-
+        <div class="login">
         <div className='login-container bo'>
             <div className='left-side'>
 
@@ -169,6 +168,7 @@ const Login = () => {
                         </p>
                     </h5>
             </div>
+        </div>
         </div>
     );
 };
