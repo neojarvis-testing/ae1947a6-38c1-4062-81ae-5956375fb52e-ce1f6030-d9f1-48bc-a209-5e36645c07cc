@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './GuideNavbar.css';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal, Button, Dropdown} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 
 const GuideNavbar = ({ username, role }) => {
     const [showLogoutModel, setShowLogoutModel] = useState(false);
@@ -43,8 +43,8 @@ const GuideNavbar = ({ username, role }) => {
                                 <Link className="nav-link" to="/home">
                                     <i className="fas fa-home me-2"></i>Home
                                 </Link>
-                             </li>
-                           `<li className="nav-item dropdown">
+                            </li>
+                            <li className="nav-item dropdown">
                                 <select
                                     className="form-select"
                                     onChange={(e) => {
@@ -56,16 +56,8 @@ const GuideNavbar = ({ username, role }) => {
                                     <option value="">Place</option>
                                     <option value="placeform">Add Place</option>
                                     <option value="viewplace">View Place</option>
-                                </select> 
+                                </select>
                             </li>
-                            {/* <Dropdown>
-                                <Dropdown.Toggle as="span" className="cursor text-white cursor-pointer">Place</Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="/">Add Place</Dropdown.Item>
-                                    <Dropdown.Item href="/">View Place</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown> */}
-
                             <li className="nav-item">
                                 <Link className="nav-link" to="/profile">{username}/{role}</Link>
                             </li>
@@ -77,7 +69,7 @@ const GuideNavbar = ({ username, role }) => {
                         </ul>
                     </div>
                 </div>
-            </nav >
+            </nav>
             <Modal show={showLogoutModel} onHide={handleCloseModel}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmation</Modal.Title>
@@ -88,7 +80,7 @@ const GuideNavbar = ({ username, role }) => {
                     <Button variant="danger" onClick={handleCancel}>Cancel</Button>
                 </Modal.Footer>
             </Modal>
-        </div >
+        </div>
     );
 };
 
