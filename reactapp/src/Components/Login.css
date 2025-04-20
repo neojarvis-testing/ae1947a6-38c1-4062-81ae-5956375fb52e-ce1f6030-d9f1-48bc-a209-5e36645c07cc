@@ -1,107 +1,222 @@
-.login-container {
-    background: url('/home/coder/project/workspace/reactapp/public/background image.jpg') no-repeat center center;
-    background-size: cover;
-    min-height: 100vh;
+/* Body Styling */
+body {
+    height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    background :  rgb(236, 218, 212) !important; /* Smooth radial gradient */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the gradient fixed while scrolling */
+    font-family: Arial, sans-serif; /* Optional: Set a consistent font */
+}
+
+/* Login Container */
+.login-container {
+    width: 1000px;
+    height: 500px;
+    
+    display: flex;
+    border-radius: 25px;
+   
+    box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+/* Left Side Styling */
+/* Left Side Styling */
+/* Left Side Styling */
+.left-side {
+    width: 50%;
+    height: 100%;
+    position: relative; /* To position the pseudo-element */
+    overflow: hidden; /* Ensures the blur effect doesn't overflow */
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add padding for spacing */
+}
+
+/* Add a pseudo-element for the blurred background */
+.left-side::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/home/coder/project/workspace/reactapp/public/BG.jpg'); /* Background image */
+    background-position: center;
+    background-size: cover;
+    filter: blur(1px); /* Adjust the blur intensity */
+    z-index: -1; /* Place it behind the content */
+    opacity: 0.7; /* Slight transparency for a subtle effect */
+}
+
+/* Text Styling for Left Side */
+.left-side h1 {
+    font-size: 50px;
+    color: white;
+    font-weight: lighter;
+    font-family: 'Pacifico', cursive; 
+    margin-bottom: 40px; /* Space between h1 and p */
+	margin-top: -100px;
+    z-index: 1; /* Ensure text is above the blurred background */
+}
+
+.left-side p {
+    font-size: 20px;
+    font-weight: bolder;
+    color: rgb(230, 225, 225);
+    line-height: 1.5; /* Improve readability */
+    max-width: 80%; /* Limit the width of the text */
+	font-family: 'Lora', serif;
+    z-index: 1; /* Ensure text is above the blurred background */
+}
+
+/* Right Side Styling */
+.right-side {
+    width: 50%;
+    height: 100%;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.right-side h1 {
+    font-size: 48px;
+    color: #b5651d; /* Brown color palette */
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Input Styling */
+input {
+    padding: 5px 10px 0 10px;
+    width: 80%;
+    border: none;
+}
+
+/* Fieldset Styling */
+.custom-fieldset {
+    border: 2px solid #ea9431; /* Orange border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside the fieldset */
+    margin-bottom: 20px; /* Space between fieldsets */
+    margin-left: 20px; /* Add space from the left */
+    margin-right: 20px;
     position: relative;
 }
- 
-.login-background {
-    color: #060000;
-    padding: 30px 40px 10px 30px;
+
+.custom-fieldset legend {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #e48911; /* Orange text */
+    padding: 0 10px; /* Padding around the legend */
+}
+
+/* Input Container Styling */
+.input-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Padding inside the container */
+    margin-top: 10px; /* Space between legend and input */
+}
+
+/* Update Icon Styling */
+.input-container .icon {
+    font-size: 1.5rem; /* Increase icon size */
+    color: #120701; /* Icon color */
+    margin-right: 15px; /* Add more space between icon and input */
+}
+
+/* Add Padding to Input Fields */
+.input-container input {
+    border: none; /* Remove default border */
+    outline: none; /* Remove focus outline */
+    width: 100%; /* Full width */
+    font-size: 1rem; /* Font size */
+    padding: 5px 10px 5px 15px; /* Add left padding for placeholder spacing */
+}
+
+.input-container input::placeholder {
+    color: #b5651d; /* Brown color palette to match the design */
+    opacity: 0.8; /* Slightly transparent for a subtle effect */
+}
+
+/* Button Container Styling */
+.btn-container {
+    display: flex;
     justify-content: center;
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: large;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add space below the button */
 }
- 
-.login-background h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 5px white;
-}
- 
-.login-background p {
-    font-size: 1.7rem;
-    text-shadow: 2px 2px 5px white;
-    font-weight: bold;
-    color: #343a40;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
- 
-.login-box {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px 66px 20px 66px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    position:absolute;
-    top: 50%;
-    right: 4%;
-    transform: translateY(-50%);
-}
- 
-.login-box h2 {
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #343a40;
-}
-.form-group label {
-    font-weight: bold;
-    color: #495057;
-}
- 
-.form-control {
+
+.btn-container button {
+    width: 125px;
+    height: 45px;
+    font-size: 14px;
+    background-color: #b5651d; /* Brown color palette */
+    color: white;
+    border: none;
     border-radius: 5px;
-    border: 1px solid #ced4da;
-    transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
- 
-#email,
-#password {
-    border: 2px solid #4e440a;
+
+.btn-container button:hover {
+    background-color: #8b4513; /* Darker brown on hover */
 }
- 
-#email:focus,
-#password:focus {
-    box-shadow: 0 0 30px rgba(210, 168, 0, 0.5);
-    outline: none; /* Remove default outline */
+
+/* Footer Text Styling */
+h5 {
+    text-align: center; /* Center the text horizontally */
+    margin-top: 10px; /* Add space between the button and the text */
 }
- 
-.btn-primary {
-    background-color: #988021cb;
-    border-color: #000000;
-    border-radius: 5px;
-    font-weight: bold;
+
+h5 p {
+    font-size: 14px;
+    color: #6c757d; /* Neutral gray color */
 }
- 
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-}
- 
-.text-danger {
-    font-size: 0.875em;
-}
- 
-.mt-3 {
-    margin-top: 1rem !important;
-}
- 
-a {
-    color: #007bff;
-}
- 
-a:hover {
-    color: #0056b3;
+
+h5 p .linking {
+    color: #b5651d; /* Brown color palette for the link */
+    cursor: pointer;
     text-decoration: none;
 }
+
+h5 p .linking:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Airplane Image */
+.airplane-img {
+    position: absolute;
+    top: 10px; /* Adjust the position */
+    right: 10px; /* Adjust the position */
+    width: 280px; /* Adjust the size */
+    height: auto;
+}
+
+/* Taj Mahal Image */
+.taj-img {
+    position: absolute;
+    bottom: 5px; /* Adjust the position */
+    left: 20px; /* Adjust the position */
+    width: 210px; /* Adjust the size */
+    height: auto;
+}
+
+/* Buildings Image */
+.buildings-img {
+    position: absolute;
+    bottom: 10px; /* Adjust the position */
+    right: 20px; /* Adjust the position */
+    width: 220px; /* Adjust the size */
+    height: auto;
+}
+
+	
