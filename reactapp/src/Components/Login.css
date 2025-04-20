@@ -1,5 +1,6 @@
-.login-container {
-    min-height: 100vh;
+/* Body Styling */
+body {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +62,7 @@
     font-weight: lighter;
     font-family: 'Pacifico', cursive; 
     margin-bottom: 40px; /* Space between h1 and p */
-	margin-top: -100px;
+    margin-top: -100px;
     z-index: 1; /* Ensure text is above the blurred background */
 }
 
@@ -71,7 +72,7 @@
     color: rgb(230, 225, 225);
     line-height: 1.5; /* Improve readability */
     max-width: 80%; /* Limit the width of the text */
-	font-family: 'Lora', serif;
+    font-family: 'Lora', serif;
     z-index: 1; /* Ensure text is above the blurred background */
 }
 
@@ -191,31 +192,4 @@ h5 p .linking:hover {
     text-decoration: underline; /* Underline on hover */
 }
 
-/* Airplane Image */
-.airplane-img {
-    position: absolute;
-    top: 10px; /* Adjust the position */
-    right: 10px; /* Adjust the position */
-    width: 280px; /* Adjust the size */
-    height: auto;
-}
 
-/* Taj Mahal Image */
-.taj-img {
-    position: absolute;
-    bottom: 5px; /* Adjust the position */
-    left: 20px; /* Adjust the position */
-    width: 210px; /* Adjust the size */
-    height: auto;
-}
-
-/* Buildings Image */
-.buildings-img {
-    position: absolute;
-    bottom: 10px; /* Adjust the position */
-    right: 20px; /* Adjust the position */
-    width: 220px; /* Adjust the size */
-    height: auto;
-}
-
-	

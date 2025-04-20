@@ -1,3 +1,4 @@
+    
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
@@ -119,7 +120,6 @@ const Login = () => {
         // </div>
 
 
-
         <div className='login-container bo'>
             <div className='left-side'>
 
@@ -141,6 +141,7 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                         </div>
+                        {errors.email && <div className="text-danger">{errors.email}</div>}
                         <legend>Password</legend>
                         <div className="input-container">
                             <i className="bi bi-key-fill icon"></i> {/* Add 'icon' class */}
@@ -157,7 +158,9 @@ const Login = () => {
                     <div className="btn-container">
                         <button type="submit">LOGIN</button>
                     </div>
-                    <h5>
+                    
+                </form>
+                <h5>
                         <p>
                             Don't have an account?{' '}
                             <span className="linking" onClick={() => navigate('/signup')}>
@@ -165,8 +168,6 @@ const Login = () => {
                             </span>
                         </p>
                     </h5>
-                </form>
-
             </div>
         </div>
     );
