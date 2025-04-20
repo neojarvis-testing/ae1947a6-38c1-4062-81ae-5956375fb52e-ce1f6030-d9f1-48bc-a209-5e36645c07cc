@@ -11,6 +11,7 @@ import ErrorPage from './Components/ErrorPage';
 import PrivateRoute from './Components/PrivateRoute';
 import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
 
+
 const App = () => {
     return (
         <Router>
@@ -40,7 +41,7 @@ const App = () => {
                         }
                     />
                     <Route
-                        path="/editplace/{id}"
+                        path="/editplace/:id"
                         element={
                             <PrivateRoute allowedRoles={['Guide']}>
                                 <PlaceForm mode="edit" />
