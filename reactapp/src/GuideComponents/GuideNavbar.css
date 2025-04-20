@@ -14,10 +14,15 @@
 
 /* Navbar brand (logo/title) styling */
 .navbar-brand {
+
     color: #401515; /* White text */
     font-size: 1.9rem;
     font-family: 'Times New Roman', Times, serif;
     text-shadow: 1px 1px 2px #d9bf29; /* Brown shadow */
+
+    font-size: 2rem;
+    color: #3c230f !important;
+    text-shadow: 1px 1px 2px rgba(1.5, 0.5, 0.5, 0.5);
 }
 
 /* Navbar links styling */
