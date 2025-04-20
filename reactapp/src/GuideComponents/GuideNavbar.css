@@ -1,16 +1,26 @@
 /* Navbar styling */
 .navbar {
+    margin-bottom: 20px;
     background-color: rgba(255, 255, 255, 0.9); 
     border-radius: 50px; 
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); 
     padding: 15px 40px; 
     margin: 20px auto; 
-    position: relative; 
-    width: 90%; 
+    position: relative !important; 
+    width: 900%; 
     max-width: 1200px; 
     border: 2px #8B4513; 
     overflow: hidden; 
 }
+/* .navbar {
+    position: relative; 
+    top: 0;
+    width: 100%;
+    background-color: #fff; White background
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;
+    margin-bottom: 20px; 
+  } */
 
 /* Navbar brand (logo/title) styling */
 .navbar-brand {
