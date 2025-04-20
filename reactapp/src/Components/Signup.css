@@ -1,45 +1,54 @@
-
 .signup-container {
-    background: url('/home/coder/project/workspace/reactapp/public/SIGNUP.jpg') no-repeat center center;
-    
+    background: url('/home/coder/project/workspace/reactapp/public/SIGNUP.jpg') no-repeat center center; 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
 }
-
 .signup-box {
     background-color: #fff !important; /* White background */
     border: 1px solid #d3d3d3;
     border-radius: 10px;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    padding: 90px 50px !important; /* Increased padding for better spacing */
+    padding: 0px 50px !important; /* Increased padding for better spacing */
     width: 1000% !important;
     max-width: 500px !important; /* Limit the width of the form */
+    height: auto !important; 
+    overflow: hidden !important;
 }
 
 .text-brown {
     color: #8b4513; /* Brown text color */
 }
 
-.btn-brown {
-    background-color: #8b4513; /* Brown button */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+
+.btn-submit {
+    background-color: #8b4513; /* Brown background */
+    color: #fff; /* White text */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding for better spacing */
+    font-size: 1rem; /* Adjust font size */
+    font-weight: bold; /* Make text bold */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0px 4px 6px #6b3a10; /* Add subtle shadow */
 }
 
-.btn-brown:hover {
+.btn-submit:hover {
     background-color: #a0522d; /* Darker brown on hover */
-    transform: scale(1.05); /* Slight zoom effect */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+.btn-submit:active {
+    background-color: #6b3a10; /* Even darker brown when clicked */
+    transform: translateY(2px); /* Button presses down */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
 }
 
 form label {
@@ -153,4 +162,11 @@ p.text-center a:hover {
     color: #8b4513;
     font-weight: bold;
     margin-bottom: 20px;
+}
+.text-bold {
+    font-weight: bold; /* Makes the text bold */
+}
+
+.font-bold {
+    font-weight: bold; /* Makes the link bold */
 }

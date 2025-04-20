@@ -1,71 +1,64 @@
-
-.container {
-    background-color: #f8f9fa;
+.view-place {
+    font-family: Arial, sans-serif;
+    background: rgb(236, 218, 212); /* Beige background */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content-container {
+    margin-top: 80px; /* Space below the navbar */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-h2 {
-    color: #343a40;
+  }
+  
+  h2.text-center {
+    margin-bottom: 20px; /* Add spacing below the heading */
     font-weight: bold;
+    color: #4a4a4a; /* Subtle dark gray for the heading */
+    font-size: 2.5rem; /* Increase font size for the heading */
     text-align: center;
-    margin-bottom: 20px;
-}
-
-
-.alert {
-    margin-bottom: 20px;
-}
-
-
-.table {
-    background-color: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.table thead {
-    background-color: #a8dadc; 
-    color: #ffffff;
-}
-
-.table th, .table td {
+  }
+  
+  .table-container {
+    background: linear-gradient(to bottom right, #f9f9fc, #ffffff); /* Subtle gradient */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Add padding inside the container */
+    width: 95%; /* Increase the width of the container */
+    max-width: 1400px; /* Set a maximum width for larger screens */
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .table {
+    margin-bottom: 0; /* Remove extra margin below the table */
+    background-color: #ffffff; /* White background for the table */
+    border-radius: 10px; /* Rounded corners for the table */
+    overflow: hidden; /* Ensure rounded corners apply to the table */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%; /* Make the table take full width of the container */
+    font-size: 1.1rem; /* Slightly increase font size for better readability */
+  }
+  
+  .table th {
+    background-color: #ffa07a; /* Light orange header background */
+    color: white; /* White text for the header */
     text-align: center;
     vertical-align: middle;
-}
-
-.table th {
-    font-weight: bold;
-}
-
-.table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Button styling */
-.btn {
-    margin: 5px;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-
-.btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-}
+    padding: 20px; /* Add padding for better spacing */
+    font-size: 1rem; /* Slightly larger font size for headers */
+    font-weight: 600; /* Slightly thicker font for headers */
+  }
+  
+  .table td {
+    vertical-align: middle; /* Center align text vertically */
+    text-align: center; /* Center align text horizontally */
+    padding: 20px; /* Add padding for better spacing */
+    word-wrap: break-word; /* Ensure text wraps within cells */
+  }
+  
+  .table img {
+    border-radius: 5px; /* Rounded corners for images */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
+    width: 120px; /* Increase image width */
+    height: 120px; /* Increase image height */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio */
+  }

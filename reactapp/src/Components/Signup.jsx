@@ -165,10 +165,12 @@ const Signup = () => {
                             </select>
                             {errors.userRole && <div className="text-danger">{errors.userRole}</div>}
                         </div>
-                        <button type="button" className="btn btn-brown btn-block" onClick={handleSignup}>Submit</button>
+                        <button type="button" className="btn-submit" onClick={handleSignup}>Submit</button>
                         {errors.form && <div className="text-danger mt-3">{errors.form}</div>}
                     </form>
-                    <p className="mt-3 text-center">Already have an account? <a href="/login" className="text-brown">Login</a></p>
+                    <p className="mt-3 text-center text-bold">
+                        Already have an account? <a href="/login" className="text-brown font-bold">Login</a>
+                    </p>
                 </div>
             </div>
 
