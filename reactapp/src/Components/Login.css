@@ -1,6 +1,4 @@
 .login-container {
-    background: url('/home/coder/project/workspace/reactapp/public/background image.jpg') no-repeat center center;
-    background-size: cover;
     min-height: 100vh;
     display: flex;
     align-items: center;
