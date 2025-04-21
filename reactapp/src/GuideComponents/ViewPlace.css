@@ -43,39 +43,97 @@
     object-fit: cover;
 }
  
-.btn-primary {
-    background-color: #6c63ff;
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+}
+
+.btn-edit {
+    background-color: #007bff; /* Blue primary button */
     border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.btn-primary:hover {
-    background-color: #5a54e6;
+
+.btn-edit:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05);
 }
- 
-.btn-danger {
-    background-color: #ff6b6b;
+
+.btn-delete {
+    background-color: #dc3545; /* Danger button */
     border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
- 
-.btn-danger:hover {
-    background-color: #e63946;
+
+.btn-delete:hover {
+    background-color: #b02a37; /* Darker red on hover */
+    transform: scale(1.05);
 }
- 
  
 .modal-content {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #8a3d1f; /* Brown border */
 }
- 
+
 .modal-header {
+    background-color: #8a3d1f; /* Brown background */
+    color: white;
     border-bottom: none;
+    text-align: center;
 }
- 
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
 .modal-footer {
     border-top: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-footer .btn-danger {
+    background-color: #8a3d1f; /* Brown button */
+    border: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: #a0522d; /* Slightly lighter brown on hover */
+    transform: scale(1.05);
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d; /* Gray button */
+    border: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #5a6268; /* Slightly darker gray on hover */
+    transform: scale(1.05);
 }
 h2.text-center {
     margin-bottom: 20px;
