@@ -1,11 +1,10 @@
-/* Table Container Styling */
 .table-container {
-    background: linear-gradient(to bottom right, #f9f9fc, #ffffff); 
-    border-radius: 10px; 
+    background: linear-gradient(to bottom right, #f9f9fc, #ffffff);
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px; 
-    width: 98%; 
-    max-width: 1600px; 
+    padding: 20px;
+    width: 98%;
+    max-width: 1600px;
     margin: 0 auto;
 }
 .bColor
@@ -13,75 +12,76 @@
     background-color: rgb(230, 225, 225);
 }
 .table {
-    margin-bottom: 0; 
-    background-color: #ffffff; 
+    margin-bottom: 0;
+    background-color: #ffffff;
     border-radius: 10px;
-    overflow: hidden; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    width: 100%; 
-    font-size: 1.1rem; 
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    font-size: 1.1rem;
 }
 .table th {
-    background-color: #8a3d1f; 
-    color: white; 
+    background-color: #8a3d1f;
+    color: white;
     text-align: center;
     vertical-align: middle;
     padding: 20px;
-    font-size: 1rem; 
-    font-weight: 600; 
+    font-size: 1rem;
+    font-weight: 600;
 }
 .table td {
-    vertical-align: middle; 
-    text-align: center; 
-    padding: 20px; 
-    word-wrap: break-word; 
+    vertical-align: middle;
+    text-align: center;
+    padding: 20px;
+    word-wrap: break-word;
 }
 .table img {
-    border-radius: 5px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    width: 120px; 
-    height: 120px; 
-    object-fit: cover; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
 }
-
+ 
 .btn-primary {
-    background-color: #6c63ff; 
+    background-color: #6c63ff;
     border: none;
-    padding: 10px 20px; 
+    padding: 10px 20px;
     font-size: 1rem;
 }
 .btn-primary:hover {
-    background-color: #5a54e6; 
+    background-color: #5a54e6;
 }
-
+ 
 .btn-danger {
-    background-color: #ff6b6b; 
+    background-color: #ff6b6b;
     border: none;
-    padding: 10px 20px; 
-    font-size: 1rem; 
+    padding: 10px 20px;
+    font-size: 1rem;
 }
-
+ 
 .btn-danger:hover {
-    background-color: #e63946; 
+    background-color: #e63946;
 }
-
-/* Modal Styling */
+ 
+ 
 .modal-content {
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+ 
 .modal-header {
     border-bottom: none;
 }
-
+ 
 .modal-footer {
-    border-top: none; 
+    border-top: none;
 }
 h2.text-center {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     font-weight: bold;
-    color: #4a4a4a; 
+    color: #4a4a4a;
     font-size: 2.5rem;
     text-align: center;
 }
+ 
