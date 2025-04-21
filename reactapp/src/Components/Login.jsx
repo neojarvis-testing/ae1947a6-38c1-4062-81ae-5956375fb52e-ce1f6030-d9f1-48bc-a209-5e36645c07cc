@@ -49,19 +49,13 @@ const Login = () => {
                 console.log('Token:', token);
 
                 localStorage.setItem('token', token);
-
-                // Decode the token
                 const decodedToken = jwtDecode(token);
                 console.log('Decoded Token:', decodedToken);
-
-                // Extract and store username and role
                 const username = decodedToken.name;
                 const role = decodedToken.role;
 
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', role);
-
-                // Navigate to the homepage
                 navigate('/home');
             } catch (error) {
                 console.error("Login failed:", error.response?.data || error.message);
@@ -71,53 +65,7 @@ const Login = () => {
     };
 
     return (
-        // <div className="container-fluid">
-        //     <div className="row main-content bg-success text-center">
-        //         <div className="col-md-4 text-center company__info">
-        //         <span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>  
-        //             <h1>Travel Tales</h1>
-        //             <p>Welcome to Travel Tales, your gateway to exploring stunning travel destinations around the world. Discover curated itineraries and find your perfect gateway, and receive personalized recommendations tailored to your travel style and budget!</p>
-        //         </div>
-        //         <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
-        //             <div class ="row">
-        //             <h2>Login</h2>
-        //             <form class="form-group" onSubmit={handleSubmit}>
-        //                 <div className=" row">
-        //                     <label htmlFor="email">Email</label>
-        //                     <input class="form__input"
-        //                         type="email"
-
-        //                         name="email"
-        //                         value={formData.email}
-        //                         onChange={handleChange}
-        //                         placeholder="Email"
-        //                     />
-        //                     {errors.email && <div className="text-danger">{errors.email}</div>}
-        //                 </div>
-
-        //                 <div className="row">
-        //                     <label htmlFor="password">Password</label>
-        //                     <input class="form__input"
-        //                         type="password"
-
-        //                         name="password"
-        //                         value={formData.password}
-        //                         onChange={handleChange}
-        //                         placeholder="Password"
-        //                     />
-        //                     {errors.password && <div className="text-danger">{errors.password}</div>}
-        //                 </div>
-        //                 {errors.apiError && <span className='text-danger'>{errors.apiError}</span>}
-        //                 <div className='row'>
-        //                 <button type="submit" className="btn">Login</button>
-        //                 </div>
-        //             </form>
-        //             <div className='row'>
-        //             <p>Don't have an account? <span className="linking" onClick={() => navigate('/signup')}>Signup</span></p></div>
-        //         </div>
-        //     </div>
-        // </div>
-        // </div>
+       
         <div class="login">
         <div className='login-container bo'>
             <div className='left-side'>

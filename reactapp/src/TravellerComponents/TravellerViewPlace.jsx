@@ -10,11 +10,8 @@ const ViewPlace = () => {
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  
   const username=localStorage.getItem('username') || 'Guide';
   const role=localStorage.getItem('role') || 'Traveller';
-
-  // Fetch places from API
   useEffect(() => {
     const fetchPlaces = async () => {
       setLoading(true);
@@ -38,18 +35,15 @@ const ViewPlace = () => {
     };
     fetchPlaces();
   }, []);
-
-  // Filter places based on search query
   const filteredPlaces = places.filter((place) =>
     place.Name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
+    <div className='bColor'>
     <div className="container mt-5">
       <TravellerNavbar username={username} role={role} />
       <h2 className="text-center mb-4">Available Places</h2>
-
-      {/* Search Bar */}
       <div className="mb-4 text-right">
         <input
           type="text"
@@ -60,11 +54,7 @@ const ViewPlace = () => {
           style={{ maxWidth: '300px', display: 'inline-block' }}
         />
       </div>
-
-      {/* Display Error */}
       {errors && <p className="text-danger text-center">{errors}</p>}
-
-      {/* Display Spinner */}
       {loading && (
         <div className="text-center">
           <div className="spinner-border text-primary mb-2" role="status" aria-hidden="true"></div>
@@ -72,7 +62,6 @@ const ViewPlace = () => {
         </div>
       )}
 
-      {/* Always Render Table */}
       <table className="table table-bordered table-striped text-center">
         <thead className="thead-dark">
           <tr>
@@ -108,6 +97,7 @@ const ViewPlace = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
