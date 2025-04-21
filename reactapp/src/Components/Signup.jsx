@@ -44,10 +44,24 @@ const Signup = () => {
         
 
         if (!password) {
-            validationErrors.password = 'Password is required';
-        } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)) {
-            validationErrors.password = 'Password must be strong';
+            validationErrors.password = ['Password is required'];
+        } else {
+            validationErrors.password = [];
+            if (!/(?=.*[A-Z])/.test(password)) {
+                validationErrors.password.push('Password needs at least one capital letter');
+            }
+            if (!/(?=.*\d)/.test(password)) {
+                validationErrors.password.push('Password needs at least one digit');
+            }
+            if (!/(?=.*[!@#$%^&*])/.test(password)) {
+                validationErrors.password.push('Password needs at least one special character (!@#$%^&*)');
+            }
+            if (!/[A-Za-z\d!@#$%^&*]{8,}/.test(password)) {
+                validationErrors.password.push('Password needs to be at least 8 characters long');
+            }
         }
+        
+        
         
 
         if (!confirmPassword) {
@@ -130,6 +144,7 @@ const Signup = () => {
                             />
                             {errors.mobileNumber && <div className="text-danger">{errors.mobileNumber}</div>}
                         </div>
+
                         <div className="form-group mb-3">
                             <label htmlFor="password">Password <span className="text-danger">*</span></label>
                             <input
@@ -140,8 +155,16 @@ const Signup = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Password"
                             />
-                            {errors.password && <div className="text-danger">{errors.password}</div>}
+                            {errors.password && errors.password.length > 0 && (
+                                <ul className="text-danger">
+                                    {errors.password.map((error, index) => (
+                                        <li key={index}>{error}</li>
+                                    ))}
+                                </ul>
+                            )}
                         </div>
+
+
                         <div className="form-group mb-3">
                             <label htmlFor="confirmPassword">Confirm Password <span className="text-danger">*</span></label>
                             <input
@@ -152,7 +175,7 @@ const Signup = () => {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="Confirm Password"
                             />
-                            {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
+                            {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword} <br/></div>}
                         </div>
                         <div className="form-group mb-4">
                             <label htmlFor="userRole">User Role <span className="text-danger">*</span></label>
