@@ -6,24 +6,25 @@
     text-shadow: 2px 1px 2px rgba(202, 47, 47, 0.1);
 }
 
+
 .form-group {
     margin-bottom: 15px;
 }
 .container.place-form-container {
-    margin: 0 auto; /* Center the container horizontally */
-    margin-top: 100px !important; /* Add space below the navbar */
-    padding: 20px 30px; /* Add padding for better spacing */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    max-width: 800px; /* Limit the width of the form */
-    background-color: #fff; /* White background for the form */
+    margin: 0 auto; 
+    margin-top: 100px !important;
+    padding: 20px 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 800px; 
+    background-color: #fff; 
 }
 .form-control {
     border-radius: 5px;
     font-size: 16px;
     border: 1px solid #ced4da;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+    transition: box-shadow 0.3s ease-in-out; 
     margin: 15px 0;
 }
 
@@ -81,7 +82,7 @@ select.form-control {
 }
 
 .navbar {
-    position: fixed; /* Fix the navbar at the top */
+    position: fixed; 
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -140,4 +141,18 @@ select.form-control {
 .container.place-form-container .form-group .form-control-file:focus {
     box-shadow: 0 0 30px rgba(46, 166, 218, 0.5);
     outline: none; 
+}
+.btn-primary {
+    background-color: #8B4513 !important; /* Brown background */
+    color: #FFFFFF; /* White text */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding for better spacing */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 5px; /* Optional: Add slight rounding to corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.btn-primary:hover {
+    background-color: #5A2E0C; /* Darker brown on hover */
 }
