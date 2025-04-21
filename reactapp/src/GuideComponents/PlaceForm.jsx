@@ -184,9 +184,13 @@ const PlaceForm = ({ mode }) => {
             />
             {errors.PlaceImage && <small className="text-danger">{errors.PlaceImage}</small>}
           </div>
-          {formData.PlaceImage && (
-            <div className="image-preview">
-              <img src={formData.PlaceImage} alt="Place Preview" />
+            {formData.PlaceImage && (
+            <div className="text-center mb-4">
+              <img
+                src={formData.PlaceImage}
+                alt="Place Preview"
+                style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
+              />
             </div>
           )}
           <div className="form-buttons">
@@ -201,8 +205,8 @@ const PlaceForm = ({ mode }) => {
         <div className="modal fade show d-block" tabIndex="-1" role="dialog">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
-              <div className="modal-header bg-success text-white">
-                <h5 className="modal-title mx-auto">🎉 Success!</h5>
+              <div>
+                <h5>Success</h5>
               </div>
               <div className="modal-body text-center">
                 <p>{mode === 'edit' ? 'Place updated successfully!' : 'Place added successfully!'}</p>
