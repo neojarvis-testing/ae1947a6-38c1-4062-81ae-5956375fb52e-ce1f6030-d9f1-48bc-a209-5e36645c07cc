@@ -24,7 +24,7 @@ const PlaceForm = ({ mode }) => {
   const username = localStorage.getItem('username') || 'Guide';
   const role = localStorage.getItem('role') || 'Traveller';
 
-  // Fetch place data when editing
+ 
   useEffect(() => {
     const fetchPlaceData = async () => {
       if (mode === 'edit' && id) {
@@ -90,10 +90,23 @@ const PlaceForm = ({ mode }) => {
     if (!validateForm()) return;
     setLoading(true);
     try {
+
       const token = localStorage.getItem('token');
       const headers = { Authorization: `Bearer ${token}` };
+
+      
       if (mode === 'edit') {
+        const currentResponse =await axios.get(`${baseUrl}/Place/${id}`, { headers });
+
+        const currentCategory=currentResponse.data.Category;
+        if(formData.Category === currentCategory){
+          setFormError('Please choose a different category');
+          setLoading(false);
+          return;
+        }
+
         await axios.put(`${baseUrl}/Place/${id}`, formData, { headers });
+        
       } else {
         await axios.post(`${baseUrl}/Place`, formData, { headers });
       }
@@ -102,11 +115,23 @@ const PlaceForm = ({ mode }) => {
     } catch (error) {
       setLoading(false);
       console.error('Error saving place:', error);
-      if (error.response && error.response.status === 401) {
-        navigate('/');
+      if (error.response && error.response.status === 400) {
+          const errorMessage = error.response.data.message || 'Category already exists. Cannot update the place.';
+          setFormError(errorMessage);
+          if (error.response && error.response.status === 400 && mode==="add") {
+            const errorMessage = error.response.data.message || 'Name already exists. Cannot add the place.';
+              setFormError(errorMessage);
+          }
+      } 
+      else if (error.response && error.response.status === 401) {
+          localStorage.removeItem('token');
+          navigate('/');
+      } 
+      else {
+          setFormError('An error occurred while saving the place. Please try again.');
       }
-    }
-  };
+  }
+};
 
   const handlePopupClose = () => {
     setShowPopup(false);
@@ -114,6 +139,7 @@ const PlaceForm = ({ mode }) => {
   };
 
   return (
+    <div className='bColor'>
     <div className="placeform">
       <GuideNavbar username={username} role={role} />
       <div className="container place-form-container">
@@ -218,6 +244,7 @@ const PlaceForm = ({ mode }) => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

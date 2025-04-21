@@ -30,7 +30,7 @@ namespace dotnetapp.Services
 
         public async Task<bool> AddPlace(Place place)
         {
-            var existingPlace=await _context.Places.FirstOrDefaultAsync(p=>p.Name==place.Name);
+            var existingPlace=await _context.Places.FirstOrDefaultAsync(p => p.Name == place.Name);
 
             if(existingPlace != null)
             {
@@ -50,7 +50,8 @@ namespace dotnetapp.Services
                 return false;
             }
 
-            if(_context.Places.Any(p => p.Category==place.Category && p.PlaceId !=placeId))
+            var categoryExists=await _context.Places.FirstOrDefaultAsync(p => p.Category==place.Category  && p.PlaceId !=placeId);
+            if(categoryExists != null)
             {
                 return false;
             }
@@ -60,6 +61,7 @@ namespace dotnetapp.Services
             existingPlace.BestTimeToVisit=place.BestTimeToVisit;
             existingPlace.PlaceImage=place.PlaceImage;
             existingPlace.Location=place.Location;
+
             await _context.SaveChangesAsync();
             return true;
         }
