@@ -18,5 +18,6 @@ namespace dotnetapp.Models
         public string PlaceImage{get;set;}
 
         public string Location{get;set;}
+
     }
 }

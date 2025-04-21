@@ -49,19 +49,13 @@ const Login = () => {
                 console.log('Token:', token);
 
                 localStorage.setItem('token', token);
-
-                // Decode the token
                 const decodedToken = jwtDecode(token);
                 console.log('Decoded Token:', decodedToken);
-
-                // Extract and store username and role
                 const username = decodedToken.name;
                 const role = decodedToken.role;
 
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', role);
-
-                // Navigate to the homepage
                 navigate('/home');
             } catch (error) {
                 console.error("Login failed:", error.response?.data || error.message);
@@ -71,6 +65,10 @@ const Login = () => {
     };
 
     return (
+<<<<<<< HEAD
+=======
+       
+>>>>>>> 83ffced0828ef91eab5c30c06903c7458fe989e1
         <div class="login">
         <div className='login-container bo'>
             <div className='left-side'>
