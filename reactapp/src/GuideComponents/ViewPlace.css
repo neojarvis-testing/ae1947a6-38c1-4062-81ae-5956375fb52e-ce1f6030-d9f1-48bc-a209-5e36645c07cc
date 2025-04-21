@@ -72,7 +72,7 @@
 }
 
 .modal-header {
-    border-bottom: none; /* Remove default border */
+    border-bottom: none;
 }
 
 .modal-footer {

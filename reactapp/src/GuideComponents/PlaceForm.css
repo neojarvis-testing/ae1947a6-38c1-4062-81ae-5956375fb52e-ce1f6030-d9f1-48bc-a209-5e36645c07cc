@@ -143,18 +143,18 @@ select.form-control {
     outline: none; 
 }
 .btn-primary {
-    background-color: #8B4513 !important; /* Brown background */
-    color: #FFFFFF; /* White text */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Add padding for better spacing */
-    font-size: 16px; /* Adjust font size */
-    border-radius: 5px; /* Optional: Add slight rounding to corners */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    background-color: #8B4513 !important;
+    color: #FFFFFF;
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px;
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 }
 
 .btn-primary:hover {
-    background-color: #5A2E0C; /* Darker brown on hover */
+    background-color: #5A2E0C; 
 }
 .modal-content
 {
