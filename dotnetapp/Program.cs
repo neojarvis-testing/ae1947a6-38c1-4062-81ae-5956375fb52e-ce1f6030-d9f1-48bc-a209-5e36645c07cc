@@ -7,14 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
-
+ 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers().AddJsonOptions(options=>{options.JsonSerializerOptions.PropertyNamingPolicy=null;});
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("myconn")));
-
+ 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true; 
@@ -49,13 +49,13 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
 });
-
+ 
 builder.Services.AddAuthorization();
-
+ 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<PlaceService>();
 builder.Services.AddControllers();
-
+ 
 builder.Services.AddCors(options=>{
     options.AddPolicy("AllowAllOrigins",
     builder=>{
@@ -64,10 +64,10 @@ builder.Services.AddCors(options=>{
                 .AllowAnyHeader();
     });
 });
-
+ 
 //builderAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
+ 
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
@@ -95,23 +95,26 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
-
+ 
+ 
 var app = builder.Build();
 app.UseCors("AllowAllOrigins");
-
+ 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+ 
 app.UseHttpsRedirection();
-
+ 
 app.UseAuthentication();
 app.UseAuthorization();
-
+ 
 app.MapControllers();
-
+ 
 app.Run();
+ 
+
+ 
