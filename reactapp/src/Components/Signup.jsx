@@ -45,7 +45,8 @@ const Signup = () => {
 
         if (!password) {
             validationErrors.password = ['Password is required'];
-        } else {
+        } 
+        else {
             validationErrors.password = [];
             if (!/(?=.*[A-Z])/.test(password)) {
                 validationErrors.password.push('Password needs at least one capital letter');
