@@ -1,4 +1,3 @@
-    
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
@@ -65,49 +64,47 @@ const Login = () => {
     };
 
     return (
-       
-        <div class="login">
-        <div className='login-container bo'>
-            <div className='left-side'>
-
-                <h1>Travel Tales</h1>
-                <p>Welcome to Travel Tales, your gateway to exploring stunning travel destinations around the world. Discover curated itineraries and find your perfect gateway, and receive personalized recommendations tailored to your travel style and budget!</p>
-            </div>
-            <div className='right-side'>
-                <h1>Login</h1>
-                <form style={{ position: 'relative' }} onSubmit={handleSubmit}>
-                    <fieldset className="custom-fieldset">
-                        <legend>Email Id</legend>
-                        <div className="input-container">
-                            <i className="bi bi-envelope-at-fill icon"></i> {/* Add 'icon' class */}
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Enter your Email"
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
+        <div className="login">
+            <div className='login-container bo'>
+                <div className='left-side'>
+                    <h1>Travel Tales</h1>
+                    <p>Welcome to Travel Tales, your gateway to exploring stunning travel destinations around the world. Discover curated itineraries and find your perfect gateway, and receive personalized recommendations tailored to your travel style and budget!</p>
+                </div>
+                <div className='right-side'>
+                    <h1>Login</h1>
+                    <form style={{ position: 'relative' }} onSubmit={handleSubmit}>
+                        <fieldset className="custom-fieldset">
+                            <legend>Email Id</legend>
+                            <div className="input-container">
+                                <i className="bi bi-envelope-at-fill icon"></i>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter your Email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            {errors.email && <div className="text-danger">{errors.email}</div>}
+                            <legend>Password</legend>
+                            <div className="input-container">
+                                <i className="bi bi-key-fill icon"></i>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            {errors.password && <div className="text-danger">{errors.password}</div>}
+                        </fieldset>
+                         {errors.apiError && <div className="text-danger">{errors.apiError}</div>}  
+                        <div className="btn-container">
+                            <button type="submit">LOGIN</button>
                         </div>
-                        {errors.email && <div className="text-danger">{errors.email}</div>}
-                        <legend>Password</legend>
-                        <div className="input-container">
-                            <i className="bi bi-key-fill icon"></i> {/* Add 'icon' class */}
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={formData.password}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        {errors.password && <div className="text-danger">{errors.password}</div>}
-                    </fieldset>
-                    <div className="btn-container">
-                        <button type="submit">LOGIN</button>
-                    </div>
-                    
-                </form>
-                <h5>
+                    </form>
+                    <h5>
                         <p>
                             Don't have an account?{' '}
                             <span className="linking" onClick={() => navigate('/signup')}>
@@ -115,9 +112,9 @@ const Login = () => {
                             </span>
                         </p>
                     </h5>
+                </div>
             </div>
-        </div>
-        </div>
+        </div>  
     );
 };
 
