@@ -1,46 +1,84 @@
 .home-page {
-    font-family: Arial, sans-serif;
-}
-
-.welcome-section {
-    padding: 50px 0;
-    color: white;
-    text-align: center;
-}
-
-.image-container {
-    position: relative;
-    height: 300px;
-    background: url('/home/coder/project/workspace/reactapp/public/traveltalescoverimage.jpg') no-repeat center center;
+    background: url('/home/coder/project/workspace/reactapp/public/image.jpg') no-repeat center center fixed;
     background-size: cover;
+    font-family: 'Arial', sans-serif;
+    height: 100vh; /* Full screen height */
+    width: 100vw; /* Full screen width */
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrollbars */
 }
 
-.strip-background {
+/* Blur effect for the background */
+.home-page::before {
+    content: '';
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px 0;
+    width: 100%;
+    height: 100%;
+    background: inherit !important;
+    filter: blur(10px) brightness(50%) !important; /* Apply blur and dim the background */
+    z-index: -1 !important; /* Ensure it stays behind the content */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: (90deg,rgba(0, 0, 0, 0.2)rgba(0, 0, 0, 0.2));
+  color: #fff;
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center-align all content */
+  
+  border: 5px solid transparent; /* Add border for hover effect */
+  background-clip: padding-box; /* Ensure background stays within padding */
 }
 
-.centered-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-}
-footer {
-    background: #a8dadc;
-    color: rgb(255, 255, 255);
-    
-}
-.wel
-{
-    padding: 10px 300px 10px 300px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, Helvetica, sans-serif;
-    
+.footer:hover {
+  border-color: #f4f2ef; /* Change border color on hover */
 }
 
+/* Footer center section */
+.footer .footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align the text */
+  color: #611616;
+  text-decoration: none;
+  font-size: 1.2rem; /* Adjust font size */
+  gap: 5px; /* Add spacing between lines */
+}
+
+.footer .footer-center p {
+  margin: 5px 0;
+  color: #611616;
+  font-family:Arial, sans-serif !important;
+  font-weight: bold;
+}
+
+.footer .footer-center p:hover {
+  color: #f3f1ed; /* Change color on hover */
+}
+.wel {
+  font-size: 1.5rem; /* Increase font size for better readability */
+  color: rgb(58, 43, 18); /* Use a darker, elegant color */
+  line-height: 1.8; /* Adjust line height for better spacing */
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  padding: 20px;
+  transform: translate(-50%, -50%); /* Center both vertically and horizontally */
+  max-width: 700px; /* Increase width for better layout */
+  text-align: center; /* Center-align the text */
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 2px 2px 5px rgba(190, 129, 129, 0.3); /* Subtle shadow for text */
+  background: #f3f1ed;
+  border-radius: 20px; /* More rounded corners */
+  box-shadow: 0px 10px 25px rgb(79, 0, 0); /* Stronger shadow for depth */
+  border: 3px solid #7d6a49; /* Add a border with a vibrant color */
+  letter-spacing: 0.5px; /* Add slight spacing between letters */
+  word-spacing: 2px; /* Add spacing between words */
+}

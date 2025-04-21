@@ -66,7 +66,11 @@ const Signup = () => {
                     email,
                     mobileNumber,
                     password,
+<<<<<<< HEAD
                     userRole 
+=======
+                    userRole
+>>>>>>> dd3ef7a72bfa96b26dddc4c87395d91e430a3a17
                 });
 
                 if (response.status === 201) {
@@ -88,10 +92,10 @@ const Signup = () => {
     return (
         <div className="container-fluid signup-container">
             <div className="row justify-content-center">
-                <div className="col-md-6 signup-box">
-                    <h3>Signup</h3>
+                <div className="col-md-6 signup-box shadow-lg p-4 rounded">
+                    <h3 className="text-center text-brown mb-4">Signup</h3>
                     <form>
-                        <div className="form-group">
+                        <div className="form-group mb-3">
                             <label htmlFor="userName">User Name <span className="text-danger">*</span></label>
                             <input
                                 type="text"
@@ -103,7 +107,7 @@ const Signup = () => {
                             />
                             {errors.username && <div className="text-danger">{errors.username}</div>}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mb-3">
                             <label htmlFor="email">Email <span className="text-danger">*</span></label>
                             <input
                                 type="email"
@@ -115,7 +119,7 @@ const Signup = () => {
                             />
                             {errors.email && <div className="text-danger">{errors.email}</div>}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mb-3">
                             <label htmlFor="mobileNumber">Mobile Number <span className="text-danger">*</span></label>
                             <input
                                 type="text"
@@ -127,7 +131,7 @@ const Signup = () => {
                             />
                             {errors.mobileNumber && <div className="text-danger">{errors.mobileNumber}</div>}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mb-3">
                             <label htmlFor="password">Password <span className="text-danger">*</span></label>
                             <input
                                 type="password"
@@ -139,7 +143,7 @@ const Signup = () => {
                             />
                             {errors.password && <div className="text-danger">{errors.password}</div>}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mb-3">
                             <label htmlFor="confirmPassword">Confirm Password <span className="text-danger">*</span></label>
                             <input
                                 type="password"
@@ -151,7 +155,7 @@ const Signup = () => {
                             />
                             {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mb-4">
                             <label htmlFor="userRole">User Role <span className="text-danger">*</span></label>
                             <select
                                 className="form-control"
@@ -165,10 +169,12 @@ const Signup = () => {
                             </select>
                             {errors.userRole && <div className="text-danger">{errors.userRole}</div>}
                         </div>
-                        <button type="button" className="btn btn-primary btn-block" onClick={handleSignup}>Submit</button>
+                        <button type="button" className="btn-submit" onClick={handleSignup}>Submit</button>
                         {errors.form && <div className="text-danger mt-3">{errors.form}</div>}
                     </form>
-                    <p className="mt-3">Already have an account? <a href="/login">Login</a></p>
+                    <p className="mt-3 text-center text-bold">
+                        Already have an account? <a href="/login" className="text-brown font-bold">Login</a>
+                    </p>
                 </div>
             </div>
 
