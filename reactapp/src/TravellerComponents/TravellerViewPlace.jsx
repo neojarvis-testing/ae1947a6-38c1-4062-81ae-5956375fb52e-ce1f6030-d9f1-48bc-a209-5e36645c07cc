@@ -35,8 +35,8 @@ const ViewPlace = () => {
     };
     fetchPlaces();
   }, []);
-  const filteredPlaces = places.filter((place) =>
-    place.Name?.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredPlaces = places.filter((place ) =>
+    place.Name.toLowerCase().includes(searchQuery.toLowerCase()) || place.Category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (

@@ -58,7 +58,7 @@ const App = () => {
                         }
                     />
 
-                    {/* Private Routes for Traveller */}
+                  
                     <Route
                         path="/traveller"
                         element={
