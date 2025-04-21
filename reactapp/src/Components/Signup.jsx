@@ -66,11 +66,7 @@ const Signup = () => {
                     email,
                     mobileNumber,
                     password,
-<<<<<<< HEAD
-                    userRole 
-=======
                     userRole
->>>>>>> dd3ef7a72bfa96b26dddc4c87395d91e430a3a17
                 });
 
                 if (response.status === 201) {
