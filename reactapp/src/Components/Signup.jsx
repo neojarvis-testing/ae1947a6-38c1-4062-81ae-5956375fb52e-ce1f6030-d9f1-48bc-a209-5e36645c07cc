@@ -37,15 +37,18 @@ const Signup = () => {
 
         if (!mobileNumber) {
             validationErrors.mobileNumber = 'Mobile number is required';
-        } else if (mobileNumber.length !== 10) {
-            validationErrors.mobileNumber = 'Mobile number must be 10 digits';
+        } 
+        else if (!/^\d{10}$/.test(mobileNumber)) {
+            validationErrors.mobileNumber = 'Mobile number must be exactly 10 digits and no special characters allowed';
         }
+        
 
         if (!password) {
             validationErrors.password = 'Password is required';
-        } else if (password.length < 6) {
-            validationErrors.password = 'Password must be at least 6 characters';
+        } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)) {
+            validationErrors.password = 'Password must be strong';
         }
+        
 
         if (!confirmPassword) {
             validationErrors.confirmPassword = 'Confirm Password is required';
