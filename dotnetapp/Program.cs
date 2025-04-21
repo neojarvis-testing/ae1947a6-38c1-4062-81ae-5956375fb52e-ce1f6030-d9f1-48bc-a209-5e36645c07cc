@@ -9,27 +9,27 @@ using System.Text;
 using Microsoft.OpenApi.Models;
  
 var builder = WebApplication.CreateBuilder(args);
- 
- 
+
+
 builder.Services.AddControllers().AddJsonOptions(options=>{options.JsonSerializerOptions.PropertyNamingPolicy=null;});
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("myconn")));
  
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
-    options.Password.RequireDigit = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireNonAlphanumeric = true;
-    options.Password.RequireUppercase = true;
-    options.Password.RequiredLength = 8;
-    options.Password.RequiredUniqueChars = 1;
+    options.Password.RequireDigit = true; 
+    options.Password.RequireLowercase = true; 
+    options.Password.RequireNonAlphanumeric = true; 
+    options.Password.RequireUppercase = true; 
+    options.Password.RequiredLength = 8; 
+    options.Password.RequiredUniqueChars = 1; 
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
- 
- 
- 
- 
+
+
+
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
