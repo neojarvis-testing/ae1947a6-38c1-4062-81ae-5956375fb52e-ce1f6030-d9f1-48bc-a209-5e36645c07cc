@@ -41,7 +41,7 @@
     transform: scale(1.1);
 }
 
-/* Dropdown styling */
+
 .form-select {
     background-color:transparent; 
     border: transparent;
@@ -74,7 +74,7 @@
     transform: scale(1.1); 
 }
 
-/* Modal styling */
+
 .modal-title {
     font-size: 1.5rem;
     font-weight: bold;
