@@ -7,27 +7,29 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
-
+ 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
+ 
+ 
 builder.Services.AddControllers().AddJsonOptions(options=>{options.JsonSerializerOptions.PropertyNamingPolicy=null;});
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("myconn")));
-
+ 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
-    options.Password.RequireDigit = false;
+    options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 8;
     options.Password.RequiredUniqueChars = 1;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
-
-
+ 
+ 
+ 
+ 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -47,13 +49,13 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
 });
-
+ 
 builder.Services.AddAuthorization();
-
+ 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<PlaceService>();
 builder.Services.AddControllers();
-
+ 
 builder.Services.AddCors(options=>{
     options.AddPolicy("AllowAllOrigins",
     builder=>{
@@ -62,10 +64,10 @@ builder.Services.AddCors(options=>{
                 .AllowAnyHeader();
     });
 });
-
+ 
 //builderAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
+ 
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
@@ -93,23 +95,26 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
-
+ 
+ 
 var app = builder.Build();
 app.UseCors("AllowAllOrigins");
-
+ 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+ 
 app.UseHttpsRedirection();
-
+ 
 app.UseAuthentication();
 app.UseAuthorization();
-
+ 
 app.MapControllers();
-
+ 
 app.Run();
+ 
+
+ 
