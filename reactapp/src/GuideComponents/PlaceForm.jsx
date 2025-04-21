@@ -99,6 +99,7 @@ const PlaceForm = ({ mode }) => {
         const currentResponse =await axios.get(`${baseUrl}/Place/${id}`, { headers });
 
         const currentCategory=currentResponse.data.Category;
+        
         if(formData.Category === currentCategory){
           setFormError('Please choose a different category');
           setLoading(false);
