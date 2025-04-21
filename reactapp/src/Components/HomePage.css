@@ -2,15 +2,14 @@
     background: url('/home/coder/project/workspace/reactapp/public/image.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Arial', sans-serif;
-    height: 100vh; /* Full screen height */
-    width: 100vw; /* Full screen width */
+    height: 100vh; 
+    width: 100vw; 
     position: relative;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrollbars */
+    overflow: hidden;
 }
 
-/* Blur effect for the background */
 .home-page::before {
     content: '';
     position: absolute;
@@ -19,8 +18,8 @@
     width: 100%;
     height: 100%;
     background: inherit !important;
-    filter: blur(10px) brightness(50%) !important; /* Apply blur and dim the background */
-    z-index: -1 !important; /* Ensure it stays behind the content */
+    filter: blur(10px) brightness(50%) !important; 
+    z-index: -1 !important;
 }
 .footer {
   position: absolute;
@@ -31,10 +30,10 @@
   padding: 20px 10px;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center-align all content */
+  justify-content: center; 
   
-  border: 5px solid transparent; /* Add border for hover effect */
-  background-clip: padding-box; /* Ensure background stays within padding */
+  border: 5px solid transparent; 
+  background-clip: padding-box; 
 }
 
 .footer:hover {

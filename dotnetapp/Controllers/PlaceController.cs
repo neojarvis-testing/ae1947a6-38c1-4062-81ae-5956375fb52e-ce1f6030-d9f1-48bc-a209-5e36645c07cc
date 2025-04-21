@@ -41,10 +41,15 @@ namespace dotnetapp.Controllers
         [Authorize(Roles="Guide")]
         public async Task<ActionResult> AddPlace([FromBody] Place place){
             try{
-                var success = await placeService.AddPlace(place);
-                if(success == null){
+                if(place == null){
                     return StatusCode(500,"Failed to add place");
                 }
+
+                var nameCheck=await placeService.AddPlace(place);
+                if(!nameCheck){
+                    return BadRequest("A place with this name already exists.");
+                }
+
                 return Ok("Place added successfully");
 
             }
@@ -58,11 +63,15 @@ namespace dotnetapp.Controllers
         public async Task<ActionResult> UpdatePlace(int placeId,[FromBody] Place place){
             try{
                 var success = await placeService.GetPlaceById(placeId);
-
                 if(success == null){
                     return NotFound("Cannot find any place");
                 }
-                await placeService.UpdatePlace(placeId,place);
+
+                var categoryCheck=await placeService.UpdatePlace(placeId,place);
+                if(categoryCheck == false){
+                    return BadRequest("A place with category already exists.");
+                }
+
                 return Ok("Place updated successfully");
             }
             catch(Exception e){
