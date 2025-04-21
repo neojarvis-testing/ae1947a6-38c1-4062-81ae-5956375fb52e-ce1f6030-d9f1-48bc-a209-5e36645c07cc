@@ -1,4 +1,4 @@
-/* Table Container Styling */
+
 .table-container {
     background: linear-gradient(to bottom right, #f9f9fc, #ffffff); 
     border-radius: 10px; 
@@ -65,14 +65,14 @@
     background-color: #e63946; 
 }
 
-/* Modal Styling */
+
 .modal-content {
     border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .modal-header {
-    border-bottom: none; /* Remove default border */
+    border-bottom: none; 
 }
 
 .modal-footer {

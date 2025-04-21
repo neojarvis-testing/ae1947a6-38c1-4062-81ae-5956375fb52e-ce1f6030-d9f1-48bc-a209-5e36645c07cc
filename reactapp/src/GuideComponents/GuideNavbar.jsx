@@ -27,6 +27,8 @@ const GuideNavbar = ({ username, role }) => {
     const handleCancel = () => {
         setShowLogoutModel(false);
     };
+    console.log("user:",username);
+    console.log("role:",role);
 
     return (
         <div className="nav-page">
