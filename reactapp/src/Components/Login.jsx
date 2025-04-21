@@ -102,6 +102,7 @@ const Login = () => {
                         </div>
                         {errors.password && <div className="text-danger">{errors.password}</div>}
                     </fieldset>
+                    {errors.apiError && <div className="text-danger">{errors.apiError}</div>}
                     <div className="btn-container">
                         <button type="submit">LOGIN</button>
                     </div>

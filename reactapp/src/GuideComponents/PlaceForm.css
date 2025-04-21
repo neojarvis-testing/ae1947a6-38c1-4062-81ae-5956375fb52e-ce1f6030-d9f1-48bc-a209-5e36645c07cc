@@ -143,6 +143,11 @@ select.form-control {
     outline: none; 
 }
 .btn-primary {
+    background-color: #8B4513 !important;
+    color: #FFFFFF;
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px;
     background-color: #8B4513 !important; 
     color: #FFFFFF; 
     border: none; 
