@@ -61,7 +61,7 @@ const GuideNavbar = ({ username, role }) => {
                                 </select>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/profile">{username}/{role}</Link>
+                                <p className="nav-link" to="/profile">{username}/{role}</p>
                             </li>
                             <li className="nav-item">
                                 <button className="btn light-brown-btn" onClick={handleLogoutClick}>
