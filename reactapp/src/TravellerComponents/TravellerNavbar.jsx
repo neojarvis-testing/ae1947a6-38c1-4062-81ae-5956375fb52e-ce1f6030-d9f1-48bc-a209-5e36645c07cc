@@ -38,7 +38,7 @@ const TravellerNavbar = ({username,role}) => {
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item"><Link className="nav-link" to="/home"> <i className="fas fa-home me-2"></i> Home</Link></li>
                             <li className="nav-item"><Link className="nav-link" to="/travellerviewplace"> <i class="bi bi-geo"></i> Place</Link></li>
-                            <li className="nav-item">className="nav-link"{username}/{role}</li>
+                            <li className="nav-item"><p className="nav-link" >{username}/{role}</p></li>
                             <li className="nav-item">
                                 <button className="btn light-brown-btn" onClick={handleLogoutClick}>
                                 <i className="fas fa-sign-out-alt me-2"></i> Logout</button>
