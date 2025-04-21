@@ -7,8 +7,14 @@
     position: relative;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
+    overflow: hidden;
+}
+
+=======
     overflow: hidden; 
 }
+>>>>>>> 590c2d94933dfc6878bb4f91c54c945d521c44df
 .home-page::before {
     content: '';
     position: absolute;
@@ -17,8 +23,13 @@
     width: 100%;
     height: 100%;
     background: inherit !important;
+<<<<<<< HEAD
+    filter: blur(10px) brightness(50%) !important; 
+    z-index: -1 !important;
+=======
     filter: blur(10px) brightness(50%) !important;
     z-index: -1 !important; 
+>>>>>>> 590c2d94933dfc6878bb4f91c54c945d521c44df
 }
 .footer {
   position: absolute;
