@@ -1,3 +1,4 @@
+
 .navbar {
     margin-bottom: 20px;
     background: linear-gradient(90deg, #b5651d, #d4a373); 
@@ -12,11 +13,7 @@
     overflow: hidden; 
 }
 
-<<<<<<< HEAD
-=======
 
- 
->>>>>>> f0dedb1eaf90f1cd1b394a05fa4d76958116c431
 .navbar-brand {
  
     color: #ffffff;
@@ -80,51 +77,87 @@
 }
  
  
+
 .modal-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #8B4513;
+    color: #8B4513; 
 }
- 
+
 .modal-body {
     font-size: 1rem;
     color: #333;
 }
- 
+
 .modal-footer .btn-success {
-    background-color: #8B4513;
+    background-color: #8B4513; 
     border: none;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #FFFFFF; 
 }
- 
+
 .modal-footer .btn-success:hover {
-    background-color: #A0522D;
+    background-color: #A0522D; 
 }
- 
+
 .modal-footer .btn-danger {
-    background-color: #8B0000;
+    background-color: #8B0000; 
     border: none;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #FFFFFF; 
 }
- 
+
 .modal-footer .btn-danger:hover {
-    background-color: #B22222;
+    background-color: #B22222; 
 }
-.light-brown-btn {
-    background-color: #D2B48C;
+
+.navbar-brand:hover
+{
+color: #200d0d !important;
+}
+.navbar-nav .nav-link {
+color: #442020 !important;
+font-weight: bold;
+font-size: 1rem;
+margin-right: 15px;
+display: flex;
+align-items: center;
+text-shadow: 1px 1px 2px #FFFFFF !important;
+transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+color: #381b06 !important;
+transform: scale(1.1);
+}
+
+.btn-primary {
+    background-color: #D3D3D3;
     border: 2px solid #8B4513;
     color: #FFFFFF;
     font-weight: bold;
     padding: 5px 15px;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-}
- 
-.light-brown-btn:hover {
-    background-color: #C19A6B;
+    }
+    
+    .btn-primary:hover {
+    background-color: #8B4513;
+    color: #FFFFFF;
     transform: scale(1.1);
-}
+    }
+
+    .form-select {
+        background-color:transparent;
+        border: transparent;
+        color: #45230a !important;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-size: 3rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .form-select:hover {
+        background-color: #C0C0C0;
+        transform: scale(1.05);
+        }
