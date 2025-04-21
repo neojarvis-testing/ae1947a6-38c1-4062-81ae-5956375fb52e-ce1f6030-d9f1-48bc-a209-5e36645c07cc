@@ -46,7 +46,8 @@ const Signup = () => {
 
         if (!password) {
             validationErrors.password = 'Password is required';
-        } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)) {
+        } 
+        else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)) {
             validationErrors.password = 'Password must be strong\n Password at least contain 1 lowercase letter\nPassword at least contain 1 uppercase letter\nPassword at least contain 1 Special character.\nPassword at least contain 1 number.';
         }
         

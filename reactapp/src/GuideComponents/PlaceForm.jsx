@@ -77,7 +77,8 @@ const PlaceForm = ({ mode }) => {
         }));
       };
       reader.readAsDataURL(file);
-    } else {
+    }
+    else {
       setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: value,
