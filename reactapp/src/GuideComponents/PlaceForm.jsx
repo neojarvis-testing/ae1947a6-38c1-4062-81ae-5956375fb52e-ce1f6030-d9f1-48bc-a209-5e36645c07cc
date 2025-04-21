@@ -24,7 +24,7 @@ const PlaceForm = ({ mode }) => {
   const username = localStorage.getItem('username') || 'Guide';
   const role = localStorage.getItem('role') || 'Traveller';
 
-  // Fetch place data when editing
+ 
   useEffect(() => {
     const fetchPlaceData = async () => {
       if (mode === 'edit' && id) {
@@ -114,6 +114,7 @@ const PlaceForm = ({ mode }) => {
   };
 
   return (
+    <div className='bColor'>
     <div className="placeform">
       <GuideNavbar username={username} role={role} />
       <div className="container place-form-container">
@@ -218,6 +219,7 @@ const PlaceForm = ({ mode }) => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

@@ -1,61 +1,51 @@
-/* Navbar styling */
 .navbar {
-    margin-bottom: 15px !important;
-    background-color: rgba(255, 255, 255, 0.9); 
-    border-radius: 50px; 
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); 
+    margin-bottom: 20px;
+   background: linear-gradient(90deg, #b5651d, #d4a373); 
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
     padding: 15px 40px; 
-    margin: 20px auto; 
-    position: relative !important; 
-    width: 900%; 
-    max-width: 1200px; 
-    border: 2px #8B4513; 
+    margin: 0; 
+     position: relative !important; 
+    width: 100%; 
+    max-width: none; 
+    border: none; 
+    border-radius: 0; 
     overflow: hidden; 
 }
-/* .navbar {
-    position: relative; 
-    top: 0;
-    width: 100%;
-    background-color: #fff; White background
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    z-index: 1000;
-    margin-bottom: 20px; 
-  } */
 
-/* Navbar brand (logo/title) styling */
 .navbar-brand {
 
-    color: #401515; /* White text */
+    color: #ffffff; 
     font-size: 1.9rem;
-    font-family: 'Times New Roman', Times, serif;
-    text-shadow: 1px 1px 2px #d9bf29; /* Brown shadow */
-
+    font-family: "Noto Serif", serif;
+    text-shadow: 1px 1px 2px #d9bf29; 
     font-size: 2rem;
-    color: #3c230f !important;
     text-shadow: 1px 1px 2px rgba(1.5, 0.5, 0.5, 0.5);
 }
-
-/* Navbar links styling */
+.navbar-brand:hover
+{
+    color: #442020 !important;
+}
 .navbar-nav .nav-link {
-    color: #8B4513 !important; /* Dark brown text */
+    color: #442020 !important;
+    font-weight: bold;
     font-size: 1rem;
     margin-right: 15px;
     display: flex;
     align-items: center;
-    text-shadow: 1px 1px 2px #FFFFFF !important; /* White shadow */
+    text-shadow: 1px 1px 2px #FFFFFF !important; 
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #442020 !important; /* Darker brown text on hover */
-    transform: scale(1.1); /* Slight zoom effect */
+    color: #8B4513 !important; 
+    transform: scale(1.1);
 }
 
 /* Dropdown styling */
 .form-select {
-    background-color:transparent; /* Light beige dropdown */
-    border: transparent; /* Brown border */
-    color:  #8B4513 !important; /* Dark brown text */
+    background-color:transparent; 
+    border: transparent;
+    color:  #8B4513 !important; 
     border-radius: 5px;
     padding: 5px 10px;
     font-size: 1rem;
@@ -63,15 +53,15 @@
 }
 
 .form-select:hover {
-    background-color: #C0C0C0; /* Darker grey on hover */
-    transform: scale(1.05); /* Slight zoom effect */
+    background-color: #C0C0C0; 
+    transform: scale(1.05); 
 }
 
-/* Button styling */
+
 .btn-primary {
-    background-color: #D3D3D3; /* Grey button */
-    border: 2px solid #8B4513; /* Brown border */
-    color: #FFFFFF; /* White text */
+    background-color: #D3D3D3; 
+    border: 2px solid #8B4513; 
+    color: #FFFFFF; 
     font-weight: bold;
     padding: 5px 15px;
     border-radius: 5px;
@@ -79,48 +69,48 @@
 }
 
 .btn-primary:hover {
-    background-color: #8B4513; /* Brown on hover */
-    color: #FFFFFF; /* White text */
-    transform: scale(1.1); /* Slight zoom effect */
+    background-color: #8B4513; 
+    color: #FFFFFF; 
+    transform: scale(1.1); 
 }
 
 /* Modal styling */
 .modal-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #8B4513; /* Brown text */
+    color: #8B4513; 
 }
 
 .modal-body {
     font-size: 1rem;
-    color: #333; /* Dark text */
+    color: #333;
 }
 
 .modal-footer .btn-success {
-    background-color: #8B4513; /* Brown button */
+    background-color: #8B4513; 
     border: none;
     font-weight: bold;
-    color: #FFFFFF; /* White text */
+    color: #FFFFFF; 
 }
 
 .modal-footer .btn-success:hover {
-    background-color: #A0522D; /* Darker brown on hover */
+    background-color: #A0522D; 
 }
 
 .modal-footer .btn-danger {
-    background-color: #8B0000; /* Dark red button */
+    background-color: #8B0000; 
     border: none;
     font-weight: bold;
-    color: #FFFFFF; /* White text */
+    color: #FFFFFF; 
 }
 
 .modal-footer .btn-danger:hover {
-    background-color: #B22222; /* Lighter red on hover */
+    background-color: #B22222; 
 }
 .light-brown-btn {
-    background-color: #D2B48C; /* Light brown background */
-    border: 2px solid #8B4513; /* Dark brown border */
-    color: #FFFFFF; /* White text */
+    background-color: #D2B48C;
+    border: 2px solid #8B4513; 
+    color: #FFFFFF; 
     font-weight: bold;
     padding: 5px 15px;
     border-radius: 5px;
@@ -130,6 +120,6 @@
 }
 
 .light-brown-btn:hover {
-    background-color: #C19A6B; /* Slightly darker light brown on hover */
-    transform: scale(1.1); /* Slight zoom effect */
+    background-color: #C19A6B; 
+    transform: scale(1.1); 
 }
