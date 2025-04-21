@@ -22,7 +22,8 @@ const Signup = () => {
         return re.test(String(email).toLowerCase());
     };
 
-    const handleSignup = async () => {
+    const handleSignup = async (e) => {
+        e.preventDefault()
         let validationErrors = {};
 
         if (!username) {
@@ -44,25 +45,10 @@ const Signup = () => {
         
 
         if (!password) {
-            validationErrors.password = ['Password is required'];
-        } 
-        else {
-            validationErrors.password = [];
-            if (!/(?=.*[A-Z])/.test(password)) {
-                validationErrors.password.push('Password needs at least one capital letter');
-            }
-            if (!/(?=.*\d)/.test(password)) {
-                validationErrors.password.push('Password needs at least one digit');
-            }
-            if (!/(?=.*[!@#$%^&*])/.test(password)) {
-                validationErrors.password.push('Password needs at least one special character (!@#$%^&*)');
-            }
-            if (!/[A-Za-z\d!@#$%^&*]{8,}/.test(password)) {
-                validationErrors.password.push('Password needs to be at least 8 characters long');
-            }
+            validationErrors.password = 'Password is required';
+        } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(password)) {
+            validationErrors.password = 'Password must be strong\n Password at least contain 1 lowercase letter\nPassword at least contain 1 uppercase letter\nPassword at least contain 1 Special character.\nPassword at least contain 1 number.';
         }
-        
-        
         
 
         if (!confirmPassword) {
@@ -145,7 +131,6 @@ const Signup = () => {
                             />
                             {errors.mobileNumber && <div className="text-danger">{errors.mobileNumber}</div>}
                         </div>
-
                         <div className="form-group mb-3">
                             <label htmlFor="password">Password <span className="text-danger">*</span></label>
                             <input
@@ -156,16 +141,17 @@ const Signup = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Password"
                             />
-                            {errors.password && errors.password.length > 0 && (
-                                <ul className="text-danger">
-                                    {errors.password.map((error, index) => (
-                                        <li key={index}>{error}</li>
-                                    ))}
-                                </ul>
-                            )}
+{errors.password && (
+  <div className="text-danger">
+    {errors.password.split('\n').map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    ))}
+  </div>
+)}
                         </div>
-
-
                         <div className="form-group mb-3">
                             <label htmlFor="confirmPassword">Confirm Password <span className="text-danger">*</span></label>
                             <input
@@ -176,7 +162,7 @@ const Signup = () => {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="Confirm Password"
                             />
-                            {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword} <br/></div>}
+                            {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
                         </div>
                         <div className="form-group mb-4">
                             <label htmlFor="userRole">User Role <span className="text-danger">*</span></label>
