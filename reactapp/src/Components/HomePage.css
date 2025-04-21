@@ -26,7 +26,7 @@
 position: absolute;
 bottom: 0;
 width: 100%;
-background: rgba(197, 129, 84, 0.8); /* Dark background with slight transparency */
+background: rgba(197, 129, 84, 0.8); 
 color: #fff;
 padding: 5px 10px;
 display: flex;
