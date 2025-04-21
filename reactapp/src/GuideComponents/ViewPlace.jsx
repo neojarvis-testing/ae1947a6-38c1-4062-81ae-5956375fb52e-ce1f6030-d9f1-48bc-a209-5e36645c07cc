@@ -86,6 +86,7 @@ const ViewPlace = () => {
 
   return (
     <div className='bColor'><GuideNavbar username={username} role={role} />
+    <div className='form'>
     <div className="container mt-5">
       <div className="table-container">
         <div className="d-flex justify-content-center align-items-center mb-2 mt-4">
@@ -133,14 +134,14 @@ const ViewPlace = () => {
                 <td>
                   <div className="d-flex justify-content-center align-items-center">
                     <button
-                      className="btn btn-primary btn-sm me-2"
+                      className="btn btn-outline-secondary"
                       onClick={() => handleEdit(myPlace)}
                       aria-label={`Edit ${myPlace.Name}`}
                     >
                       Edit
                     </button>
                     <button
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-outline-danger "
                       onClick={() => openDeleteModal(myPlace.PlaceId)}
                       aria-label={`Delete ${myPlace.Name}`}
                     >
@@ -182,6 +183,7 @@ const ViewPlace = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
     </div>
   );

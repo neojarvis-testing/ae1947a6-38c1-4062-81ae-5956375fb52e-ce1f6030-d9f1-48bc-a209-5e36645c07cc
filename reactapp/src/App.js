@@ -12,6 +12,7 @@ import PrivateRoute from './Components/PrivateRoute';
 import TravellerViewPlace from './TravellerComponents/TravellerViewPlace';
 
 
+
 const App = () => {
     return (
         <Router>
@@ -19,7 +20,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
-                  //  <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
                    <Route path="/home" element={<HomePage />} />
                    <Route path="*" element={<ErrorPage />} />
 
@@ -58,7 +59,7 @@ const App = () => {
                         }
                     />
 
-                    {/* Private Routes for Traveller */}
+                  
                     <Route
                         path="/traveller"
                         element={
