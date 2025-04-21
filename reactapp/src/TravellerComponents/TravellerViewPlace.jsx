@@ -3,6 +3,7 @@ import axios from 'axios';
 import baseUrl from '../apiConfig';
 import 'bootstrap/dist/css/bootstrap.css';
 import TravellerNavbar from './TravellerNavbar';
+import './TravellerViewPlace.css';
 
 const ViewPlace = () => {
   const [places, setPlaces] = useState([]);
