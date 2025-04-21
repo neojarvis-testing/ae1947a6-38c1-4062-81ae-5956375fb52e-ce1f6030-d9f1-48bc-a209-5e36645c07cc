@@ -1,4 +1,3 @@
-    
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
@@ -116,9 +115,9 @@ const Login = () => {
                             </span>
                         </p>
                     </h5>
+                </div>
             </div>
-        </div>
-        </div>
+        </div>  
     );
 };
 
