@@ -30,7 +30,7 @@ namespace dotnetapp.Services
 
         public async Task<bool> AddPlace(Place place)
         {
-            var existingPlace=await _context.Places.FindAsync(place.PlaceId);
+            var existingPlace=await _context.Places.FirstOrDefaultAsync(p=>p.Name==place.Name);
 
             if(existingPlace != null)
             {
