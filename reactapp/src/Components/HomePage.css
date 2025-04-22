@@ -38,13 +38,13 @@ justify-content: center;
 
 
 .footer .footer-center {
-display: flex;
-flex-direction: column;
-align-items: center;
-color: #f3f1ed;
-text-decoration: none;
-font-size: 1.2rem; 
-gap: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f3f1ed;
+    text-decoration: none;
+    font-size: 1.2rem; 
+    gap: 5px;
 }
 
 .footer .footer-center p {
