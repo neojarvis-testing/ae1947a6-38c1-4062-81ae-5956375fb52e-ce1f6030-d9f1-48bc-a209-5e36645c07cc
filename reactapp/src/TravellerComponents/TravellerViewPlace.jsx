@@ -18,7 +18,7 @@ const ViewPlace = () => {
       setLoading(true);
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${baseUrl}/Place`, {
+        const response = await axios.get(`${baseUrl}/Place`, { 
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -37,11 +37,11 @@ const ViewPlace = () => {
     fetchPlaces();
   }, []);
 
-  const filteredPlaces = places.filter((place) =>
+  onst filteredPlaces = places.filter((place) =>
     place.Name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     place.Category.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+c
   return (
     <div className="bColor">
       {/* Navbar outside the main container */}
