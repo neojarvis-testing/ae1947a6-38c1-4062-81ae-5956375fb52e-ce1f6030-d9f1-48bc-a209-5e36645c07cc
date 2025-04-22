@@ -50,7 +50,7 @@ namespace dotnetapp.Services
                 return false;
             }
 
-            var categoryExists=await _context.Places.FirstOrDefaultAsync(p => p.Category==place.Category  && p.PlaceId !=placeId);
+            var categoryExists=await _context.Places.FirstOrDefaultAsync(p => p.Category==place.Category  &&  p.PlaceId !=placeId);
             if(categoryExists != null)
             {
                 return false;

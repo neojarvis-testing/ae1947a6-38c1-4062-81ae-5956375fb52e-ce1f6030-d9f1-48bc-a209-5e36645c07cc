@@ -25,7 +25,6 @@ namespace dotnetapp.Services
         this.configuration = configuration;
         this.context = context;
     }
-
     public async Task<(int, string)> Registration(User newUser, string role){
         
         if(await context.Users.AnyAsync(i => i.Email == newUser.Email)){
@@ -38,7 +37,6 @@ namespace dotnetapp.Services
 
         return (201, "User created successfully!");
     }
-
     public async Task<(int, object)> Login(LoginModel model)
     {
         var user = await context.Users.FirstOrDefaultAsync(i => i.Email == model.Email);
@@ -61,7 +59,6 @@ namespace dotnetapp.Services
             var token = GenerateToken(claims);
             return (200, new { Token = token });
     }
-
     private string GenerateToken(IEnumerable<Claim> claims){
         var jwtSettings = configuration.GetSection("JWT");
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Secret"]));

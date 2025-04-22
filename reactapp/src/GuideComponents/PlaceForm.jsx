@@ -93,8 +93,6 @@ const PlaceForm = ({ mode }) => {
 
       const token = localStorage.getItem('token');
       const headers = { Authorization: `Bearer ${token}` };
-
-      
       if (mode === 'edit') {
         const currentResponse =await axios.get(`${baseUrl}/Place/${id}`, { headers });
 
@@ -104,8 +102,7 @@ const PlaceForm = ({ mode }) => {
           setFormError('Please choose a different category');
           setLoading(false);
           return;
-        }
-
+        } 
         await axios.put(`${baseUrl}/Place/${id}`, formData, { headers });
         
       } else {
