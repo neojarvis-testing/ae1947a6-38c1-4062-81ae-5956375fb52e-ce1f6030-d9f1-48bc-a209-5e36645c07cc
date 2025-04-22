@@ -220,12 +220,12 @@ const PlaceForm = ({ mode }) => {
               />
             </div>
           )}
-          <div className="form-buttons">
-            <button type="button" className="btn btn-secondary" onClick={() => navigate(-1)}>Back</button>
-            <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? 'Loading...' : mode === 'edit' ? 'Update Place' : 'Add Place'}
-            </button>
-          </div>
+         <div className="form-buttons">
+    <button type="button" className="btn btn-secondary" onClick={() => navigate(-1)}>Back</button>
+    <button type="submit" className="btn btn-primary" disabled={loading}>
+        {loading ? 'Loading...' : mode === 'edit' ? 'Update Place' : 'Add Place'}
+    </button>
+</div>
         </form>
       </div>
       {showPopup && (

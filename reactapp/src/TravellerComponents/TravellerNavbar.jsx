@@ -29,7 +29,7 @@ const TravellerNavbar = ({username,role}) => {
         <div className="travel-nav">
             <nav className="navbar navbar-expand-lg custom-navbar">
                 <div className="container-fluid">
-                    <Link className="navbar-brand">TRAVEL TALES</Link>
+                    <Link className="navbar-brand"><i class="bi bi-suitcase2-fill"></i> TRAVEL TALES</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -48,10 +48,10 @@ const TravellerNavbar = ({username,role}) => {
                 </div>
             </nav>
             <Modal show={showLogoutModel} onHide={handleCloseModel}>
-                <Modal.Title>Confirmation</Modal.Title>
-                <Modal.Header>
-                    <Modal.Body>Are you sure you want to logout?</Modal.Body>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmation</Modal.Title>
                 </Modal.Header>
+                <Modal.Body>Are you sure you want to logout?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="success" onClick={handleLogout}>Yes, Logout</Button>
                     <Button variant="danger" onClick={handleCancel}>Cancel</Button>
