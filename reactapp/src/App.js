@@ -25,14 +25,7 @@ const App = () => {
                    {/* <Route path="*" element={<ErrorPage />} /> */}
 
                   
-                    <Route
-                        path="/guide"
-                        element={
-                            <PrivateRoute allowedRoles={['Guide']}>
-                                <GuideNavbar />
-                            </PrivateRoute>
-                        }
-                    />
+                    <Route path="/guide" element={ <PrivateRoute allowedRoles={['Guide']}><GuideNavbar /></PrivateRoute> }/>
                     <Route
                         path="/placeform"
                         element={
@@ -59,7 +52,6 @@ const App = () => {
                         }
                     />
 
-                  
                     <Route
                         path="/traveller"
                         element={
