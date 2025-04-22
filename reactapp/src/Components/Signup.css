@@ -1,8 +1,8 @@
 .signup-container {
     background: url('/home/coder/project/workspace/reactapp/public/SIGNUP.jpg') no-repeat center center; 
     background-size: cover;
-    -position: center;
-    background-rebackgroundpeat: no-repeat;
+    background-position: center;
+    background: no-repeat;
     height: auto;
     display: flex;
     align-items: center;
